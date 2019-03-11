@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.eccard.conquer.data.DataManager;
 import com.eccard.conquer.ui.about.AboutViewModel;
 import com.eccard.conquer.ui.feed.opensource.OpenSourceViewModel;
+import com.eccard.conquer.ui.goals.GoalsViewModel;
+import com.eccard.conquer.ui.goals.insert.AddGoalViewModel;
+import com.eccard.conquer.ui.tasks.TasksViewModel;
 import com.eccard.conquer.ui.login.LoginViewModel;
 import com.eccard.conquer.ui.splash.SplashViewModel;
 import com.eccard.conquer.utils.rx.SchedulerProvider;
@@ -35,35 +38,45 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
 
   @Override
   public <T extends ViewModel> T create(Class<T> modelClass) {
-    if (modelClass.isAssignableFrom(AboutViewModel.class)) {
-      //noinspection unchecked
-      return (T) new AboutViewModel(dataManager,schedulerProvider);
-    } else if (modelClass.isAssignableFrom(FeedViewModel.class)) {
-      //noinspection unchecked
-      return (T) new FeedViewModel(dataManager,schedulerProvider);
-    } else if (modelClass.isAssignableFrom(LoginViewModel.class)) {
-      //noinspection unchecked
-      return (T) new LoginViewModel(dataManager,schedulerProvider);
-    } else if (modelClass.isAssignableFrom(MainViewModel.class)) {
-      //noinspection unchecked
-      return (T) new MainViewModel(dataManager,schedulerProvider);
-    }
-    else if (modelClass.isAssignableFrom(BlogViewModel.class)) {
-      //noinspection unchecked
-      return (T) new BlogViewModel(dataManager,schedulerProvider);
-    }
-    else if (modelClass.isAssignableFrom(RateUsViewModel.class)) {
-      //noinspection unchecked
-      return (T) new RateUsViewModel(dataManager,schedulerProvider);
-    }
-    else if (modelClass.isAssignableFrom(OpenSourceViewModel.class)) {
-      //noinspection unchecked
-      return (T) new OpenSourceViewModel(dataManager,schedulerProvider);
-    }
-    else if (modelClass.isAssignableFrom(SplashViewModel.class)) {
-      //noinspection unchecked
-      return (T) new SplashViewModel(dataManager,schedulerProvider);
-    }
-    throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
+      if (modelClass.isAssignableFrom(AboutViewModel.class)) {
+          //noinspection unchecked
+          return (T) new AboutViewModel(dataManager,schedulerProvider);
+      } else if (modelClass.isAssignableFrom(FeedViewModel.class)) {
+          //noinspection unchecked
+          return (T) new FeedViewModel(dataManager,schedulerProvider);
+      } else if (modelClass.isAssignableFrom(LoginViewModel.class)) {
+          //noinspection unchecked
+          return (T) new LoginViewModel(dataManager,schedulerProvider);
+      } else if (modelClass.isAssignableFrom(MainViewModel.class)) {
+          //noinspection unchecked
+          return (T) new MainViewModel(dataManager,schedulerProvider);
+      }
+      else if (modelClass.isAssignableFrom(BlogViewModel.class)) {
+          //noinspection unchecked
+          return (T) new BlogViewModel(dataManager,schedulerProvider);
+      }
+      else if (modelClass.isAssignableFrom(RateUsViewModel.class)) {
+          //noinspection unchecked
+          return (T) new RateUsViewModel(dataManager,schedulerProvider);
+      }
+      else if (modelClass.isAssignableFrom(OpenSourceViewModel.class)) {
+          //noinspection unchecked
+          return (T) new OpenSourceViewModel(dataManager,schedulerProvider);
+      }
+      else if (modelClass.isAssignableFrom(SplashViewModel.class)) {
+          //noinspection unchecked
+          return (T) new SplashViewModel(dataManager,schedulerProvider);
+      } else if (modelClass.isAssignableFrom(GoalsViewModel.class)){
+          //noinspection unchecked
+          return (T) new GoalsViewModel(dataManager,schedulerProvider);
+      } else if (modelClass.isAssignableFrom(TasksViewModel.class)){
+          //noinspection unchecked
+          return (T) new TasksViewModel(dataManager,schedulerProvider);
+      } else if (modelClass.isAssignableFrom(AddGoalViewModel.class)){
+          //noinspection unchecked
+          return (T) new AddGoalViewModel(dataManager,schedulerProvider);
+
+      }
+      throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
   }
 }
