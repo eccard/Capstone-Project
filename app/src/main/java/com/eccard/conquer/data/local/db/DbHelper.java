@@ -16,9 +16,13 @@
 
 package com.eccard.conquer.data.local.db;
 
+import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.data.model.db.Option;
 import com.eccard.conquer.data.model.db.Question;
+import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.data.model.db.User;
+
+import androidx.lifecycle.LiveData;
 import io.reactivex.Observable;
 import java.util.List;
 
@@ -47,4 +51,28 @@ public interface DbHelper {
     Observable<Boolean> saveQuestion(Question question);
 
     Observable<Boolean> saveQuestionList(List<Question> questionList);
+
+
+    Observable<Boolean> saveTask(final Task task);
+
+    Observable<Boolean> isTaskEmpty();
+
+    Observable<List<Task>> getTasksFromGoalId(Long goalId);
+    Observable<List<Task>> loadAllByGoalId(Long goalId);
+    LiveData<List<Task>> loadAllByGoalIdWithLiveData(Long goalId);
+
+    // todo add delete
+
+    // add update ?
+
+    Observable<Boolean> saveGoal(final Goal goal);
+
+    Observable<Boolean> isGoalEmpty();
+
+    Observable<List<Goal>> getAllGoals();
+
+    LiveData<List<Goal>> getAllGoalsLiveData();
+
+
+
 }
