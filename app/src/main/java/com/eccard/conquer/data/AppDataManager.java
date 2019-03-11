@@ -17,6 +17,9 @@
 package com.eccard.conquer.data;
 
 import android.content.Context;
+
+import com.eccard.conquer.data.model.db.Goal;
+import com.eccard.conquer.data.model.db.Task;
 import com.google.gson.Gson;
 import com.google.gson.internal.$Gson$Types;
 import com.google.gson.reflect.TypeToken;
@@ -35,6 +38,8 @@ import com.eccard.conquer.data.remote.ApiHeader;
 import com.eccard.conquer.data.remote.ApiHelper;
 import com.eccard.conquer.utils.AppConstants;
 import com.eccard.conquer.utils.CommonUtils;
+
+import androidx.lifecycle.LiveData;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import java.lang.reflect.Type;
@@ -287,5 +292,50 @@ public class AppDataManager implements DataManager {
         setCurrentUserProfilePicUrl(profilePicPath);
 
         updateApiHeader(userId, accessToken);
+    }
+
+    @Override
+    public Observable<Boolean> saveTask(Task task) {
+        return mDbHelper.saveTask(task);
+    }
+
+    @Override
+    public Observable<Boolean> isTaskEmpty() {
+        return mDbHelper.isTaskEmpty();
+    }
+
+    @Override
+    public Observable<List<Task>> getTasksFromGoalId(Long goalId) {
+        return mDbHelper.getTasksFromGoalId(goalId);
+    }
+
+    @Override
+    public Observable<Boolean> saveGoal(Goal goal) {
+        return mDbHelper.saveGoal(goal);
+    }
+
+    @Override
+    public Observable<Boolean> isGoalEmpty() {
+        return mDbHelper.isGoalEmpty();
+    }
+
+    @Override
+    public Observable<List<Goal>> getAllGoals() {
+        return mDbHelper.getAllGoals();
+    }
+
+    @Override
+    public LiveData<List<Goal>> getAllGoalsLiveData() {
+        return mDbHelper.getAllGoalsLiveData();
+    }
+
+    @Override
+    public Observable<List<Task>> loadAllByGoalId(Long goalId) {
+        return mDbHelper.loadAllByGoalId(goalId);
+    }
+
+    @Override
+    public LiveData<List<Task>> loadAllByGoalIdWithLiveData(Long goalId) {
+        return mDbHelper.loadAllByGoalIdWithLiveData(goalId);
     }
 }
