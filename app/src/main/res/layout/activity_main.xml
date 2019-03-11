@@ -72,12 +72,11 @@
 
                     </com.google.android.material.appbar.AppBarLayout>
 
-                    <com.mindorks.placeholderview.SwipePlaceHolderView
-                        android:id="@+id/cardsContainer"
+                    <FrameLayout
+                        android:id="@+id/container_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:action="@{viewModel.action}"
-                        app:adapter="@{viewModel.questionDataList}" />
+                        android:layout_height="match_parent">
+                    </FrameLayout>
 
                 </LinearLayout>
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
