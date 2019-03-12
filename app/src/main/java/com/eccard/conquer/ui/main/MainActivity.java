@@ -33,6 +33,7 @@ import com.eccard.conquer.ui.goals.insert.AddGoalDialog;
 import com.eccard.conquer.ui.tasks.TasksFragment;
 import com.eccard.conquer.ui.login.LoginActivity;
 import com.eccard.conquer.ui.main.rating.RateUsDialog;
+import com.eccard.conquer.ui.tasks.insert.NewTaskFragment;
 import com.google.android.material.navigation.NavigationView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -321,5 +322,17 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 //                .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
                 .replace(R.id.container_layout, TasksFragment.newInstance(goalId), TasksFragment.TAG)
                 .commit();
+    }
+
+
+    public void goAddNewTaskForGoalId(Long goalId){
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .disallowAddToBackStack()
+//                .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
+                .replace(R.id.container_layout, NewTaskFragment.newInstance(goalId), NewTaskFragment.TAG)
+                .commit();
+
     }
 }

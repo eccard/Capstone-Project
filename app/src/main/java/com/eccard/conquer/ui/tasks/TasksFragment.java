@@ -10,6 +10,7 @@ import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.databinding.FragmentTasksBinding;
 import com.eccard.conquer.ui.base.BaseFragment;
+import com.eccard.conquer.ui.main.MainActivity;
 
 import java.util.List;
 
@@ -67,6 +68,10 @@ public class TasksFragment extends BaseFragment<FragmentTasksBinding, TasksViewM
 
     }
 
+    @Override
+    public void goAddNewTask(Long goalId) {
+        ((MainActivity)getActivity()).goAddNewTaskForGoalId(goalId);
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

@@ -24,4 +24,8 @@ public class TasksViewModel extends BaseViewModel<TasksNavigator> {
     LiveData<List<Task>> getTasks(){
         return getDataManager().loadAllByGoalIdWithLiveData(mGoalId);
     }
+
+    public void goAddNewTask(){
+        getNavigator().goAddNewTask(mGoalId);
+    }
 }
