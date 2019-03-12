@@ -53,7 +53,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
     @NonNull
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = layoutInflater.inflate(android.R.layout.simple_list_item_1,parent,false);
+        View itemView = layoutInflater.inflate(android.R.layout.simple_list_item_2,parent,false);
 
         return new TaskViewHolder(itemView);
     }
@@ -71,10 +71,12 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
 
     class TaskViewHolder extends RecyclerView.ViewHolder{
         private TextView mTaskName;
+        private TextView mTaskDescription;
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             this.mTaskName = itemView.findViewById(android.R.id.text1);
+            this.mTaskDescription = itemView.findViewById(android.R.id.text2);
 
 
         }
@@ -82,8 +84,9 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
         void bind(final Task task){
             if (task !=null){
                 mTaskName.setText(task.name);
+                mTaskDescription.setText(task.description);
                 itemView.setOnClickListener(v -> {
-
+                    // todo implemente show task details
                 });
             }
 
