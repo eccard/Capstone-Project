@@ -83,4 +83,11 @@
     <string name="empty_screen">We do not have anything\nhere right now.</string>
     <string name="please_retry">Please Retry</string>
     <string name="retry">Retry</string>
+
+
+
+    <string name="hint_task">Task name</string>
+    <string name="hint_task_description">Task description</string>
+    <string name="task_time">Task time</string>
+    <string name="alarm_clock">Alarm clock</string>
 </resources>
