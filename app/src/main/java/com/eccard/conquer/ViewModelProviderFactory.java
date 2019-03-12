@@ -11,6 +11,7 @@ import com.eccard.conquer.ui.goals.insert.AddGoalViewModel;
 import com.eccard.conquer.ui.tasks.TasksViewModel;
 import com.eccard.conquer.ui.login.LoginViewModel;
 import com.eccard.conquer.ui.splash.SplashViewModel;
+import com.eccard.conquer.ui.tasks.insert.NewTaskViewModel;
 import com.eccard.conquer.utils.rx.SchedulerProvider;
 import com.eccard.conquer.ui.feed.FeedViewModel;
 import com.eccard.conquer.ui.feed.blogs.BlogViewModel;
@@ -75,8 +76,10 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
       } else if (modelClass.isAssignableFrom(AddGoalViewModel.class)){
           //noinspection unchecked
           return (T) new AddGoalViewModel(dataManager,schedulerProvider);
-
-      }
+      } else if (modelClass.isAssignableFrom(NewTaskViewModel.class)){
+        //noinspection unchecked
+        return (T) new NewTaskViewModel(dataManager,schedulerProvider);
+    }
       throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
   }
 }
