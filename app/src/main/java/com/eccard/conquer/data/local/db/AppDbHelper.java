@@ -24,6 +24,8 @@ import com.eccard.conquer.data.model.db.User;
 
 import androidx.lifecycle.LiveData;
 import io.reactivex.Observable;
+import timber.log.Timber;
+
 import java.util.List;
 import java.util.concurrent.Callable;
 import javax.inject.Inject;
@@ -112,7 +114,8 @@ public class AppDbHelper implements DbHelper {
     public Observable<Boolean> saveTask(Task task) {
 
         return Observable.fromCallable(() -> {
-            mAppDatabase.taskDao().insert(task);
+            long ret = mAppDatabase.taskDao().insert(task);
+            Timber.d("mAppDatabase.taskDao().insert(task) -> ret="+ret);
             return true;
         });
 
@@ -132,7 +135,8 @@ public class AppDbHelper implements DbHelper {
     @Override
     public Observable<Boolean> saveGoal(Goal goal) {
         return Observable.fromCallable(() -> {
-            mAppDatabase.goalDao().insert(goal);
+            long ret = mAppDatabase.goalDao().insert(goal);
+            Timber.d("mAppDatabase.goalDao().insert(goal) -> ret="+ret);
             return true;
         });
     }

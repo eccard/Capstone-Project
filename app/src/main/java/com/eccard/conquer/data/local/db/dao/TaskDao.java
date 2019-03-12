@@ -15,7 +15,7 @@ import androidx.room.Query;
 public interface TaskDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Task task);
+    long insert(Task task);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Task> tasks);

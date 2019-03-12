@@ -14,7 +14,7 @@ import androidx.room.Query;
 public interface GoalDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Goal goal);
+    long insert(Goal goal);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Goal> goals);
