@@ -28,6 +28,7 @@ import com.eccard.conquer.ui.login.LoginActivity;
 import com.eccard.conquer.ui.main.MainActivity;
 import com.eccard.conquer.ui.main.rating.RateUsDialogProvider;
 import com.eccard.conquer.ui.splash.SplashActivity;
+import com.eccard.conquer.ui.tasks.insert.NewTaskFragmentProvider;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -52,7 +53,8 @@ public abstract class ActivityBuilder {
             RateUsDialogProvider.class,
             GoalsFragmentProvider.class,
             TasksFragmentProvider.class,
-            AddGoalDialogProvider.class})
+            AddGoalDialogProvider.class,
+            NewTaskFragmentProvider.class})
     abstract MainActivity bindMainActivity();
 
     @ContributesAndroidInjector
