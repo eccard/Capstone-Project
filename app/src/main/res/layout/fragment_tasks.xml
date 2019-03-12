@@ -10,12 +10,22 @@
             type="com.eccard.conquer.ui.tasks.TasksViewModel" />
 
     </data>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyle_view_tasks"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyle_view_tasks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            style="@style/FloatingActionButtonTheme"
+            android:layout_gravity="bottom|right"
+            app:fabSize="normal"
+            android:onClick="@{() -> viewModel.goAddNewTask()}"/>
+
+    </FrameLayout>
 </layout>
