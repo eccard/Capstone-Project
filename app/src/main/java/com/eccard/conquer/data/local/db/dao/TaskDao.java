@@ -7,6 +7,7 @@ import java.util.List;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -16,6 +17,9 @@ public interface TaskDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insert(Task task);
+
+    @Delete
+    int delete(Task task);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Task> tasks);

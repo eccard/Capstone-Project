@@ -122,6 +122,15 @@ public class AppDbHelper implements DbHelper {
     }
 
     @Override
+    public Observable<Boolean> delete(Task task) {
+        return Observable.fromCallable(() -> {
+            long ret = mAppDatabase.taskDao().delete(task);
+            Timber.d("mAppDatabase.taskDao().delete(task) -> ret="+ret);
+            return true;
+        });
+    }
+
+    @Override
     public Observable<Boolean> isTaskEmpty() {
         return Observable.fromCallable(() -> mAppDatabase.taskDao().loadAll().isEmpty());
 

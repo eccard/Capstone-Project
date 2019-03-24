@@ -1,6 +1,8 @@
 package com.eccard.conquer.ui.tasks.insert;
 
+import android.app.AlertDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +36,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
+import timber.log.Timber;
 
 public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTaskViewModel> implements NewTaskNavigator, TimePickerDialog.OnTimeSetListener {
 
@@ -223,14 +226,34 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.frg_new_task_menu,menu);
+        if (task != null){
+            inflater.inflate(R.menu.frg_new_task_menu,menu);
+        }
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if ( item.getItemId() == R.id.action_edit){
-            setEditable(true);
+        Timber.d("called onOptionsItemSelected item = " + item.toString());
+
+        switch (item.getItemId()){
+            case R.id.action_edit:
+                setEditable(true);
+                break;
+            case R.id.action_delete_task:
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage(R.string.delete_task_confirm);
+            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    newTaskViewModel.deleteTask(task);
+                }
+            });
+            builder.setNegativeButton(android.R.string.cancel,null);
+            builder.show();
+
+            break;
         }
 
         return super.onOptionsItemSelected(item);

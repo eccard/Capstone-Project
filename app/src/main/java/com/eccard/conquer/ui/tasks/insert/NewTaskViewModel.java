@@ -53,7 +53,24 @@ public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
     }
 
 
+    public void deleteTask(Task task){
+        Timber.d(" delete task - " + task.toString());
 
+        getCompositeDisposable().add(getDataManager().delete(task)
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(aBoolean -> {
+                    if (aBoolean) {
+                        Timber.d("deleção da task deu certoo");
+                        getNavigator().goTasks(mGoalId);
+
+                    } else {
+                        Timber.d("deleção da task deu errado");
+                    }
+                }, throwable -> {
+                    Timber.e(throwable.getMessage());
+                }));
+    }
 
     public void addNewTask(){
         Timber.d(" click to add new task for goal=" + mGoalId);

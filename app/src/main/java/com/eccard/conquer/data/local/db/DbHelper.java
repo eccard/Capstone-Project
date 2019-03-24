@@ -54,6 +54,7 @@ public interface DbHelper {
 
 
     Observable<Boolean> saveTask(final Task task);
+    Observable<Boolean> delete(final Task task);
 
     Observable<Boolean> isTaskEmpty();
 

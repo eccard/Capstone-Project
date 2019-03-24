@@ -50,5 +50,17 @@ public class Task {
     @ColumnInfo(name = "color")
     public String color;
 
-
+    @Override
+    public String toString() {
+        return "Task{" +
+                "createdAt='" + createdAt + '\'' +
+                ", id=" + id +
+                ", goalId=" + goalId +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", time='" + time + '\'' +
+                ", color='" + color + '\'' +
+                '}';
+    }
 }

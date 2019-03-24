@@ -300,6 +300,11 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public Observable<Boolean> delete(Task task) {
+        return mDbHelper.delete(task);
+    }
+
+    @Override
     public Observable<Boolean> isTaskEmpty() {
         return mDbHelper.isTaskEmpty();
     }
