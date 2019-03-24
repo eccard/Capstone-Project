@@ -24,6 +24,7 @@
     <string name="paste">Paste</string>
     <string name="delete">Delete</string>
     <string name="share">Share</string>
+    <string name="edit">Edit</string>
 
     <!--Drawer-->
     <string name="open_drawer">Drawer Open</string>
@@ -90,4 +91,18 @@
     <string name="hint_task_description">Task description</string>
     <string name="task_time">Task time</string>
     <string name="alarm_clock">Alarm clock</string>
+    <string name="select_day_spinner_hint">Select day</string>
+
+
+    <string-array name="daysOfWeekend">
+        <item>Select a day </item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
 </resources>

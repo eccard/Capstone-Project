@@ -9,6 +9,7 @@ import timber.log.Timber;
 
 public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
 
+    private Long taskId;
     private Long mGoalId;
 
     private String taskName;
@@ -17,6 +18,10 @@ public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
 
     public NewTaskViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
+    }
+
+    public void setTaskId(Long taskId) {
+        this.taskId = taskId;
     }
 
     public void setGoalId(Long goalId) {
@@ -52,11 +57,13 @@ public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
 
     public void addNewTask(){
         Timber.d(" click to add new task for goal=" + mGoalId);
+        Timber.d(" taskId=" + taskId);
         Timber.d(" taskName=" + taskName);
         Timber.d(" taskDescription=" + taskDescription);
         Timber.d(" taskTime=" + taskTime);
 
         Task task = new Task();
+        task.id = taskId;
         task.name = taskName;
         task.description = taskDescription;
         task.time = taskTime;
