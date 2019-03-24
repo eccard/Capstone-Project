@@ -87,6 +87,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
                 mTaskDescription.setText(task.description);
                 itemView.setOnClickListener(v -> {
                     // todo implemente show task details
+                    onSelectedTaskListener.onSelectedTask(task);
                 });
             }
 

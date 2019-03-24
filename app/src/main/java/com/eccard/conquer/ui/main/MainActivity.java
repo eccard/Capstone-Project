@@ -25,6 +25,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.eccard.conquer.ViewModelProviderFactory;
+import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.ui.about.AboutFragment;
 import com.eccard.conquer.ui.base.BaseActivity;
 import com.eccard.conquer.ui.feed.FeedActivity;
@@ -334,5 +335,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 .replace(R.id.container_layout, NewTaskFragment.newInstance(goalId), NewTaskFragment.TAG)
                 .commit();
 
+    }
+
+    public void goShowTask(Task task){
+        getSupportFragmentManager()
+                .beginTransaction()
+                .disallowAddToBackStack()
+                .replace(R.id.container_layout, NewTaskFragment.newInstance(task), NewTaskFragment.TAG)
+                .commit();
     }
 }

@@ -109,6 +109,6 @@ public class TasksFragment extends BaseFragment<FragmentTasksBinding, TasksViewM
 
     @Override
     public void onSelectedTask(Task task) {
-
+        ((MainActivity)getActivity()).goShowTask(task);
     }
 }
