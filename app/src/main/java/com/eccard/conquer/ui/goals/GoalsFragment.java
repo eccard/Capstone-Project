@@ -11,13 +11,10 @@ import com.eccard.conquer.databinding.FragmentGoalsBinding;
 import com.eccard.conquer.ui.base.BaseFragment;
 import com.eccard.conquer.ui.main.MainActivity;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -83,20 +80,10 @@ public class GoalsFragment extends BaseFragment<FragmentGoalsBinding,GoalsViewMo
 
     private GoalsAdapter goalsAdapter;
     private void setUp() {
-        mFragmentGoalsBinding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goAddNewGoal();
-            }
-        });
+        mFragmentGoalsBinding.fab.setOnClickListener(v -> goAddNewGoal());
 
         goalsAdapter = new GoalsAdapter(getContext(),this);
-        mGoalsViewModel.getGoalsData().observe(this, new Observer<List<Goal>>() {
-            @Override
-            public void onChanged(List<Goal> goals) {
-                goalsAdapter.setData(goals);
-            }
-        });
+        mGoalsViewModel.getGoalsData().observe(this, goals -> goalsAdapter.setData(goals));
 
 
         getViewDataBinding().recyleView.setLayoutManager(new LinearLayoutManager(getContext()));
