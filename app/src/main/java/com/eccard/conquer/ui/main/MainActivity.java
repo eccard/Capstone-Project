@@ -108,12 +108,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        super.onCreateOptionsMenu(menu);
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+//    }
 
     public void onFragmentDetached(String tag) {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -289,6 +289,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         getSupportFragmentManager()
                 .beginTransaction()
                 .disallowAddToBackStack()
+//                .addToBackStack(GoalsFragment.TAG)
 //                .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
                 .replace(R.id.container_layout, GoalsFragment.newInstance(), GoalsFragment.TAG)
                 .commit();
@@ -319,7 +320,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     public void goTasks(Long goalId){
         getSupportFragmentManager()
                 .beginTransaction()
-                .disallowAddToBackStack()
+                .addToBackStack(TasksFragment.TAG)
 //                .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
                 .replace(R.id.container_layout, TasksFragment.newInstance(goalId), TasksFragment.TAG)
                 .commit();
@@ -330,7 +331,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .disallowAddToBackStack()
+                .addToBackStack(NewTaskFragment.TAG)
 //                .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
                 .replace(R.id.container_layout, NewTaskFragment.newInstance(goalId), NewTaskFragment.TAG)
                 .commit();
@@ -340,7 +341,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     public void goShowTask(Task task){
         getSupportFragmentManager()
                 .beginTransaction()
-                .disallowAddToBackStack()
+                .addToBackStack(NewTaskFragment.TAG)
                 .replace(R.id.container_layout, NewTaskFragment.newInstance(task), NewTaskFragment.TAG)
                 .commit();
     }

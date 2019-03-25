@@ -27,6 +27,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import dagger.android.support.AndroidSupportInjection;
 
 /**
@@ -126,6 +130,12 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
 
     private void performDependencyInjection() {
         AndroidSupportInjection.inject(this);
+    }
+
+    protected void setDivider(RecyclerView recyclerView) {
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
     }
 
     public interface Callback {

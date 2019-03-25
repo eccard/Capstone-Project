@@ -19,7 +19,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class GoalsFragment extends BaseFragment<FragmentGoalsBinding,GoalsViewModel> implements GoalsNavigator, GoalsAdapter.OnSelectedGoal {
@@ -102,8 +101,9 @@ public class GoalsFragment extends BaseFragment<FragmentGoalsBinding,GoalsViewMo
 
         getViewDataBinding().recyleView.setLayoutManager(new LinearLayoutManager(getContext()));
         getViewDataBinding().recyleView.setHasFixedSize(true);
-        getViewDataBinding().recyleView.setItemAnimator(new DefaultItemAnimator());
         getViewDataBinding().recyleView.setAdapter(goalsAdapter);
+
+        setDivider(getViewDataBinding().recyleView);
 
     }
 
