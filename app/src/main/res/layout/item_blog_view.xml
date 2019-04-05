@@ -46,23 +46,15 @@
                 android:orientation="vertical"
                 android:paddingBottom="30dp">
 
-                <ImageView
-                    android:id="@+id/coverImageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:scaleType="fitCenter"
-                    app:imageUrl="@{viewModel.imageUrl}"
-                    tools:src="@drawable/ic_rabbit" />
-
                 <TextView
-                    android:id="@+id/titleTextView"
+                    android:id="@+id/titleTextViewTaskName"
                     style="@style/TextStyle.Heading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp"
-                    android:text="@{viewModel.title}"
+                    android:text="@{viewModel.taskName}"
                     tools:text="Android MVP Architecture" />
 
                 <RelativeLayout
@@ -79,7 +71,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:text="@{viewModel.author}"
+                        android:text="@{viewModel.goalName}"
                         tools:text="Amit Shekhar" />
 
                     <TextView
@@ -88,7 +80,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:text="@{viewModel.date}"
+                        android:text="@{viewModel.taskTime}"
                         tools:text="23 Jan 2017" />
                 </RelativeLayout>
 
@@ -99,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:text="@{viewModel.content}"
+                    android:text="@{viewModel.taskDescription}"
                     android:textStyle="normal"
                     tools:text="This repository contains a detailed sample app that implements MVP architecture using Dagger2, GreenDao, RxJava2, FastAndroidNetworking and PlaceholderView" />
             </LinearLayout>

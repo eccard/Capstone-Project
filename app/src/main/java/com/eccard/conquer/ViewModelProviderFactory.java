@@ -12,6 +12,7 @@ import com.eccard.conquer.ui.tasks.TasksViewModel;
 import com.eccard.conquer.ui.login.LoginViewModel;
 import com.eccard.conquer.ui.splash.SplashViewModel;
 import com.eccard.conquer.ui.tasks.insert.NewTaskViewModel;
+import com.eccard.conquer.ui.timesheet.TimeSheetViewModel;
 import com.eccard.conquer.utils.rx.SchedulerProvider;
 import com.eccard.conquer.ui.feed.FeedViewModel;
 import com.eccard.conquer.ui.feed.blogs.BlogViewModel;
@@ -77,9 +78,14 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
           //noinspection unchecked
           return (T) new AddGoalViewModel(dataManager,schedulerProvider);
       } else if (modelClass.isAssignableFrom(NewTaskViewModel.class)){
-        //noinspection unchecked
-        return (T) new NewTaskViewModel(dataManager,schedulerProvider);
-    }
+          //noinspection unchecked
+          return (T) new NewTaskViewModel(dataManager,schedulerProvider);
+      }
+      else if (modelClass.isAssignableFrom(TimeSheetViewModel.class)){
+          //noinspection unchecked
+          return (T) new TimeSheetViewModel(dataManager,schedulerProvider);
+      }
+
       throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
   }
 }

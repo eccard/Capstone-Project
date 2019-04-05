@@ -59,6 +59,7 @@ public interface DbHelper {
     Observable<Boolean> isTaskEmpty();
 
     Observable<List<Task>> getTasksFromGoalId(Long goalId);
+    LiveData<List<Task>> loadAllTasksWithLiveData();
     Observable<List<Task>> loadAllByGoalId(Long goalId);
     LiveData<List<Task>> loadAllByGoalIdWithLiveData(Long goalId);
 

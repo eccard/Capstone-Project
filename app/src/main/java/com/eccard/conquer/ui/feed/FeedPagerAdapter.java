@@ -46,13 +46,16 @@ public class FeedPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
-            case 0:
-                return BlogFragment.newInstance();
-            case 1:
-                return OpenSourceFragment.newInstance();
-            default:
-                return null;
-        }
+
+        return BlogFragment.newInstance();
+
+//        switch (position) {
+//            case 0:
+//                return BlogFragment.newInstance();
+//            case 1:
+//                return OpenSourceFragment.newInstance();
+//            default:
+//                return null;
+//        }
     }
 }

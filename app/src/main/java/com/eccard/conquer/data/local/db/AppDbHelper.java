@@ -27,7 +27,7 @@ import io.reactivex.Observable;
 import timber.log.Timber;
 
 import java.util.List;
-import java.util.concurrent.Callable;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -139,6 +139,11 @@ public class AppDbHelper implements DbHelper {
     @Override
     public Observable<List<Task>> getTasksFromGoalId(Long goalId) {
         return Observable.fromCallable(() -> mAppDatabase.taskDao().loadAllByGoalId(goalId));
+    }
+
+    @Override
+    public LiveData<List<Task>> loadAllTasksWithLiveData() {
+        return mAppDatabase.taskDao().loadAllTasksWithLiveData();
     }
 
     @Override

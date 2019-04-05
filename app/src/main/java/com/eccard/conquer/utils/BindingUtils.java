@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.eccard.conquer.data.model.api.BlogResponse;
+import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.data.model.others.QuestionCardData;
 import com.eccard.conquer.ui.feed.opensource.OpenSourceAdapter;
 import com.eccard.conquer.ui.feed.blogs.BlogAdapter;
@@ -43,11 +44,11 @@ public final class BindingUtils {
     }
 
     @BindingAdapter({"adapter"})
-    public static void addBlogItems(RecyclerView recyclerView, List<BlogResponse.Blog> blogs) {
+    public static void addBlogItems(RecyclerView recyclerView, List<Task> tasks) {
         BlogAdapter adapter = (BlogAdapter) recyclerView.getAdapter();
         if (adapter != null) {
             adapter.clearItems();
-            adapter.addItems(blogs);
+            adapter.addItems(tasks);
         }
     }
 

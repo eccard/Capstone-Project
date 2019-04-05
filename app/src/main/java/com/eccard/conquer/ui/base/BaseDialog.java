@@ -51,7 +51,7 @@ public abstract class BaseDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // the content
+        // the taskDescription
         final RelativeLayout root = new RelativeLayout(getActivity());
         root.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,

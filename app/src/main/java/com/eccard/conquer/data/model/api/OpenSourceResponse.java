@@ -106,7 +106,7 @@ public class OpenSourceResponse {
         private String projectUrl;
 
         @Expose
-        @SerializedName("title")
+        @SerializedName("taskName")
         private String title;
 
         @Override

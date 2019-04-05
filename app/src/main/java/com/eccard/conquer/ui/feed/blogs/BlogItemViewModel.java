@@ -18,7 +18,8 @@ package com.eccard.conquer.ui.feed.blogs;
 
 import androidx.databinding.ObservableField;
 
-import com.eccard.conquer.data.model.api.BlogResponse;
+import com.eccard.conquer.data.model.db.Goal;
+import com.eccard.conquer.data.model.db.Task;
 
 /**
  * Created by amitshekhar on 10/07/17.
@@ -26,32 +27,30 @@ import com.eccard.conquer.data.model.api.BlogResponse;
 
 public class BlogItemViewModel {
 
-    public final ObservableField<String> author;
+    public final ObservableField<String> goalName;
 
-    public final ObservableField<String> content;
+    public final ObservableField<String> taskDescription;
 
-    public final ObservableField<String> date;
-
-    public final ObservableField<String> imageUrl;
+    public final ObservableField<String> taskTime;
 
     public final BlogItemViewModelListener mListener;
 
-    public final ObservableField<String> title;
+    public final ObservableField<String> taskName;
 
-    private final BlogResponse.Blog mBlog;
+    private final Task task;
 
-    public BlogItemViewModel(BlogResponse.Blog blog, BlogItemViewModelListener listener) {
-        this.mBlog = blog;
+    public BlogItemViewModel(Task task, BlogItemViewModelListener listener) {
+        this.task = task;
         this.mListener = listener;
-        imageUrl = new ObservableField<>(mBlog.getCoverImgUrl());
-        title = new ObservableField<>(mBlog.getTitle());
-        author = new ObservableField<>(mBlog.getAuthor());
-        date = new ObservableField<>(mBlog.getDate());
-        content = new ObservableField<>(mBlog.getDescription());
+//        imageUrl = new ObservableField<>(this.goal.getCoverImgUrl());
+        taskName = new ObservableField<>(this.task.name);
+        goalName = new ObservableField<>("goalNameeee");
+        taskTime = new ObservableField<>(this.task.time);
+        taskDescription = new ObservableField<>(this.task.description);
     }
 
     public void onItemClick() {
-        mListener.onItemClick(mBlog.getBlogUrl());
+        mListener.onItemClick(task.id+"");
     }
 
     public interface BlogItemViewModelListener {

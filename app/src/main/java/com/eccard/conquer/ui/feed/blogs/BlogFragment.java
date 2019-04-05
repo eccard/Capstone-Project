@@ -22,10 +22,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.View;
 
 import com.eccard.conquer.ViewModelProviderFactory;
 import com.eccard.conquer.data.model.api.BlogResponse;
+import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.ui.base.BaseFragment;
 import com.eccard.conquer.BR;
 import com.eccard.conquer.R;
@@ -98,14 +101,18 @@ public class BlogFragment extends BaseFragment<FragmentBlogBinding, BlogViewMode
     }
 
     @Override
-    public void updateBlog(List<BlogResponse.Blog> blogList) {
-        mBlogAdapter.addItems(blogList);
+    public void updateBlog(List<Task> taskList) {
+        mBlogAdapter.addItems(taskList);
+
     }
 
+
     private void setUp() {
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mLayoutManager.setOrientation(RecyclerView.VERTICAL);
         mFragmentBlogBinding.blogRecyclerView.setLayoutManager(mLayoutManager);
         mFragmentBlogBinding.blogRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mFragmentBlogBinding.blogRecyclerView.setAdapter(mBlogAdapter);
+
+        mBlogViewModel.getTasksLiveData().observe(this,tasks -> mBlogAdapter.addItems(tasks));
     }
 }

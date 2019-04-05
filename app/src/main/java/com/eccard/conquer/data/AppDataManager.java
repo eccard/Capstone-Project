@@ -315,6 +315,11 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public LiveData<List<Task>> loadAllTasksWithLiveData() {
+        return mDbHelper.loadAllTasksWithLiveData();
+    }
+
+    @Override
     public Observable<Boolean> saveGoal(Goal goal) {
         return mDbHelper.saveGoal(goal);
     }

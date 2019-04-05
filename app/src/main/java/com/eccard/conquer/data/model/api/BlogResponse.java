@@ -82,7 +82,7 @@ public class BlogResponse {
     public static class Blog {
 
         @Expose
-        @SerializedName("author")
+        @SerializedName("goalName")
         private String author;
 
         @Expose
@@ -102,7 +102,7 @@ public class BlogResponse {
         private String description;
 
         @Expose
-        @SerializedName("title")
+        @SerializedName("taskName")
         private String title;
 
         @Override

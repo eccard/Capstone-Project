@@ -116,12 +116,15 @@ public class FeedActivity extends BaseActivity<ActivityFeedBinding, FeedViewMode
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        mPagerAdapter.setCount(2);
+        String[] days = getResources().getStringArray(R.array.daysOfWeekend);
+        System.arraycopy(days,1,days,0,days.length-1);
+        mPagerAdapter.setCount(days.length);
 
         mActivityFeedBinding.feedViewPager.setAdapter(mPagerAdapter);
 
-        mActivityFeedBinding.tabLayout.addTab(mActivityFeedBinding.tabLayout.newTab().setText(getString(R.string.blog)));
-        mActivityFeedBinding.tabLayout.addTab(mActivityFeedBinding.tabLayout.newTab().setText(getString(R.string.open_source)));
+        for (String day : days) {
+            mActivityFeedBinding.tabLayout.addTab(mActivityFeedBinding.tabLayout.newTab().setText(day));
+        }
 
         mActivityFeedBinding.feedViewPager.setOffscreenPageLimit(mActivityFeedBinding.tabLayout.getTabCount());
 

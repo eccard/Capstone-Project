@@ -17,6 +17,7 @@
 package com.eccard.conquer.ui.feed.blogs;
 
 import com.eccard.conquer.data.model.api.BlogResponse;
+import com.eccard.conquer.data.model.db.Task;
 
 import java.util.List;
 
@@ -28,5 +29,5 @@ public interface BlogNavigator {
 
     void handleError(Throwable throwable);
 
-    void updateBlog(List<BlogResponse.Blog> blogList);
+    void updateBlog(List<Task> taskList);
 }

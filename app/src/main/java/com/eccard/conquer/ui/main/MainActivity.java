@@ -35,6 +35,7 @@ import com.eccard.conquer.ui.tasks.TasksFragment;
 import com.eccard.conquer.ui.login.LoginActivity;
 import com.eccard.conquer.ui.main.rating.RateUsDialog;
 import com.eccard.conquer.ui.tasks.insert.NewTaskFragment;
+import com.eccard.conquer.ui.timesheet.TimeSheetActivity;
 import com.google.android.material.navigation.NavigationView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -72,8 +73,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private Toolbar mToolbar;
 
     public static Intent newIntent(Context context) {
-        Intent intent = new Intent(context, MainActivity.class);
-        return intent;
+        return new Intent(context, MainActivity.class);
     }
 
     @Override
@@ -261,7 +261,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                             showGoalsFragment();
                             return true;
                         case R.id.navItemRateUs:
-                            RateUsDialog.newInstance().show(getSupportFragmentManager());
+//                            RateUsDialog.newInstance().show(getSupportFragmentManager());
+                            startActivity(TimeSheetActivity.newIntent(MainActivity.this));
                             return true;
                         case R.id.navItemFeed:
                             startActivity(FeedActivity.newIntent(MainActivity.this));

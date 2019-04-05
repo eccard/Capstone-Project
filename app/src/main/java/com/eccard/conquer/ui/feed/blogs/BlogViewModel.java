@@ -21,6 +21,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.eccard.conquer.data.DataManager;
 import com.eccard.conquer.data.model.api.BlogResponse;
+import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.ui.base.BaseViewModel;
 import com.eccard.conquer.utils.rx.SchedulerProvider;
 
@@ -32,33 +33,40 @@ import java.util.List;
 
 public class BlogViewModel extends BaseViewModel<BlogNavigator> {
 
-    private final MutableLiveData<List<BlogResponse.Blog>> blogListLiveData;
+    private final MutableLiveData<List<Task>> taskListLiveData;
 
     public BlogViewModel(DataManager dataManager,
                          SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
-        blogListLiveData = new MutableLiveData<>();
+        taskListLiveData = new MutableLiveData<>();
         fetchBlogs();
+//        getTasksLiveData();
     }
 
     public void fetchBlogs() {
         setIsLoading(true);
-        getCompositeDisposable().add(getDataManager()
-                .getBlogApiCall()
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(blogResponse -> {
-                    if (blogResponse != null && blogResponse.getData() != null) {
-                        blogListLiveData.setValue(blogResponse.getData());
-                    }
-                    setIsLoading(false);
-                }, throwable -> {
-                    setIsLoading(false);
-                    getNavigator().handleError(throwable);
-                }));
+//        getCompositeDisposable().add(getDataManager()
+//                .getBlogApiCall()
+//                .subscribeOn(getSchedulerProvider().io())
+//                .observeOn(getSchedulerProvider().ui())
+//                .subscribe(blogResponse -> {
+//                    if (blogResponse != null && blogResponse.getData() != null) {
+//                        taskListLiveData.setValue(blogResponse.getData());
+//                    }
+//                    setIsLoading(false);
+//                }, throwable -> {
+//                    setIsLoading(false);
+//                    getNavigator().handleError(throwable);
+//                }));
     }
 
-    public LiveData<List<BlogResponse.Blog>> getBlogListLiveData() {
-        return blogListLiveData;
+
+
+    public LiveData<List<Task>> getTasksLiveData(){
+        return getDataManager().loadAllTasksWithLiveData();
+    }
+
+    public MutableLiveData<List<Task>> getTaskListLiveData() {
+        return taskListLiveData;
     }
 }
