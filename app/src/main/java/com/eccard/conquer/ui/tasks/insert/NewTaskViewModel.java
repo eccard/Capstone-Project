@@ -84,11 +84,11 @@ public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
         Timber.d(" taskTime=" + taskTime);
 
         Task task = new Task();
-        task.id = taskId;
-        task.name = taskName;
-        task.description = taskDescription;
-        task.time = taskTime;
-        task.goalId = mGoalId;
+        task.id = this.taskId;
+        task.name = this.taskName;
+        task.description = this.taskDescription;
+        task.time = this.taskTime;
+        task.goalId = this.mGoalId;
         task.dayOfWeekend = this.dayOfWeekend;
 
         getCompositeDisposable().add(getDataManager().saveTask(task)
