@@ -16,6 +16,7 @@
 
 package com.eccard.conquer.ui.feed.blogs;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -44,6 +45,7 @@ import javax.inject.Inject;
 public class BlogFragment extends BaseFragment<FragmentBlogBinding, BlogViewModel>
         implements BlogNavigator, BlogAdapter.BlogAdapterListener {
 
+    private static final String ARG_DAY_WEEKEND = "dayOfWeekend";
     @Inject
     BlogAdapter mBlogAdapter;
     FragmentBlogBinding mFragmentBlogBinding;
@@ -53,8 +55,9 @@ public class BlogFragment extends BaseFragment<FragmentBlogBinding, BlogViewMode
     ViewModelProviderFactory factory;
     private BlogViewModel mBlogViewModel;
 
-    public static BlogFragment newInstance() {
+    public static BlogFragment newInstance(int dayOfWeekend) {
         Bundle args = new Bundle();
+        args.putInt(ARG_DAY_WEEKEND,dayOfWeekend);
         BlogFragment fragment = new BlogFragment();
         fragment.setArguments(args);
         return fragment;
@@ -86,6 +89,10 @@ public class BlogFragment extends BaseFragment<FragmentBlogBinding, BlogViewMode
         super.onCreate(savedInstanceState);
         mBlogViewModel.setNavigator(this);
         mBlogAdapter.setListener(this);
+
+        if(getArguments() != null && getArguments().containsKey(ARG_DAY_WEEKEND)){
+            mBlogViewModel.setDayOfWeekend(getArguments().getInt(ARG_DAY_WEEKEND));
+        }
     }
 
     @Override
@@ -113,6 +120,9 @@ public class BlogFragment extends BaseFragment<FragmentBlogBinding, BlogViewMode
         mFragmentBlogBinding.blogRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mFragmentBlogBinding.blogRecyclerView.setAdapter(mBlogAdapter);
 
-        mBlogViewModel.getTasksLiveData().observe(this,tasks -> mBlogAdapter.addItems(tasks));
+        mBlogViewModel.getTasksLiveData().observe(this, tasks -> {
+            mBlogViewModel.setIsLoading(false);
+            mBlogAdapter.addItems(tasks);
+        });
     }
 }

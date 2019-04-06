@@ -60,6 +60,7 @@ public interface DbHelper {
 
     Observable<List<Task>> getTasksFromGoalId(Long goalId);
     LiveData<List<Task>> loadAllTasksWithLiveData();
+    LiveData<List<Task>> loadTaskOfDayWithLiveData(int day);
     Observable<List<Task>> loadAllByGoalId(Long goalId);
     LiveData<List<Task>> loadAllByGoalIdWithLiveData(Long goalId);
 

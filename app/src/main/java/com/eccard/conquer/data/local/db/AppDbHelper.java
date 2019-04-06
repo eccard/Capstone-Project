@@ -142,6 +142,11 @@ public class AppDbHelper implements DbHelper {
     }
 
     @Override
+    public LiveData<List<Task>> loadTaskOfDayWithLiveData(int day) {
+        return mAppDatabase.taskDao().loadTaskOfDayWithLiveData(day);
+    }
+
+    @Override
     public LiveData<List<Task>> loadAllTasksWithLiveData() {
         return mAppDatabase.taskDao().loadAllTasksWithLiveData();
     }

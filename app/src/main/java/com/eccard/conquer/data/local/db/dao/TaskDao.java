@@ -30,6 +30,9 @@ public interface TaskDao {
     @Query("SELECT * FROM tasks WHERE goal_id = :goalId")
     List<Task> loadAllByGoalId(Long goalId);
 
+    @Query("SELECT * FROM tasks WHERE day_of_weekend =:day")
+    LiveData<List<Task>> loadTaskOfDayWithLiveData(int day);
+
     @Query("SELECT * FROM tasks ")
     LiveData<List<Task>> loadAllTasksWithLiveData();
 

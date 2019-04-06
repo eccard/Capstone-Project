@@ -19,4 +19,10 @@ public class Goal {
     @ColumnInfo(name = "name")
     public String name;
 
+    public Goal(String name) {
+        this.name = name;
+    }
+
+    public Goal() {
+    }
 }

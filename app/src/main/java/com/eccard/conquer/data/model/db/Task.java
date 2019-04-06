@@ -7,7 +7,27 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import timber.log.Timber;
 
+enum Days{
+    Sunday(1),
+    Monday(2),
+    Tuesday(3),
+    Wednesday(4),
+    Thursday(5),
+    Friday(6),
+    Saturday(7);
+
+    private final int value;
+
+    Days(int i) {
+        value = i;
+    }
+
+    public int getValue() {
+        return value;
+    }
+}
 @Entity(
         tableName = "tasks",
         foreignKeys = @ForeignKey(
@@ -50,6 +70,10 @@ public class Task {
     @ColumnInfo(name = "color")
     public String color;
 
+    @ColumnInfo(name = "day_of_weekend")
+    public Integer dayOfWeekend;
+
+
     @Override
     public String toString() {
         return "Task{" +
@@ -61,6 +85,19 @@ public class Task {
                 ", description='" + description + '\'' +
                 ", time='" + time + '\'' +
                 ", color='" + color + '\'' +
+                ", dayOfWeekend=" + dayOfWeekend +
                 '}';
+    }
+
+    public Task() {}
+
+    public Task(Long goalId, String name, String description, int day,String time) {
+        Days days = Days.values()[day-1];
+        Timber.d("dayName="+days.name());
+        this.goalId = goalId;
+        this.name = name;
+        this.description = description;
+        this.time = time;
+        this.dayOfWeekend = day;
     }
 }

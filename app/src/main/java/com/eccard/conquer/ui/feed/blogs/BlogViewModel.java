@@ -35,6 +35,12 @@ public class BlogViewModel extends BaseViewModel<BlogNavigator> {
 
     private final MutableLiveData<List<Task>> taskListLiveData;
 
+    private int dayOfWeekend;
+
+    public void setDayOfWeekend(int dayOfWeekend) {
+        this.dayOfWeekend = dayOfWeekend;
+    }
+
     public BlogViewModel(DataManager dataManager,
                          SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
@@ -63,7 +69,7 @@ public class BlogViewModel extends BaseViewModel<BlogNavigator> {
 
 
     public LiveData<List<Task>> getTasksLiveData(){
-        return getDataManager().loadAllTasksWithLiveData();
+        return getDataManager().loadTaskOfDayWithLiveData(dayOfWeekend);
     }
 
     public MutableLiveData<List<Task>> getTaskListLiveData() {

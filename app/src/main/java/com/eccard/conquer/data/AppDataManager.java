@@ -315,6 +315,11 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public LiveData<List<Task>> loadTaskOfDayWithLiveData(int day) {
+        return mDbHelper.loadTaskOfDayWithLiveData(day);
+    }
+
+    @Override
     public LiveData<List<Task>> loadAllTasksWithLiveData() {
         return mDbHelper.loadAllTasksWithLiveData();
     }
