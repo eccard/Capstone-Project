@@ -116,8 +116,11 @@ public class FeedActivity extends BaseActivity<ActivityFeedBinding, FeedViewMode
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        String[] days = getResources().getStringArray(R.array.daysOfWeekend);
-        System.arraycopy(days,1,days,0,days.length-1);
+        String[] daysResource = getResources().getStringArray(R.array.daysOfWeekend);
+
+        String[] days = new String[daysResource.length-1];
+        System.arraycopy(daysResource,1,days,0,days.length);
+
         mPagerAdapter.setCount(days.length);
 
         mActivityFeedBinding.feedViewPager.setAdapter(mPagerAdapter);

@@ -47,7 +47,8 @@ public class FeedPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        return BlogFragment.newInstance();
+        // plus one because days init with 1
+        return BlogFragment.newInstance(position+1);
 
 //        switch (position) {
 //            case 0:

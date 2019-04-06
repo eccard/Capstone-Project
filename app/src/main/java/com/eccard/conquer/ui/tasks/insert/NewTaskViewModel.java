@@ -14,6 +14,7 @@ public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
 
     private String taskName;
     private String taskDescription;
+    private int dayOfWeekend;
     private String taskTime;
 
     public NewTaskViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
@@ -52,6 +53,9 @@ public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
         this.taskTime = taskTime;
     }
 
+    public void setDayOfWeekend(int dayOfWeekend) {
+        this.dayOfWeekend = dayOfWeekend;
+    }
 
     public void deleteTask(Task task){
         Timber.d(" delete task - " + task.toString());
@@ -85,6 +89,7 @@ public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
         task.description = taskDescription;
         task.time = taskTime;
         task.goalId = mGoalId;
+        task.dayOfWeekend = this.dayOfWeekend;
 
         getCompositeDisposable().add(getDataManager().saveTask(task)
                 .subscribeOn(getSchedulerProvider().io())
