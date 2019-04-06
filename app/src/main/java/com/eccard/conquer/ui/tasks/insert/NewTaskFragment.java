@@ -47,6 +47,7 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
     private static final String ARG_TASK_NAME_PARAM = "taskName";
     private static final String ARG_TASK_DESCRIPTION_PARAM = "taskDescription";
     private static final String ARG_TASK_TIME_PARAM = "taskTime";
+    private static final String ARG_TASK_DAY_OF_WEEKEND = "dayOfWeekend";
     private static final String ARG_TASK_COLOR_PARAM = "taskColor";
 
 
@@ -73,6 +74,7 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
         args.putString(ARG_TASK_NAME_PARAM,task.name);
         args.putString(ARG_TASK_DESCRIPTION_PARAM,task.description);
         args.putString(ARG_TASK_TIME_PARAM,task.time);
+        args.putInt(ARG_TASK_DAY_OF_WEEKEND,task.dayOfWeekend);
         args.putString(ARG_TASK_COLOR_PARAM,task.color);
 
         NewTaskFragment fragment = new NewTaskFragment();
@@ -104,6 +106,7 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
             b.containsKey(ARG_TASK_NAME_PARAM) &&
             b.containsKey(ARG_TASK_DESCRIPTION_PARAM) &&
             b.containsKey(ARG_TASK_TIME_PARAM) &&
+            b.containsKey(ARG_TASK_DAY_OF_WEEKEND) &&
             b.containsKey(ARG_TASK_COLOR_PARAM)){
 
             Task task = new Task();
@@ -112,6 +115,7 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
             task.name = b.getString(ARG_TASK_NAME_PARAM);
             task.description = b.getString(ARG_TASK_DESCRIPTION_PARAM);
             task.time = b.getString(ARG_TASK_TIME_PARAM);
+            task.dayOfWeekend = b.getInt(ARG_TASK_DAY_OF_WEEKEND);
             task.color = b.getString(ARG_TASK_COLOR_PARAM);
 
             return task;
@@ -147,15 +151,18 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
     }
 
     private void setupView(){
+        setUpDaySpinner();
+
         if (task != null){
             fragmentNewTaskBinding.inputLayoutTask.getEditText().setText(task.name);
             fragmentNewTaskBinding.inputLayoutTaskDescription.getEditText().setText(task.description);
             fragmentNewTaskBinding.editTextTaskTime.setText(task.time);
+
+            fragmentNewTaskBinding.spinnerDayOfWeekend.setSelection(task.dayOfWeekend);
+
             setEditable(false);
         }
 
-
-        setUpDaySpinner();
 
 
         fragmentNewTaskBinding.editTextTaskTime.setOnClickListener(v -> {
@@ -199,10 +206,9 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
                 // First item is disable and it is used for hint
                 if(position > 0){
                     // Notify the selected item text
-                    Toast.makeText
-                            (getContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
-                            .show();
                 }
+                Timber.d("onItemSelected position="+position);
+                newTaskViewModel.setDayOfWeekend(position);
             }
 
             @Override
