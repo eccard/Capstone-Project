@@ -1,5 +1,6 @@
 package com.eccard.conquer.data.model.db;
 
+import com.eccard.conquer.utils.CommonUtils;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -65,7 +66,7 @@ public class Task {
     public String description;
 
     @ColumnInfo(name = "time")
-    public String time;
+    public Long time;
 
     @ColumnInfo(name = "color")
     public String color;
@@ -94,10 +95,17 @@ public class Task {
     public Task(Long goalId, String name, String description, int day,String time) {
         Days days = Days.values()[day-1];
         Timber.d("dayName="+days.name());
+
+        Long timeLong = CommonUtils.getLongValueFromTime(time);
+
+        Timber.d("Time="+time);
+        Timber.d("TimeLong="+timeLong);
+
         this.goalId = goalId;
         this.name = name;
         this.description = description;
-        this.time = time;
+        this.time = timeLong;
         this.dayOfWeekend = day;
     }
+
 }

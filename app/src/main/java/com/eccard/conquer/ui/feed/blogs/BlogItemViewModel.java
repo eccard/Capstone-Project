@@ -20,6 +20,7 @@ import androidx.databinding.ObservableField;
 
 import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.data.model.db.Task;
+import com.eccard.conquer.utils.CommonUtils;
 
 /**
  * Created by amitshekhar on 10/07/17.
@@ -45,7 +46,7 @@ public class BlogItemViewModel {
 //        imageUrl = new ObservableField<>(this.goal.getCoverImgUrl());
         taskName = new ObservableField<>(this.task.name);
         goalName = new ObservableField<>("goalNameeee");
-        taskTime = new ObservableField<>(this.task.time);
+        taskTime = new ObservableField<>(CommonUtils.getStringValueFromTime(this.task.time));
         taskDescription = new ObservableField<>(this.task.description);
     }
 

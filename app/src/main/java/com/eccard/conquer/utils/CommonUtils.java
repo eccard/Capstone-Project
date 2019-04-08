@@ -23,13 +23,20 @@ import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.provider.Settings;
+import android.util.Log;
 import android.util.Patterns;
 import com.eccard.conquer.R;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import timber.log.Timber;
+
+import static com.eccard.conquer.ui.tasks.insert.NewTaskFragment.TAG;
 
 /**
  * Created by amitshekhar on 07/07/17.
@@ -78,4 +85,42 @@ public final class CommonUtils {
         progressDialog.setCanceledOnTouchOutside(false);
         return progressDialog;
     }
+
+    public static Long getLongValueFromTime(String timeString){
+
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        long timeLong = 0;
+        try {
+            timeLong = sdf.parse(timeString).getTime();
+            Timber.d("timeString="+timeString);
+            Timber.d("timeLong="+timeLong);
+        } catch (ParseException e) {
+            Log.d(TAG,Log.getStackTraceString(e));
+        }
+
+        return timeLong;
+    }
+
+    public static Long getLongValueFromTime(int hourOfDay,int minutes){
+        Calendar date = Calendar.getInstance();
+        date.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        date.set(Calendar.MINUTE, minutes);
+        date.set(Calendar.AM_PM, date.get(Calendar.AM_PM));
+
+        return date.getTime().getTime();
+    }
+
+
+    public static String getStringValueFromTime(Long timeLong){
+
+        Calendar date = Calendar.getInstance();
+        date.set(Calendar.AM_PM, date.get(Calendar.AM_PM));
+        date.setTime(new Date(timeLong));
+
+        int hourOfDay = date.get(Calendar.HOUR_OF_DAY); // gets hour in 24h format
+        int minutes = date.get(Calendar.MINUTE); // gets hour in 24h format
+
+       return String.format(Locale.getDefault(),"%s:%s",hourOfDay,minutes);
+    }
+
 }

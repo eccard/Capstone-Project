@@ -15,7 +15,7 @@ public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
     private String taskName;
     private String taskDescription;
     private int dayOfWeekend;
-    private String taskTime;
+    private long taskTime;
 
     public NewTaskViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
@@ -37,9 +37,6 @@ public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
         return taskDescription;
     }
 
-    public String getTaskTime() {
-        return taskTime;
-    }
 
     public void setTaskName(String taskName) {
         this.taskName = taskName;
@@ -49,7 +46,7 @@ public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
         this.taskDescription = taskDescription;
     }
 
-    public void setTaskTime(String taskTime) {
+    public void setTaskTime(long taskTime) {
         this.taskTime = taskTime;
     }
 

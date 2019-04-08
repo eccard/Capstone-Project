@@ -24,9 +24,13 @@ import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.databinding.FragmentNewTaskBinding;
 import com.eccard.conquer.ui.base.BaseFragment;
 import com.eccard.conquer.ui.main.MainActivity;
+import com.eccard.conquer.utils.CommonUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Locale;
 
@@ -73,7 +77,7 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
         args.putLong(ARG_TASK_GOAL_ID_PARAM,task.goalId);
         args.putString(ARG_TASK_NAME_PARAM,task.name);
         args.putString(ARG_TASK_DESCRIPTION_PARAM,task.description);
-        args.putString(ARG_TASK_TIME_PARAM,task.time);
+        args.putLong(ARG_TASK_TIME_PARAM,task.time);
         args.putInt(ARG_TASK_DAY_OF_WEEKEND,task.dayOfWeekend);
         args.putString(ARG_TASK_COLOR_PARAM,task.color);
 
@@ -114,7 +118,7 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
             task.goalId = b.getLong(ARG_TASK_GOAL_ID_PARAM);
             task.name = b.getString(ARG_TASK_NAME_PARAM);
             task.description = b.getString(ARG_TASK_DESCRIPTION_PARAM);
-            task.time = b.getString(ARG_TASK_TIME_PARAM);
+            task.time = b.getLong(ARG_TASK_TIME_PARAM);
             task.dayOfWeekend = b.getInt(ARG_TASK_DAY_OF_WEEKEND);
             task.color = b.getString(ARG_TASK_COLOR_PARAM);
 
@@ -156,7 +160,7 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
         if (task != null){
             fragmentNewTaskBinding.inputLayoutTask.getEditText().setText(task.name);
             fragmentNewTaskBinding.inputLayoutTaskDescription.getEditText().setText(task.description);
-            fragmentNewTaskBinding.editTextTaskTime.setText(task.time);
+            fragmentNewTaskBinding.editTextTaskTime.setText(CommonUtils.getStringValueFromTime(task.time));
 
             fragmentNewTaskBinding.spinnerDayOfWeekend.setSelection(task.dayOfWeekend);
 
@@ -268,11 +272,13 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-        String time  = String.format(Locale.getDefault(),"%s:%s",hourOfDay,minute);
+        long time = CommonUtils.getLongValueFromTime(hourOfDay,minute);
+        String timeString = CommonUtils.getStringValueFromTime(time);
+        Log.d(TAG,"call onTimeSet timeLong=" +time);
+        Log.d(TAG,"call onTimeSet timeString" +timeString);
 
-        Log.d(TAG,"call onTimeSet " +time);
-
-        fragmentNewTaskBinding.editTextTaskTime.setText(time);
+        newTaskViewModel.setTaskTime(time);
+        fragmentNewTaskBinding.editTextTaskTime.setText(timeString);
         fragmentNewTaskBinding.editTextTaskTime.clearFocus();
     }
 
