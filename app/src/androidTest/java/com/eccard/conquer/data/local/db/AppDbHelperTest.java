@@ -46,8 +46,9 @@ public class AppDbHelperTest {
     public void createGoalsTest() throws Exception {
         long goalId = goalDao.insert(new Goal("Estudar biologia"));
         taskDao.insert(new Task(goalId,"Ecologia","Estudar umas 3 horas",1,"11:30"));
-        taskDao.insert(new Task(goalId,"Genética","Estudar umas 3 horas",2,"11:30"));
-        taskDao.insert(new Task(goalId,"Evolução","Estudar umas 3 horas",2,"11:40"));
+        taskDao.insert(new Task(goalId,"Genética","Estudar umas 3 horas",2,"11:45"));
+        taskDao.insert(new Task(goalId,"Evolução1","Estudar umas 3 horas",2,"11:30"));
+        taskDao.insert(new Task(goalId,"Evoluçã2","Estudar umas 3 horas",2,"11:20"));
         taskDao.insert(new Task(goalId,"Fisiologia e Parasitologia","Estudar umas 3 horas",3,"11:50"));
         taskDao.insert(new Task(goalId,"Orgãos"," Sistema Reprodutor Masculino",4,"11:30"));
         taskDao.insert(new Task(goalId,"Orgãos"," Pulmão",5,"11:30"));

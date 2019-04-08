@@ -1,6 +1,5 @@
 package com.eccard.conquer.data.local.db.dao;
 
-import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.data.model.db.Task;
 
 import java.util.List;
@@ -30,7 +29,7 @@ public interface TaskDao {
     @Query("SELECT * FROM tasks WHERE goal_id = :goalId")
     List<Task> loadAllByGoalId(Long goalId);
 
-    @Query("SELECT * FROM tasks WHERE day_of_weekend =:day")
+    @Query("SELECT * FROM tasks WHERE day_of_weekend =:day ORDER BY time")
     LiveData<List<Task>> loadTaskOfDayWithLiveData(int day);
 
     @Query("SELECT * FROM tasks ")
