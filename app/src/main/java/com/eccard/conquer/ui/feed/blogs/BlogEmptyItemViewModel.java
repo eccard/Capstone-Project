@@ -28,10 +28,6 @@ public class BlogEmptyItemViewModel {
         this.mListener = listener;
     }
 
-    public void onRetryClick() {
-        mListener.onRetryClick();
-    }
-
     public interface BlogEmptyItemViewModelListener {
 
         void onRetryClick();

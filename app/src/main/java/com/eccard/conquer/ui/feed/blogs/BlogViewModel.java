@@ -16,17 +16,15 @@
 
 package com.eccard.conquer.ui.feed.blogs;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
 import com.eccard.conquer.data.DataManager;
 import com.eccard.conquer.data.local.db.dao.TaskDao;
-import com.eccard.conquer.data.model.api.BlogResponse;
-import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.ui.base.BaseViewModel;
 import com.eccard.conquer.utils.rx.SchedulerProvider;
 
 import java.util.List;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 /**
  * Created by amitshekhar on 10/07/17.

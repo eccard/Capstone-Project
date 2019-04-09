@@ -34,6 +34,7 @@
     <string name="about">About</string>
     <string name="logout">Logout</string>
     <string name="feed">My Feed</string>
+    <string name="timeSheet">TimeSheet</string>
 
     <!--App Message-->
     <string name="api_retry_error">Please retry!</string>
@@ -76,12 +77,12 @@
     <string name="submit">Submit</string>
 
     <!--feed-->
-    <string name="title">My Feed</string>
+    <string name="title">Timesheet</string>
     <string name="open_source">Open Source</string>
     <string name="blog">Blog</string>
 
     <!--empty state-->
-    <string name="empty_screen">We do not have anything\nhere right now.</string>
+    <string name="empty_screen">We do not have tasks for this day.</string>
     <string name="please_retry">Please Retry</string>
     <string name="retry">Retry</string>
 
