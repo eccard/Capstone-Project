@@ -33,9 +33,8 @@ import com.eccard.conquer.ui.goals.GoalsFragment;
 import com.eccard.conquer.ui.goals.insert.AddGoalDialog;
 import com.eccard.conquer.ui.tasks.TasksFragment;
 import com.eccard.conquer.ui.login.LoginActivity;
-import com.eccard.conquer.ui.main.rating.RateUsDialog;
 import com.eccard.conquer.ui.tasks.insert.NewTaskFragment;
-import com.eccard.conquer.ui.timesheet.TimeSheetActivity;
+import com.eccard.conquer.ui.tasks.alarm.AlarmActivity;
 import com.google.android.material.navigation.NavigationView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -43,7 +42,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
-import android.view.Menu;
+
 import android.view.MenuItem;
 import android.view.View;
 import com.eccard.conquer.BR;
@@ -262,7 +261,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                             return true;
                         case R.id.navItemRateUs:
 //                            RateUsDialog.newInstance().show(getSupportFragmentManager());
-                            startActivity(TimeSheetActivity.newIntent(MainActivity.this));
+//                            startActivity(AlarmActivity.newIntent(MainActivity.this));
                             return true;
                         case R.id.navItemFeed:
                             startActivity(FeedActivity.newIntent(MainActivity.this));

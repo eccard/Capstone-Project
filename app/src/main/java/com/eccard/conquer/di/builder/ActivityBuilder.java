@@ -28,8 +28,8 @@ import com.eccard.conquer.ui.login.LoginActivity;
 import com.eccard.conquer.ui.main.MainActivity;
 import com.eccard.conquer.ui.main.rating.RateUsDialogProvider;
 import com.eccard.conquer.ui.splash.SplashActivity;
+import com.eccard.conquer.ui.tasks.alarm.AlarmActivity;
 import com.eccard.conquer.ui.tasks.insert.NewTaskFragmentProvider;
-import com.eccard.conquer.ui.timesheet.TimeSheetActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -62,5 +62,5 @@ public abstract class ActivityBuilder {
     abstract SplashActivity bindSplashActivity();
 
     @ContributesAndroidInjector
-    abstract TimeSheetActivity bindTimeSheetActivity();
+    abstract AlarmActivity bindTimeSheetActivity();
 }

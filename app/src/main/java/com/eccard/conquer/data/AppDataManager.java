@@ -354,4 +354,9 @@ public class AppDataManager implements DataManager {
     public LiveData<List<Task>> loadAllByGoalIdWithLiveData(Long goalId) {
         return mDbHelper.loadAllByGoalIdWithLiveData(goalId);
     }
+
+    @Override
+    public Observable<TaskDao.TaskGoal> loadTaskGoalFromTaskId(Long taskId) {
+        return mDbHelper.loadTaskGoalFromTaskId(taskId);
+    }
 }

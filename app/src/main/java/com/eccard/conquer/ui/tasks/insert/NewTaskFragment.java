@@ -1,10 +1,14 @@
 package com.eccard.conquer.ui.tasks.insert;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,19 +24,27 @@ import android.widget.Toast;
 import com.eccard.conquer.BR;
 import com.eccard.conquer.R;
 import com.eccard.conquer.ViewModelProviderFactory;
+import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.databinding.FragmentNewTaskBinding;
 import com.eccard.conquer.ui.base.BaseFragment;
 import com.eccard.conquer.ui.main.MainActivity;
+import com.eccard.conquer.ui.tasks.alarm.AlarmActivity;
+import com.eccard.conquer.ui.tasks.alarm.AlarmReceiver;
 import com.eccard.conquer.utils.CommonUtils;
 
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.ConcurrentModificationException;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -41,6 +53,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
 import timber.log.Timber;
+
+import static android.content.Context.ALARM_SERVICE;
 
 public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTaskViewModel> implements NewTaskNavigator, TimePickerDialog.OnTimeSetListener {
 
@@ -271,7 +285,11 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        newTaskViewModel.getGoalFromId(hourOfDay, minute);
+    }
 
+    @Override
+    public void startAlarm(int hourOfDay, int minute, TaskDao.TaskGoal taskGoal) {
         long time = CommonUtils.getLongValueFromTime(hourOfDay,minute);
         String timeString = CommonUtils.getStringValueFromTime(time);
         Log.d(TAG,"call onTimeSet timeLong=" +time);
@@ -280,6 +298,29 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
         newTaskViewModel.setTaskTime(time);
         fragmentNewTaskBinding.editTextTaskTime.setText(timeString);
         fragmentNewTaskBinding.editTextTaskTime.clearFocus();
+
+
+        //todo calculate the time to do work
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        calendar.set(Calendar.MINUTE, minute);
+
+        AlarmManager alarmManager;
+        if (getContext() != null){
+            alarmManager = (AlarmManager) getContext().getSystemService(ALARM_SERVICE);
+
+            Intent myIntent = new Intent(getContext(), AlarmReceiver.class);
+            myIntent.putExtra(AlarmActivity.ARG_GOAL_NAME, taskGoal.goalName);
+            myIntent.putExtra(AlarmActivity.ARG_TASK_DESCRIPTION,taskGoal.taskDescription);
+
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 0, myIntent, 0);
+            if (alarmManager != null) {
+                alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
+//                alarmManager.setInexactRepeating(AlarmManager.RTC,calendar.getTimeInMillis(), TimeUnit.DAYS.toMillis(7),pendingIntent);
+//                alarmManager.setInexactRepeating(AlarmManager.RTC,calendar.getTimeInMillis(), TimeUnit.SECONDS.toMillis(30),pendingIntent);
+            }
+        }
+
     }
 
     @Override

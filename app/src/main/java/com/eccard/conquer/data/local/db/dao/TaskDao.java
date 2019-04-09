@@ -41,6 +41,11 @@ public interface TaskDao {
             " WHERE tasks.day_of_weekend =:day ORDER BY time")
     LiveData<List<TaskGoal>> loadTaskGoalsOfDayWithLiveData(int day);
 
+    @Query("SELECT goals.name AS goalName, tasks.name AS taskName, tasks.description AS taskDescription," +
+            " tasks.time AS taskTime,  tasks.color AS taskColor, tasks.day_of_weekend AS taskDayOfWeekend" +
+            " FROM tasks INNER JOIN goals ON tasks.goal_id = goals.id" +
+            " WHERE tasks.id =:taskId")
+    TaskGoal loadTaskGoalFromTaskId(Long taskId);
     static class TaskGoal {
         public String goalName;
         public String taskName;

@@ -18,14 +18,22 @@ package com.eccard.conquer.utils;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
 import android.util.Patterns;
 import com.eccard.conquer.R;
+import com.eccard.conquer.ui.tasks.alarm.AlarmActivity;
+import com.eccard.conquer.ui.tasks.alarm.AlarmReceiver;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
@@ -33,6 +41,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import timber.log.Timber;
 
@@ -123,4 +132,33 @@ public final class CommonUtils {
        return String.format(Locale.getDefault(),"%s:%s",hourOfDay,minutes);
     }
 
+    public static void scheduleJob(Context context,Long timeForAlarm) {
+        ComponentName serviceComponent = new ComponentName(context, AlarmReceiver.class);
+
+        JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            Timber.d("setting builder.setPeriodic");
+//            builder.setPeriodic(TimeUnit.DAYS.toMillis(7),TimeUnit.SECONDS.toMillis(20));
+//        }
+
+        builder.setMinimumLatency(timeForAlarm);
+        builder.setRequiresCharging(false);
+        JobScheduler jobScheduler = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            jobScheduler = context.getSystemService(JobScheduler.class);
+        } else {
+            jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);;
+        }
+
+        if (jobScheduler != null) {
+            jobScheduler.schedule(builder.build());
+        }
+    }
+
+    public static boolean checkAlarmItent(Intent intent){
+        return intent.getExtras() != null &&
+                intent.getExtras().containsKey(AlarmActivity.ARG_GOAL_NAME) &&
+                intent.getExtras().containsKey(AlarmActivity.ARG_TASK_DESCRIPTION);
+    }
 }

@@ -1,6 +1,7 @@
 package com.eccard.conquer.ui.tasks.insert;
 
 import com.eccard.conquer.data.DataManager;
+import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.ui.base.BaseViewModel;
 import com.eccard.conquer.utils.rx.SchedulerProvider;
@@ -102,6 +103,15 @@ public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
                 }, throwable -> {
                     Timber.e(throwable.getMessage());
                 }));
+    }
+
+    void getGoalFromId(int hourOfDay, int minute){
+        getCompositeDisposable().add(getDataManager().loadTaskGoalFromTaskId(taskId)
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(taskGoal -> getNavigator().startAlarm(hourOfDay, minute, taskGoal),
+                        Timber::e));
+
     }
 
 }

@@ -19,6 +19,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name="com.eccard.conquer.MvvmApp"
@@ -33,6 +34,7 @@
         <activity android:name="com.eccard.conquer.ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -56,7 +58,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eccard.conquer.ui.main.MainActivity" />
         </activity>
-        <activity android:name=".ui.timesheet.TimeSheetActivity" />
+        <activity android:name=".ui.tasks.alarm.AlarmActivity" />
+
+
+        <service
+            android:name=".ui.tasks.alarm.AlarmService"
+            android:enabled="true" />
+        <receiver android:name=".ui.tasks.alarm.AlarmReceiver" />
+
     </application>
 
 </manifest>

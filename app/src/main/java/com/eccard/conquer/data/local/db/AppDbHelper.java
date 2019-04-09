@@ -187,4 +187,9 @@ public class AppDbHelper implements DbHelper {
     public LiveData<List<Task>> loadAllByGoalIdWithLiveData(Long goalId) {
         return mAppDatabase.taskDao().loadAllByGoalIdWithLiveData(goalId);
     }
+
+    @Override
+    public Observable<TaskDao.TaskGoal> loadTaskGoalFromTaskId(Long taskId) {
+        return Observable.fromCallable(() -> mAppDatabase.taskDao().loadTaskGoalFromTaskId(taskId));
+    }
 }

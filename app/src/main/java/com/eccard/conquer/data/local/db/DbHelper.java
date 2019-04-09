@@ -77,6 +77,8 @@ public interface DbHelper {
 
     LiveData<List<Goal>> getAllGoalsLiveData();
 
+    Observable<TaskDao.TaskGoal> loadTaskGoalFromTaskId(Long taskId);
+
 
 
 }
