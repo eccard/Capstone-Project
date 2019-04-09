@@ -121,15 +121,8 @@ public final class CommonUtils {
 
 
     public static String getStringValueFromTime(Long timeLong){
-
-        Calendar date = Calendar.getInstance();
-        date.set(Calendar.AM_PM, date.get(Calendar.AM_PM));
-        date.setTime(new Date(timeLong));
-
-        int hourOfDay = date.get(Calendar.HOUR_OF_DAY); // gets hour in 24h format
-        int minutes = date.get(Calendar.MINUTE); // gets hour in 24h format
-
-       return String.format(Locale.getDefault(),"%s:%s",hourOfDay,minutes);
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        return sdf.format(new Date(timeLong));
     }
 
     public static void scheduleJob(Context context,Long timeForAlarm) {
