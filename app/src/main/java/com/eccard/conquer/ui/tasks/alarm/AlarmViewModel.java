@@ -31,4 +31,8 @@ public class AlarmViewModel extends BaseViewModel<AlarmNavigator> {
     public void setTaskDescription(String taskDescription) {
         TaskDescription.set(taskDescription);
     }
+
+    public void setAlarm(){
+        getNavigator().stopAlarm();
+    }
 }

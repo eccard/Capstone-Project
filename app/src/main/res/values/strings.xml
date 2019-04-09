@@ -98,6 +98,7 @@
     <string name="goals">Goals</string>
     <string name="for_s">For</string>
     <string name="it_s_time_to">It\'s time to</string>
+    <string name="stop_alarm">Stop Alarm</string>
 
 
     <string-array name="daysOfWeekend">

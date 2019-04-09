@@ -25,6 +25,7 @@ public class AlarmActivity extends BaseActivity<ActivityAlarmBinding, AlarmViewM
 
     public static final String ARG_GOAL_NAME   = "goalName";
     public static final String ARG_TASK_DESCRIPTION = "taskDescription";
+    private Ringtone ringtone;
 
     public static Intent newIntent(Context context, String goalName, String taskDescription ){
         Intent intent = new Intent(context, AlarmActivity.class);
@@ -60,6 +61,10 @@ public class AlarmActivity extends BaseActivity<ActivityAlarmBinding, AlarmViewM
 
     }
 
+    @Override
+    public void stopAlarm() {
+        ringtone.stop();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,7 +89,7 @@ public class AlarmActivity extends BaseActivity<ActivityAlarmBinding, AlarmViewM
                 alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             }
 
-            Ringtone ringtone = RingtoneManager.getRingtone(AlarmActivity.this, alarmUri);
+            ringtone = RingtoneManager.getRingtone(AlarmActivity.this, alarmUri);
             ringtone.play();
         }
     }
