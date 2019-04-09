@@ -16,6 +16,7 @@
 
 package com.eccard.conquer.data.local.db;
 
+import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.data.model.db.Option;
 import com.eccard.conquer.data.model.db.Question;
@@ -142,8 +143,8 @@ public class AppDbHelper implements DbHelper {
     }
 
     @Override
-    public LiveData<List<Task>> loadTaskOfDayWithLiveData(int day) {
-        return mAppDatabase.taskDao().loadTaskOfDayWithLiveData(day);
+    public LiveData<List<TaskDao.TaskGoal>> loadTaskGoalsOfDayWithLiveData(int day) {
+        return mAppDatabase.taskDao().loadTaskGoalsOfDayWithLiveData(day);
     }
 
     @Override

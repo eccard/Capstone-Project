@@ -20,6 +20,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.eccard.conquer.data.DataManager;
+import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.data.model.api.BlogResponse;
 import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.ui.base.BaseViewModel;
@@ -33,7 +34,7 @@ import java.util.List;
 
 public class BlogViewModel extends BaseViewModel<BlogNavigator> {
 
-    private final MutableLiveData<List<Task>> taskListLiveData;
+    private final MutableLiveData<List<TaskDao.TaskGoal>> taskListLiveData;
 
     private int dayOfWeekend;
 
@@ -68,11 +69,13 @@ public class BlogViewModel extends BaseViewModel<BlogNavigator> {
 
 
 
-    public LiveData<List<Task>> getTasksLiveData(){
-        return getDataManager().loadTaskOfDayWithLiveData(dayOfWeekend);
+    public LiveData<List<TaskDao.TaskGoal>> getTasksLiveData(){
+        return getDataManager().loadTaskGoalsOfDayWithLiveData(dayOfWeekend);
     }
 
-    public MutableLiveData<List<Task>> getTaskListLiveData() {
+
+
+    public MutableLiveData<List<TaskDao.TaskGoal>> getTaskListLiveData() {
         return taskListLiveData;
     }
 }

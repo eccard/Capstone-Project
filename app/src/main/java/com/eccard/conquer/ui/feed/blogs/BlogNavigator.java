@@ -16,6 +16,7 @@
 
 package com.eccard.conquer.ui.feed.blogs;
 
+import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.data.model.api.BlogResponse;
 import com.eccard.conquer.data.model.db.Task;
 
@@ -29,5 +30,5 @@ public interface BlogNavigator {
 
     void handleError(Throwable throwable);
 
-    void updateBlog(List<Task> taskList);
+    void updateBlog(List<TaskDao.TaskGoal> taskList);
 }

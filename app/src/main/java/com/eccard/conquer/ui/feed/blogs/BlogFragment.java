@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import com.eccard.conquer.ViewModelProviderFactory;
+import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.data.model.api.BlogResponse;
 import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.ui.base.BaseFragment;
@@ -108,7 +109,7 @@ public class BlogFragment extends BaseFragment<FragmentBlogBinding, BlogViewMode
     }
 
     @Override
-    public void updateBlog(List<Task> taskList) {
+    public void updateBlog(List<TaskDao.TaskGoal> taskList) {
         mBlogAdapter.addItems(taskList);
 
     }

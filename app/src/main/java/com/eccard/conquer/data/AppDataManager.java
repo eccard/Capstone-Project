@@ -18,6 +18,7 @@ package com.eccard.conquer.data;
 
 import android.content.Context;
 
+import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.data.model.db.Task;
 import com.google.gson.Gson;
@@ -315,8 +316,8 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public LiveData<List<Task>> loadTaskOfDayWithLiveData(int day) {
-        return mDbHelper.loadTaskOfDayWithLiveData(day);
+    public LiveData<List<TaskDao.TaskGoal>> loadTaskGoalsOfDayWithLiveData(int day) {
+        return mDbHelper.loadTaskGoalsOfDayWithLiveData(day);
     }
 
     @Override

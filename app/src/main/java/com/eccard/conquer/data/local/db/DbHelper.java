@@ -16,6 +16,7 @@
 
 package com.eccard.conquer.data.local.db;
 
+import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.data.model.db.Option;
 import com.eccard.conquer.data.model.db.Question;
@@ -60,7 +61,7 @@ public interface DbHelper {
 
     Observable<List<Task>> getTasksFromGoalId(Long goalId);
     LiveData<List<Task>> loadAllTasksWithLiveData();
-    LiveData<List<Task>> loadTaskOfDayWithLiveData(int day);
+    LiveData<List<TaskDao.TaskGoal>> loadTaskGoalsOfDayWithLiveData(int day);
     Observable<List<Task>> loadAllByGoalId(Long goalId);
     LiveData<List<Task>> loadAllByGoalIdWithLiveData(Long goalId);
 

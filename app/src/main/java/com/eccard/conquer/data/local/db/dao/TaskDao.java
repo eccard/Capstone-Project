@@ -29,12 +29,24 @@ public interface TaskDao {
     @Query("SELECT * FROM tasks WHERE goal_id = :goalId")
     List<Task> loadAllByGoalId(Long goalId);
 
-    @Query("SELECT * FROM tasks WHERE day_of_weekend =:day ORDER BY time")
-    LiveData<List<Task>> loadTaskOfDayWithLiveData(int day);
-
     @Query("SELECT * FROM tasks ")
     LiveData<List<Task>> loadAllTasksWithLiveData();
 
     @Query("SELECT * FROM tasks WHERE goal_id = :goalId")
     LiveData<List<Task>> loadAllByGoalIdWithLiveData(Long goalId);
+
+    @Query("SELECT goals.name AS goalName, tasks.name AS taskName, tasks.description AS taskDescription," +
+            " tasks.time AS taskTime,  tasks.color AS taskColor, tasks.day_of_weekend AS taskDayOfWeekend" +
+            " FROM tasks INNER JOIN goals ON tasks.goal_id = goals.id" +
+            " WHERE tasks.day_of_weekend =:day ORDER BY time")
+    LiveData<List<TaskGoal>> loadTaskGoalsOfDayWithLiveData(int day);
+
+    static class TaskGoal {
+        public String goalName;
+        public String taskName;
+        public String taskDescription;
+        public Long taskTime;
+        public String taskColor;
+        public String taskDayOfWeekend;
+    }
 }

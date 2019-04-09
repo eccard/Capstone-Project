@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.ui.base.BaseViewHolder;
@@ -41,11 +42,11 @@ public class BlogAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public static final int VIEW_TYPE_NORMAL = 1;
 
-    private List<Task> taskList;
+    private List<TaskDao.TaskGoal> taskList;
 
     private BlogAdapterListener mListener;
 
-    public BlogAdapter(List<Task> taskList) {
+    public BlogAdapter(List<TaskDao.TaskGoal> taskList) {
         this.taskList = taskList;
     }
 
@@ -88,7 +89,7 @@ public class BlogAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
 
-    public void addItems(List<Task> newData) {
+    public void addItems(List<TaskDao.TaskGoal> newData) {
         if ( newData !=null) {
             taskList.addAll(newData);
             notifyDataSetChanged();
@@ -123,9 +124,8 @@ public class BlogAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onBind(int position) {
-//            final BlogResponse.Blog blog = taskList.get(position);
-            final Task goal = taskList.get(position);
-            mBlogItemViewModel = new BlogItemViewModel(goal, this);
+            TaskDao.TaskGoal taskGoal = taskList.get(position);
+            mBlogItemViewModel = new BlogItemViewModel(taskGoal, this);
             mBinding.setViewModel(mBlogItemViewModel);
 
             // Immediate Binding
