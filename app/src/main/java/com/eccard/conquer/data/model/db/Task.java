@@ -10,6 +10,8 @@ import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import timber.log.Timber;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 enum Days{
     Sunday(1),
     Monday(2),
@@ -34,7 +36,8 @@ enum Days{
         foreignKeys = @ForeignKey(
                 entity = Goal.class,
                 parentColumns = "id",
-                childColumns = "goal_id"
+                childColumns = "goal_id",
+                onDelete = CASCADE
         )
 )
 public class Task {

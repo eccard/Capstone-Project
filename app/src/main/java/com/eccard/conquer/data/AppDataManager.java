@@ -301,8 +301,8 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Observable<Boolean> delete(Task task) {
-        return mDbHelper.delete(task);
+    public Observable<Boolean> deleteTask(Task task) {
+        return mDbHelper.deleteTask(task);
     }
 
     @Override
@@ -328,6 +328,11 @@ public class AppDataManager implements DataManager {
     @Override
     public Observable<Boolean> saveGoal(Goal goal) {
         return mDbHelper.saveGoal(goal);
+    }
+
+    @Override
+    public Observable<Boolean> deleteGoal(Goal goal) {
+        return mDbHelper.deleteGoal(goal);
     }
 
     @Override

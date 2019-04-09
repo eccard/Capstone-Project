@@ -1,10 +1,8 @@
 package com.eccard.conquer.ui.tasks.insert;
 
 import com.eccard.conquer.data.DataManager;
-import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.ui.base.BaseViewModel;
-import com.eccard.conquer.utils.CommonUtils;
 import com.eccard.conquer.utils.rx.SchedulerProvider;
 
 import timber.log.Timber;
@@ -57,9 +55,9 @@ public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
     }
 
     public void deleteTask(Task task){
-        Timber.d(" delete task - " + task.toString());
+        Timber.d(" deleteTask task - " + task.toString());
 
-        getCompositeDisposable().add(getDataManager().delete(task)
+        getCompositeDisposable().add(getDataManager().deleteTask(task)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(aBoolean -> {

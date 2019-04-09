@@ -47,6 +47,15 @@ public class GoalsViewModel extends BaseViewModel<GoalsNavigator> {
         return getDataManager().getAllGoalsLiveData();
     }
 
+    public void deleteGoal(Goal goal){
+            getCompositeDisposable().add(getDataManager()
+                .deleteGoal(goal)
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(aBoolean -> Timber.d("deleteGoa="+aBoolean),
+                        Timber::e));
+    }
+
     public void onNavTasksClick(){
         getNavigator().goTasks();
     }

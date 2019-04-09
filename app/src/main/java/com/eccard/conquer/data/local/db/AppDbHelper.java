@@ -123,10 +123,10 @@ public class AppDbHelper implements DbHelper {
     }
 
     @Override
-    public Observable<Boolean> delete(Task task) {
+    public Observable<Boolean> deleteTask(Task task) {
         return Observable.fromCallable(() -> {
             long ret = mAppDatabase.taskDao().delete(task);
-            Timber.d("mAppDatabase.taskDao().delete(task) -> ret="+ret);
+            Timber.d("mAppDatabase.taskDao().deleteTask(task) -> ret="+ret);
             return true;
         });
     }
@@ -157,6 +157,15 @@ public class AppDbHelper implements DbHelper {
         return Observable.fromCallable(() -> {
             long ret = mAppDatabase.goalDao().insert(goal);
             Timber.d("mAppDatabase.goalDao().insert(goal) -> ret="+ret);
+            return true;
+        });
+    }
+
+    @Override
+    public Observable<Boolean> deleteGoal(Goal goal) {
+        return Observable.fromCallable(() -> {
+            long ret = mAppDatabase.goalDao().delete(goal);
+            Timber.d("mAppDatabase.taskDao().deleteGoal(goal) -> ret="+ret);
             return true;
         });
     }

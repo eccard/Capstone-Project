@@ -116,4 +116,9 @@ public class GoalsFragment extends BaseFragment<FragmentGoalsBinding,GoalsViewMo
     public void onSelectedGoal(Goal goal) {
         ((MainActivity)getActivity()).goTasks(goal.id);
     }
+
+    @Override
+    public void onDeleteGoal(Goal goalId) {
+        mGoalsViewModel.deleteGoal(goalId);
+    }
 }

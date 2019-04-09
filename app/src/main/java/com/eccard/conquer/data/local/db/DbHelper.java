@@ -55,7 +55,7 @@ public interface DbHelper {
 
 
     Observable<Boolean> saveTask(final Task task);
-    Observable<Boolean> delete(final Task task);
+    Observable<Boolean> deleteTask(final Task task);
 
     Observable<Boolean> isTaskEmpty();
 
@@ -65,11 +65,12 @@ public interface DbHelper {
     Observable<List<Task>> loadAllByGoalId(Long goalId);
     LiveData<List<Task>> loadAllByGoalIdWithLiveData(Long goalId);
 
-    // todo add delete
+    // todo add deleteTask
 
     // add update ?
 
     Observable<Boolean> saveGoal(final Goal goal);
+    Observable<Boolean> deleteGoal(Goal goal);
 
     Observable<Boolean> isGoalEmpty();
 
