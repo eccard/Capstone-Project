@@ -6,5 +6,5 @@ public interface NewTaskNavigator {
 
     void goTasks(Long goalId);
 
-    void startAlarm(int hourOfDay, int minute, TaskDao.TaskGoal taskGoal);
+    void startAlarm(Long taskTime, TaskDao.TaskGoal taskGoal);
 }

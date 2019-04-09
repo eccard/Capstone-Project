@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +32,7 @@ import com.eccard.conquer.ui.tasks.alarm.AlarmActivity;
 import com.eccard.conquer.ui.tasks.alarm.AlarmReceiver;
 import com.eccard.conquer.utils.CommonUtils;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -241,6 +241,7 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
         fragmentNewTaskBinding.inputLayoutTaskDescription.getEditText().setEnabled(canEdit);
         fragmentNewTaskBinding.spinnerDayOfWeekend.setEnabled(canEdit);
         fragmentNewTaskBinding.editTextTaskTime.setEnabled(canEdit);
+        fragmentNewTaskBinding.alarmCheckBox.setEnabled(canEdit);
 
         if (canEdit){
             fragmentNewTaskBinding.inputLayoutTask.getEditText().requestFocus();
@@ -285,25 +286,20 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        newTaskViewModel.getGoalFromId(hourOfDay, minute);
-    }
-
-    @Override
-    public void startAlarm(int hourOfDay, int minute, TaskDao.TaskGoal taskGoal) {
         long time = CommonUtils.getLongValueFromTime(hourOfDay,minute);
-        String timeString = CommonUtils.getStringValueFromTime(time);
-        Log.d(TAG,"call onTimeSet timeLong=" +time);
-        Log.d(TAG,"call onTimeSet timeString" +timeString);
-
         newTaskViewModel.setTaskTime(time);
+
+        String timeString = CommonUtils.getStringValueFromTime(time);
         fragmentNewTaskBinding.editTextTaskTime.setText(timeString);
         fragmentNewTaskBinding.editTextTaskTime.clearFocus();
 
+    }
 
-        //todo calculate the time to do work
+    @Override
+    public void startAlarm(Long taskTime, TaskDao.TaskGoal taskGoal) {
+
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-        calendar.set(Calendar.MINUTE, minute);
+        calendar.setTime(new Time(taskTime));
 
         AlarmManager alarmManager;
         if (getContext() != null){

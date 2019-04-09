@@ -4,6 +4,7 @@ import com.eccard.conquer.data.DataManager;
 import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.ui.base.BaseViewModel;
+import com.eccard.conquer.utils.CommonUtils;
 import com.eccard.conquer.utils.rx.SchedulerProvider;
 
 import timber.log.Timber;
@@ -106,12 +107,19 @@ public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
     }
 
     void getGoalFromId(int hourOfDay, int minute){
-        getCompositeDisposable().add(getDataManager().loadTaskGoalFromTaskId(taskId)
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(taskGoal -> getNavigator().startAlarm(hourOfDay, minute, taskGoal),
-                        Timber::e));
+
 
     }
 
+
+    public void onCheckedChanged(boolean isChecked) {
+        if (isChecked){
+            getCompositeDisposable().add(getDataManager().loadTaskGoalFromTaskId(taskId)
+                    .subscribeOn(getSchedulerProvider().io())
+                    .observeOn(getSchedulerProvider().ui())
+                    .subscribe(taskGoal -> getNavigator().startAlarm(taskTime, taskGoal),
+                            Timber::e));
+        }
+
+    }
 }
