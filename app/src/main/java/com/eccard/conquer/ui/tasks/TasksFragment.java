@@ -6,10 +6,13 @@ import android.view.View;
 import com.eccard.conquer.BR;
 import com.eccard.conquer.R;
 import com.eccard.conquer.ViewModelProviderFactory;
+import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.databinding.FragmentTasksBinding;
 import com.eccard.conquer.ui.base.BaseFragment;
 import com.eccard.conquer.ui.main.MainActivity;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -88,10 +91,25 @@ public class TasksFragment extends BaseFragment<FragmentTasksBinding, TasksViewM
 
             setDivider(getViewDataBinding().recyleViewTasks);
 
-            mTasksViewModel.getTasks().observe(this, tasks -> tasksAdapter.setData(tasks));
+            mTasksViewModel.getTasks().observe(this, tasks -> {
+                checkVisibility(tasks);
+                tasksAdapter.setData(tasks);
+                tasksAdapter.notifyDataSetChanged();
+            });
 
         }
 
+    }
+
+
+    private void checkVisibility(List<Task> tas){
+        if (tas == null || tas.isEmpty()){
+            getViewDataBinding().recyleViewTasks.setVisibility(View.GONE);
+            getViewDataBinding().emptyLayout.setVisibility(View.VISIBLE);
+        } else {
+            getViewDataBinding().recyleViewTasks.setVisibility(View.VISIBLE);
+            getViewDataBinding().emptyLayout.setVisibility(View.GONE);
+        }
     }
 
 

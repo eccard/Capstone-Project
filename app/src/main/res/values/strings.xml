@@ -82,7 +82,7 @@
     <string name="blog">Blog</string>
 
     <!--empty state-->
-    <string name="empty_screen">We do not have tasks for this day.</string>
+    <string name="empty_screen">We do not have data.</string>
     <string name="please_retry">Please Retry</string>
     <string name="retry">Retry</string>
 
