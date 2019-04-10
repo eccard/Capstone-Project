@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import timber.log.Timber;
 
@@ -95,6 +96,7 @@ public class Task {
 
     public Task() {}
 
+    @Ignore
     public Task(Long goalId, String name, String description, int day,String time) {
         Days days = Days.values()[day-1];
         Timber.d("dayName="+days.name());

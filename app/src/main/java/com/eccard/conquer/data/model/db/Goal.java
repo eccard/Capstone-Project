@@ -2,6 +2,7 @@ package com.eccard.conquer.data.model.db;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "goals")
@@ -19,6 +20,7 @@ public class Goal {
     @ColumnInfo(name = "name")
     public String name;
 
+    @Ignore
     public Goal(String name) {
         this.name = name;
     }
