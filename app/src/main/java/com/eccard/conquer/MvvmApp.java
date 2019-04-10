@@ -18,26 +18,43 @@ package com.eccard.conquer;
 
 import android.app.Activity;
 import android.app.Application;
+import android.app.Service;
+import android.content.BroadcastReceiver;
+
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.interceptors.HttpLoggingInterceptor;
+import com.eccard.conquer.di.component.AppComponent;
 import com.eccard.conquer.di.component.DaggerAppComponent;
 import com.eccard.conquer.utils.AppLogger;
+
+import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import javax.inject.Inject;
+
+import dagger.android.HasBroadcastReceiverInjector;
+import dagger.android.HasServiceInjector;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by amitshekhar on 07/07/17.
  */
 
-public class MvvmApp extends Application implements HasActivityInjector {
+public class MvvmApp extends Application implements HasActivityInjector, HasBroadcastReceiverInjector, HasServiceInjector {
+
+    @Inject
+    DispatchingAndroidInjector<Service> serviceInjector;
+
+    @Inject
+    DispatchingAndroidInjector<BroadcastReceiver> broadcastReceiverInjector;
 
     @Inject
     DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
 
     @Inject
     CalligraphyConfig mCalligraphyConfig;
+
+    private AppComponent appComponent;
 
     @Override
     public DispatchingAndroidInjector<Activity> activityInjector() {
@@ -48,10 +65,11 @@ public class MvvmApp extends Application implements HasActivityInjector {
     public void onCreate() {
         super.onCreate();
 
-        DaggerAppComponent.builder()
+        appComponent = DaggerAppComponent.builder()
                 .application(this)
-                .build()
-                .inject(this);
+                .build();
+
+        appComponent.inject(this);
 
         AppLogger.init();
 
@@ -61,5 +79,19 @@ public class MvvmApp extends Application implements HasActivityInjector {
         }
 
         CalligraphyConfig.initDefault(mCalligraphyConfig);
+    }
+
+    public AppComponent getAppComponent() {
+        return appComponent;
+    }
+
+    @Override
+    public AndroidInjector<BroadcastReceiver> broadcastReceiverInjector() {
+        return broadcastReceiverInjector;
+    }
+
+    @Override
+    public AndroidInjector<Service> serviceInjector() {
+        return serviceInjector;
     }
 }
