@@ -21,6 +21,8 @@ import android.app.Application;
 import com.eccard.conquer.MvvmApp;
 import com.eccard.conquer.di.module.AppModule;
 import com.eccard.conquer.di.builder.ActivityBuilder;
+import com.eccard.conquer.di.module.WidgetModule;
+import com.eccard.conquer.widget.TasksAppWidget;
 
 import dagger.BindsInstance;
 import dagger.Component;
@@ -31,7 +33,7 @@ import javax.inject.Singleton;
  * Created by amitshekhar on 07/07/17.
  */
 @Singleton
-@Component(modules = {AndroidInjectionModule.class, AppModule.class, ActivityBuilder.class})
+@Component(modules = {AndroidInjectionModule.class, AppModule.class, ActivityBuilder.class, WidgetModule.class})
 public interface AppComponent {
 
     void inject(MvvmApp app);
