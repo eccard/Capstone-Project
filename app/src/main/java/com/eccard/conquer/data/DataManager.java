@@ -17,6 +17,7 @@
 package com.eccard.conquer.data;
 
 import com.eccard.conquer.data.local.db.DbHelper;
+import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.data.local.prefs.PreferencesHelper;
 import com.eccard.conquer.data.model.others.QuestionCardData;
 import com.eccard.conquer.data.remote.ApiHelper;
@@ -64,4 +65,8 @@ public interface DataManager extends DbHelper, PreferencesHelper, ApiHelper {
             return mType;
         }
     }
+
+
+    void cacheWidgetList(List<TaskDao.TaskGoal> taskGoals);
+    List<TaskDao.TaskGoal> getWidgetList();
 }

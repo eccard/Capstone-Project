@@ -320,6 +320,17 @@ public class AppDataManager implements DataManager {
         return mDbHelper.loadTaskGoalsOfDayWithLiveData(day);
     }
 
+    private List<TaskDao.TaskGoal> taskGoals;
+    @Override
+    public void cacheWidgetList(List<TaskDao.TaskGoal> taskGoals) {
+        this.taskGoals = taskGoals;
+    }
+
+    @Override
+    public List<TaskDao.TaskGoal> getWidgetList() {
+        return this.taskGoals;
+    }
+
     @Override
     public LiveData<List<Task>> loadAllTasksWithLiveData() {
         return mDbHelper.loadAllTasksWithLiveData();
