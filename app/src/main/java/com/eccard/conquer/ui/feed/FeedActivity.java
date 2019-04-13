@@ -43,6 +43,9 @@ import javax.inject.Inject;
 
 public class FeedActivity extends BaseActivity<ActivityFeedBinding, FeedViewModel> implements HasSupportFragmentInjector {
 
+    public static final String ARG_DAY = "dayForSelectedTab";
+
+
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
     @Inject
@@ -55,6 +58,13 @@ public class FeedActivity extends BaseActivity<ActivityFeedBinding, FeedViewMode
     public static Intent newIntent(Context context) {
         return new Intent(context, FeedActivity.class);
     }
+
+    public static Intent newIntent(Context context, int day) {
+        Intent intent = new Intent(context, FeedActivity.class);
+        intent.putExtra(ARG_DAY,day);
+        return intent;
+    }
+
 
     @Override
     public int getBindingVariable() {
@@ -107,6 +117,12 @@ public class FeedActivity extends BaseActivity<ActivityFeedBinding, FeedViewMode
         super.onCreate(savedInstanceState);
         mActivityFeedBinding = getViewDataBinding();
         setUp();
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.containsKey(ARG_DAY)){
+            int day = bundle.getInt(ARG_DAY);
+            mActivityFeedBinding.feedViewPager.setCurrentItem(day-1);
+        }
     }
 
     private void setUp() {

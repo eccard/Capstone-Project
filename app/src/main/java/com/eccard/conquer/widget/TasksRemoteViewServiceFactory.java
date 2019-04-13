@@ -1,12 +1,18 @@
 package com.eccard.conquer.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.widget.AdapterView;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import com.eccard.conquer.R;
 import com.eccard.conquer.data.DataManager;
 import com.eccard.conquer.data.local.db.dao.TaskDao;
+import com.eccard.conquer.ui.feed.FeedActivity;
+import com.eccard.conquer.utils.CommonUtils;
+
+import java.util.Calendar;
 
 import timber.log.Timber;
 
@@ -51,13 +57,13 @@ public class TasksRemoteViewServiceFactory implements RemoteViewsService.RemoteV
 
         RemoteViews view = new RemoteViews(context.getPackageName(), android.R.layout.simple_list_item_1);
         TaskDao.TaskGoal task = dataManager.getWidgetList().get(position);
-        view.setTextViewText(android.R.id.text1,task.taskName);
+        String text = CommonUtils.getStringValueFromTime(task.taskTime);
+        view.setTextViewText(android.R.id.text1,text.concat(" - ").concat(task.taskName));
 
 
-//        todo habilitar o click
-//        Intent fillIntent = new Intent();
-//        fillIntent.putExtra(Recip.class.getSimpleName(), recip);
-//        views.setOnClickFillInIntent(R.id.textView_ingredient_title, fillIntent);
+        Intent fillIntent = new Intent();
+        fillIntent.putExtra(FeedActivity.ARG_DAY,Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
+        view.setOnClickFillInIntent(android.R.id.text1,fillIntent);
 
         return view;
 

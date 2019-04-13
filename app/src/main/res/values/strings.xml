@@ -100,7 +100,9 @@
     <string name="it_s_time_to">It\'s time to</string>
     <string name="stop_alarm">Stop Alarm</string>
     <string name="widget_tasks_for_day_title">Tasks for today</string>
-    <string name="widget_empty">No tasks</string>
+    <!--<string name="widget_empty">No tasks</string>-->
+    <string name="tasks_for_today">Tasks for today</string>
+    <string name="do_no_have_tasks_for_today">You do not have tasks for today</string>
 
 
     <string-array name="daysOfWeekend">

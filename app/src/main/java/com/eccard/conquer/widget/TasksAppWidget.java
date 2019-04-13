@@ -1,5 +1,6 @@
 package com.eccard.conquer.widget;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
@@ -11,6 +12,7 @@ import android.widget.RemoteViews;
 import com.eccard.conquer.R;
 import com.eccard.conquer.data.DataManager;
 import com.eccard.conquer.data.local.db.dao.TaskDao;
+import com.eccard.conquer.ui.feed.FeedActivity;
 
 import java.util.Calendar;
 import java.util.List;
@@ -50,9 +52,8 @@ public class TasksAppWidget extends AppWidgetProvider {
             AndroidInjection.inject(this, context);
         }
 
-        Calendar calendar = Calendar.getInstance();
         if (observeTasks == null){
-            observeTasks = dataManager.loadTaskGoalsOfDayWithLiveData(calendar.get(Calendar.DAY_OF_WEEK));
+            observeTasks = dataManager.loadTaskGoalsOfDayWithLiveData(Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
             observeTasks.observeForever(observeForLiveDataTasks);
         }
 
@@ -77,11 +78,10 @@ public class TasksAppWidget extends AppWidgetProvider {
                                  int appWidgetId){
 
         RemoteViews views = getTasksListRemoteView(context);
-// todo talvez seja para setar o titulo aki
-//        if (!tasks.isEmpty()){
-//            views.setTextViewText(R.id.appwidget_recipe_title, recip.getName());
-//        }
-
+        List<TaskDao.TaskGoal> tasksList = getDataManager().getWidgetList();
+        if (tasksList != null && !tasksList.isEmpty()){
+            views.setTextViewText(R.id.appwidget_recipe_title,context.getString(R.string.tasks_for_today));
+        }
         appWidgetManager.updateAppWidget(appWidgetId,views);
 
     }
@@ -107,12 +107,6 @@ public class TasksAppWidget extends AppWidgetProvider {
 
         Intent intent = new Intent(context, TasksWidgetViewService.class);
 
-//        if (needToUpdate) {
-//        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-            // let's put in some extra information we want to pass to the RemoteViewsFactory
-//            intent.putParcelableArrayListExtra(ARG_TASK_LIST, tasks);
-//            needToUpdate = false;
-//        }
 // when intents are compared, the extras are ignored, so we need to
 // embed the extras into the data so that the extras will not be ignored
         intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
@@ -121,12 +115,10 @@ public class TasksAppWidget extends AppWidgetProvider {
         views.setRemoteAdapter(R.id.appwidget_listView_ingredients, intent);
         views.setEmptyView(R.id.appwidget_listView_ingredients, R.id.appwidget_empty_view);
 
-//  todo enable pedding intent
-//        Intent intentPending = new Intent(context, RecipDetailActivity.class);
-//        PendingIntent pendingIntent =
-//                PendingIntent.getActivity(context, 0, intentPending, PendingIntent.FLAG_UPDATE_CURRENT);
-//
-//        views.setPendingIntentTemplate(R.id.appwidget_listView_ingredients, pendingIntent);
+        Intent intentPending = new Intent(context,FeedActivity.class);
+        PendingIntent pendingIntent =
+                PendingIntent.getActivity(context, 0, intentPending, PendingIntent.FLAG_UPDATE_CURRENT);
+        views.setPendingIntentTemplate(R.id.appwidget_listView_ingredients,pendingIntent);
 
         return views;
     }
