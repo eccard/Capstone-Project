@@ -26,6 +26,8 @@ import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 import com.eccard.conquer.di.component.AppComponent;
 import com.eccard.conquer.di.component.DaggerAppComponent;
 import com.eccard.conquer.utils.AppLogger;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
@@ -61,6 +63,10 @@ public class MvvmApp extends Application implements HasActivityInjector, HasBroa
         return activityDispatchingAndroidInjector;
     }
 
+
+    private static GoogleAnalytics sAnalytics;
+    private static Tracker sTracker;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -79,6 +85,9 @@ public class MvvmApp extends Application implements HasActivityInjector, HasBroa
         }
 
         CalligraphyConfig.initDefault(mCalligraphyConfig);
+
+
+        sAnalytics = GoogleAnalytics.getInstance(this);
     }
 
     public AppComponent getAppComponent() {
@@ -93,5 +102,21 @@ public class MvvmApp extends Application implements HasActivityInjector, HasBroa
     @Override
     public AndroidInjector<Service> serviceInjector() {
         return serviceInjector;
+    }
+
+    /**
+     * Gets the default {@link Tracker} for this {@link Application}.
+     * @return tracker
+     */
+    synchronized public Tracker getDefaultTracker() {
+        // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
+        if (sTracker == null) {
+            sTracker = sAnalytics.newTracker(R.xml.global_tracker);
+        }
+        return sTracker;
+    }
+
+    public static GoogleAnalytics getsAnalytics() {
+        return sAnalytics;
     }
 }

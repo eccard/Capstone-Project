@@ -24,6 +24,7 @@ import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import com.eccard.conquer.MvvmApp;
 import com.eccard.conquer.ViewModelProviderFactory;
 import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.ui.about.AboutFragment;
@@ -35,6 +36,8 @@ import com.eccard.conquer.ui.tasks.TasksFragment;
 import com.eccard.conquer.ui.login.LoginActivity;
 import com.eccard.conquer.ui.tasks.insert.NewTaskFragment;
 import com.eccard.conquer.ui.tasks.alarm.AlarmActivity;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.material.navigation.NavigationView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -70,6 +73,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private MainViewModel mMainViewModel;
     private NavigationView mNavigationView;
     private Toolbar mToolbar;
+    private Tracker tracker;
 
     public static Intent newIntent(Context context) {
         return new Intent(context, MainActivity.class);
@@ -165,6 +169,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         mActivityMainBinding = getViewDataBinding();
         mMainViewModel.setNavigator(this);
         setUp();
+
+        MvvmApp application = (MvvmApp) getApplication();
+        tracker = application.getDefaultTracker();
+
     }
 
     @Override
@@ -258,6 +266,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                         case R.id.navItemAbout:
                             //showAboutFragment();
                             showGoalsFragment();
+
+                            tracker.setScreenName("GoalsFragment" );
+                            tracker.send(new HitBuilders.ScreenViewBuilder().build());
                             return true;
                         case R.id.navItemRateUs:
 //                            RateUsDialog.newInstance().show(getSupportFragmentManager());
@@ -265,6 +276,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                             return true;
                         case R.id.navItemFeed:
                             startActivity(FeedActivity.newIntent(MainActivity.this));
+                            tracker.setScreenName("FeedActivity" );
+                            tracker.send(new HitBuilders.ScreenViewBuilder().build());
                             return true;
                         case R.id.navItemLogout:
                             mMainViewModel.logout();
@@ -309,12 +322,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
         AddGoalDialog.newInstance().show(getSupportFragmentManager());
 
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .disallowAddToBackStack()
-//                .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
-//                .replace(R.id.container_layout, TasksFragment.newInstance(), TasksFragment.TAG)
-//                .commit();
+        tracker.setScreenName("AddGoalDialog" );
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+
     }
 
     public void goTasks(Long goalId){
@@ -324,6 +334,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 //                .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
                 .replace(R.id.container_layout, TasksFragment.newInstance(goalId), TasksFragment.TAG)
                 .commit();
+
+        tracker.setScreenName("TasksFragment" );
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+
     }
 
 
@@ -336,6 +350,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 .replace(R.id.container_layout, NewTaskFragment.newInstance(goalId), NewTaskFragment.TAG)
                 .commit();
 
+        tracker.setScreenName("NewTaskFragment" );
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+
     }
 
     public void goShowTask(Task task){
@@ -344,5 +361,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 .addToBackStack(NewTaskFragment.TAG)
                 .replace(R.id.container_layout, NewTaskFragment.newInstance(task), NewTaskFragment.TAG)
                 .commit();
+
+        tracker.setScreenName("NewTaskFragment" );
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }

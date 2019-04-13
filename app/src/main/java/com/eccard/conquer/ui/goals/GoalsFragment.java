@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.eccard.conquer.BR;
+import com.eccard.conquer.MvvmApp;
 import com.eccard.conquer.R;
 import com.eccard.conquer.ViewModelProviderFactory;
 import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.databinding.FragmentGoalsBinding;
 import com.eccard.conquer.ui.base.BaseFragment;
 import com.eccard.conquer.ui.main.MainActivity;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.List;
 
