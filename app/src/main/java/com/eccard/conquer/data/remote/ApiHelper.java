@@ -33,8 +33,6 @@ public interface ApiHelper {
 
     Single<LoginResponse> doGoogleLoginApiCall(LoginRequest.GoogleLoginRequest request);
 
-    Single<LogoutResponse> doLogoutApiCall();
-
     Single<LoginResponse> doServerLoginApiCall(LoginRequest.ServerLoginRequest request);
 
     ApiHeader getApiHeader();

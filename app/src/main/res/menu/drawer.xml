@@ -21,19 +21,9 @@
             android:icon="@drawable/ic_tree_24px"
             android:title="@string/goals" />
         <item
-            android:id="@+id/navItemRateUs"
-            android:checked="true"
-            android:icon="@drawable/ic_star"
-            android:title="@string/rate_us" />
-        <item
             android:id="@+id/navItemFeed"
             android:checked="true"
             android:icon="@drawable/ic_calendar"
             android:title="@string/timeSheet" />
-        <item
-            android:id="@+id/navItemLogout"
-            android:checked="true"
-            android:icon="@drawable/ic_power_settings_new_24px"
-            android:title="@string/logout" />
     </group>
 </menu>

@@ -14,7 +14,7 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.ui.feed.blogs;
+package com.eccard.conquer.ui.timesheet.day;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -29,21 +29,21 @@ import java.util.ArrayList;
  * Created by amitshekhar on 14/09/17.
  */
 @Module
-public class BlogFragmentModule {
+public class DayFragmentModule {
 
     @Provides
-    BlogViewModel blogViewModel(DataManager dataManager,
-                                SchedulerProvider schedulerProvider) {
-        return new BlogViewModel(dataManager, schedulerProvider);
+    DayViewModel blogViewModel(DataManager dataManager,
+                               SchedulerProvider schedulerProvider) {
+        return new DayViewModel(dataManager, schedulerProvider);
     }
 
     @Provides
-    BlogAdapter provideBlogAdapter() {
-        return new BlogAdapter(new ArrayList<>());
+    DayAdapter provideBlogAdapter() {
+        return new DayAdapter(new ArrayList<>());
     }
 
     @Provides
-    LinearLayoutManager provideLinearLayoutManager(BlogFragment fragment) {
+    LinearLayoutManager provideLinearLayoutManager(DayFragment fragment) {
         return new LinearLayoutManager(fragment.getActivity());
     }
 }

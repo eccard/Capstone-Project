@@ -21,7 +21,7 @@
 
         <variable
             name="viewModel"
-            type="com.eccard.conquer.ui.feed.blogs.BlogEmptyItemViewModel" />
+            type="com.eccard.conquer.ui.timesheet.day.DayEmptyItemViewModel" />
 
     </data>
 

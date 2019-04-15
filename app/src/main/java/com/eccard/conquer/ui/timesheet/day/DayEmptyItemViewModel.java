@@ -14,15 +14,22 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.ui.splash;
+package com.eccard.conquer.ui.timesheet.day;
 
 /**
- * Created by amitshekhar on 08/07/17.
+ * Created by amitshekhar on 10/07/17.
  */
 
-public interface SplashNavigator {
+public class DayEmptyItemViewModel {
 
-    void openLoginActivity();
+    private BlogEmptyItemViewModelListener mListener;
 
-    void openMainActivity();
+    public DayEmptyItemViewModel(BlogEmptyItemViewModelListener listener) {
+        this.mListener = listener;
+    }
+
+    public interface BlogEmptyItemViewModelListener {
+
+        void onRetryClick();
+    }
 }

@@ -20,20 +20,19 @@ import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import com.eccard.conquer.ui.login.LoginActivity;
 import com.eccard.conquer.utils.CommonUtils;
 import com.eccard.conquer.utils.NetworkUtils;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import dagger.android.AndroidInjection;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -122,11 +121,6 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
 
     public boolean isNetworkConnected() {
         return NetworkUtils.isNetworkConnected(getApplicationContext());
-    }
-
-    public void openActivityOnTokenExpire() {
-        startActivity(LoginActivity.newIntent(this));
-        finish();
     }
 
     public void performDependencyInjection() {

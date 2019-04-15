@@ -31,7 +31,9 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.eccard.conquer.ui.splash.SplashActivity">
+        <activity
+            android:name="com.eccard.conquer.ui.main.MainActivity"
+            android:launchMode="singleTop" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -41,15 +43,7 @@
         </activity>
 
         <activity
-            android:name="com.eccard.conquer.ui.login.LoginActivity"
-            android:launchMode="singleTop" />
-
-        <activity
-            android:name="com.eccard.conquer.ui.main.MainActivity"
-            android:launchMode="singleTop" />
-
-        <activity
-            android:name="com.eccard.conquer.ui.feed.FeedActivity"
+            android:name="com.eccard.conquer.ui.timesheet.TimeSheetActivity"
             android:launchMode="singleTop"
             android:parentActivityName="com.eccard.conquer.ui.main.MainActivity">
 

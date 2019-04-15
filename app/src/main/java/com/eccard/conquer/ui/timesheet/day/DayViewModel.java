@@ -14,7 +14,7 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.ui.feed.blogs;
+package com.eccard.conquer.ui.timesheet.day;
 
 import com.eccard.conquer.data.DataManager;
 import com.eccard.conquer.data.local.db.dao.TaskDao;
@@ -30,7 +30,7 @@ import androidx.lifecycle.MutableLiveData;
  * Created by amitshekhar on 10/07/17.
  */
 
-public class BlogViewModel extends BaseViewModel<BlogNavigator> {
+public class DayViewModel extends BaseViewModel<DayNavigator> {
 
     private final MutableLiveData<List<TaskDao.TaskGoal>> taskListLiveData;
 
@@ -40,8 +40,8 @@ public class BlogViewModel extends BaseViewModel<BlogNavigator> {
         this.dayOfWeekend = dayOfWeekend;
     }
 
-    public BlogViewModel(DataManager dataManager,
-                         SchedulerProvider schedulerProvider) {
+    public DayViewModel(DataManager dataManager,
+                        SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
         taskListLiveData = new MutableLiveData<>();
         fetchBlogs();

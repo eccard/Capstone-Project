@@ -14,7 +14,7 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.ui.feed.blogs;
+package com.eccard.conquer.ui.timesheet.day;
 
 import androidx.databinding.ObservableField;
 
@@ -25,7 +25,7 @@ import com.eccard.conquer.utils.CommonUtils;
  * Created by amitshekhar on 10/07/17.
  */
 
-public class BlogItemViewModel {
+public class DayItemViewModel {
 
     public final ObservableField<String> goalName;
 
@@ -39,7 +39,7 @@ public class BlogItemViewModel {
 
     private final TaskDao.TaskGoal taskGoal;
 
-    public BlogItemViewModel(TaskDao.TaskGoal taskGoal, BlogItemViewModelListener listener) {
+    public DayItemViewModel(TaskDao.TaskGoal taskGoal, BlogItemViewModelListener listener) {
         this.taskGoal = taskGoal;
         this.mListener = listener;
         taskName = new ObservableField<>(this.taskGoal.taskName);

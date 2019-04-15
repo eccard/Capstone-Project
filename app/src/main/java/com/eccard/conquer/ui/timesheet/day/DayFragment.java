@@ -14,52 +14,50 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.ui.feed.blogs;
+package com.eccard.conquer.ui.timesheet.day;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.view.View;
+
+import com.eccard.conquer.BR;
+import com.eccard.conquer.R;
+import com.eccard.conquer.ViewModelProviderFactory;
+import com.eccard.conquer.data.local.db.dao.TaskDao;
+import com.eccard.conquer.databinding.FragmentDayBinding;
+import com.eccard.conquer.ui.base.BaseFragment;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.View;
-
-import com.eccard.conquer.ViewModelProviderFactory;
-import com.eccard.conquer.data.local.db.dao.TaskDao;
-import com.eccard.conquer.data.model.api.BlogResponse;
-import com.eccard.conquer.data.model.db.Task;
-import com.eccard.conquer.ui.base.BaseFragment;
-import com.eccard.conquer.BR;
-import com.eccard.conquer.R;
-import com.eccard.conquer.databinding.FragmentBlogBinding;
-
-import java.util.List;
-import javax.inject.Inject;
 
 /**
  * Created by amitshekhar on 10/07/17.
  */
 
-public class BlogFragment extends BaseFragment<FragmentBlogBinding, BlogViewModel>
-        implements BlogNavigator, BlogAdapter.BlogAdapterListener {
+public class DayFragment extends BaseFragment<FragmentDayBinding, DayViewModel>
+        implements DayNavigator, DayAdapter.BlogAdapterListener {
 
     private static final String ARG_DAY_WEEKEND = "dayOfWeekend";
     @Inject
-    BlogAdapter mBlogAdapter;
-    FragmentBlogBinding mFragmentBlogBinding;
+    DayAdapter mDayAdapter;
+    FragmentDayBinding mFragmentBlogBinding;
     @Inject
     LinearLayoutManager mLayoutManager;
     @Inject
     ViewModelProviderFactory factory;
-    private BlogViewModel mBlogViewModel;
+    private DayViewModel mDayViewModel;
 
-    public static BlogFragment newInstance(int dayOfWeekend) {
+    public static DayFragment newInstance(int dayOfWeekend) {
         Bundle args = new Bundle();
         args.putInt(ARG_DAY_WEEKEND,dayOfWeekend);
-        BlogFragment fragment = new BlogFragment();
+        DayFragment fragment = new DayFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -71,13 +69,13 @@ public class BlogFragment extends BaseFragment<FragmentBlogBinding, BlogViewMode
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_blog;
+        return R.layout.fragment_day;
     }
 
     @Override
-    public BlogViewModel getViewModel() {
-        mBlogViewModel = ViewModelProviders.of(this, factory).get(BlogViewModel.class);
-        return mBlogViewModel;
+    public DayViewModel getViewModel() {
+        mDayViewModel = ViewModelProviders.of(this, factory).get(DayViewModel.class);
+        return mDayViewModel;
     }
 
     @Override
@@ -88,17 +86,17 @@ public class BlogFragment extends BaseFragment<FragmentBlogBinding, BlogViewMode
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBlogViewModel.setNavigator(this);
-        mBlogAdapter.setListener(this);
+        mDayViewModel.setNavigator(this);
+        mDayAdapter.setListener(this);
 
         if(getArguments() != null && getArguments().containsKey(ARG_DAY_WEEKEND)){
-            mBlogViewModel.setDayOfWeekend(getArguments().getInt(ARG_DAY_WEEKEND));
+            mDayViewModel.setDayOfWeekend(getArguments().getInt(ARG_DAY_WEEKEND));
         }
     }
 
     @Override
     public void onRetryClick() {
-        mBlogViewModel.fetchBlogs();
+        mDayViewModel.fetchBlogs();
     }
 
     @Override
@@ -110,7 +108,7 @@ public class BlogFragment extends BaseFragment<FragmentBlogBinding, BlogViewMode
 
     @Override
     public void updateBlog(List<TaskDao.TaskGoal> taskList) {
-        mBlogAdapter.addItems(taskList);
+        mDayAdapter.addItems(taskList);
 
     }
 
@@ -119,11 +117,11 @@ public class BlogFragment extends BaseFragment<FragmentBlogBinding, BlogViewMode
         mLayoutManager.setOrientation(RecyclerView.VERTICAL);
         mFragmentBlogBinding.blogRecyclerView.setLayoutManager(mLayoutManager);
         mFragmentBlogBinding.blogRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mFragmentBlogBinding.blogRecyclerView.setAdapter(mBlogAdapter);
+        mFragmentBlogBinding.blogRecyclerView.setAdapter(mDayAdapter);
 
-        mBlogViewModel.getTasksLiveData().observe(this, tasks -> {
-            mBlogViewModel.setIsLoading(false);
-            mBlogAdapter.addItems(tasks);
+        mDayViewModel.getTasksLiveData().observe(this, tasks -> {
+            mDayViewModel.setIsLoading(false);
+            mDayAdapter.addItems(tasks);
         });
     }
 }

@@ -16,50 +16,49 @@
 
 package com.eccard.conquer.ui.main;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
-import androidx.databinding.DataBindingUtil;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 
+import com.eccard.conquer.BR;
+import com.eccard.conquer.BuildConfig;
 import com.eccard.conquer.MvvmApp;
+import com.eccard.conquer.R;
 import com.eccard.conquer.ViewModelProviderFactory;
 import com.eccard.conquer.data.model.db.Task;
+import com.eccard.conquer.databinding.ActivityMainBinding;
+import com.eccard.conquer.databinding.NavHeaderMainBinding;
 import com.eccard.conquer.ui.about.AboutFragment;
 import com.eccard.conquer.ui.base.BaseActivity;
-import com.eccard.conquer.ui.feed.FeedActivity;
+import com.eccard.conquer.ui.timesheet.TimeSheetActivity;
 import com.eccard.conquer.ui.goals.GoalsFragment;
 import com.eccard.conquer.ui.goals.insert.AddGoalDialog;
 import com.eccard.conquer.ui.tasks.TasksFragment;
-import com.eccard.conquer.ui.login.LoginActivity;
 import com.eccard.conquer.ui.tasks.insert.NewTaskFragment;
-import com.eccard.conquer.ui.tasks.alarm.AlarmActivity;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.material.navigation.NavigationView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
+
+import javax.inject.Inject;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
-
-import android.view.MenuItem;
-import android.view.View;
-import com.eccard.conquer.BR;
-import com.eccard.conquer.BuildConfig;
-import com.eccard.conquer.R;
-import com.eccard.conquer.databinding.ActivityMainBinding;
-import com.eccard.conquer.databinding.NavHeaderMainBinding;
-//import com.mindorks.placeholderview.SwipeDecor;
-//import com.mindorks.placeholderview.SwipePlaceHolderView;
-
+import androidx.core.view.GravityCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProviders;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
-import javax.inject.Inject;
+
+//import com.mindorks.placeholderview.SwipeDecor;
+//import com.mindorks.placeholderview.SwipePlaceHolderView;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements MainNavigator, HasSupportFragmentInjector {
 
@@ -153,12 +152,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     @Override
-    public void openLoginActivity() {
-        startActivity(LoginActivity.newIntent(this));
-        finish();
-    }
-
-    @Override
     public AndroidInjector<Fragment> supportFragmentInjector() {
         return fragmentDispatchingAndroidInjector;
     }
@@ -220,7 +213,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         mMainViewModel.updateAppVersion(version);
         mMainViewModel.onNavMenuCreated();
 //        setupCardContainerView();
-        subscribeToLiveData();
 
         showGoalsFragment();
     }
@@ -270,17 +262,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                             tracker.setScreenName("GoalsFragment" );
                             tracker.send(new HitBuilders.ScreenViewBuilder().build());
                             return true;
-                        case R.id.navItemRateUs:
-//                            RateUsDialog.newInstance().show(getSupportFragmentManager());
-//                            startActivity(AlarmActivity.newIntent(MainActivity.this));
-                            return true;
                         case R.id.navItemFeed:
-                            startActivity(FeedActivity.newIntent(MainActivity.this));
-                            tracker.setScreenName("FeedActivity" );
+                            startActivity(TimeSheetActivity.newIntent(MainActivity.this));
+                            tracker.setScreenName("TimeSheetActivity" );
                             tracker.send(new HitBuilders.ScreenViewBuilder().build());
-                            return true;
-                        case R.id.navItemLogout:
-                            mMainViewModel.logout();
                             return true;
                         default:
                             return false;
@@ -306,10 +291,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 //                .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
                 .replace(R.id.container_layout, GoalsFragment.newInstance(), GoalsFragment.TAG)
                 .commit();
-    }
-
-    private void subscribeToLiveData() {
-        mMainViewModel.getQuestionCardData().observe(this, questionCardDatas -> mMainViewModel.setQuestionDataList(questionCardDatas));
     }
 
     private void unlockDrawer() {

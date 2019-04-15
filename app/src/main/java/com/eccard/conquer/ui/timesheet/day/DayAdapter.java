@@ -14,43 +14,44 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.ui.feed.opensource;
+package com.eccard.conquer.ui.timesheet.day;
 
 import android.content.Intent;
 import android.net.Uri;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import com.eccard.conquer.databinding.ItemOpenSourceEmptyViewBinding;
-import com.eccard.conquer.databinding.ItemOpenSourceViewBinding;
+
+import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.ui.base.BaseViewHolder;
 import com.eccard.conquer.utils.AppLogger;
-import java.util.ArrayList;
+import com.eccard.conquer.databinding.ItemBlogEmptyViewBinding;
+import com.eccard.conquer.databinding.ItemBlogViewBinding;
+
 import java.util.List;
 
 /**
  * Created by amitshekhar on 10/07/17.
  */
 
-public class OpenSourceAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+public class DayAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public static final int VIEW_TYPE_EMPTY = 0;
 
     public static final int VIEW_TYPE_NORMAL = 1;
 
-    private final List<OpenSourceItemViewModel> mOpenSourceResponseList;
+    private List<TaskDao.TaskGoal> taskList;
 
-    private OpenSourceAdapterListener mListener;
+    private BlogAdapterListener mListener;
 
-    public OpenSourceAdapter() {
-        this.mOpenSourceResponseList = new ArrayList<>();
+    public DayAdapter(List<TaskDao.TaskGoal> taskList) {
+        this.taskList = taskList;
     }
 
     @Override
     public int getItemCount() {
-        if (!mOpenSourceResponseList.isEmpty()) {
-            return mOpenSourceResponseList.size();
+        if (taskList != null && taskList.size() > 0) {
+            return taskList.size();
         } else {
             return 1;
         }
@@ -58,7 +59,7 @@ public class OpenSourceAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (!mOpenSourceResponseList.isEmpty()) {
+        if (taskList != null && !taskList.isEmpty()) {
             return VIEW_TYPE_NORMAL;
         } else {
             return VIEW_TYPE_EMPTY;
@@ -74,69 +75,56 @@ public class OpenSourceAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEW_TYPE_NORMAL:
-                ItemOpenSourceViewBinding openSourceViewBinding = ItemOpenSourceViewBinding
-                        .inflate(LayoutInflater.from(parent.getContext()), parent, false);
-                return new OpenSourceViewHolder(openSourceViewBinding);
+                ItemBlogViewBinding blogViewBinding = ItemBlogViewBinding.inflate(LayoutInflater.from(parent.getContext()),
+                        parent, false);
+                return new BlogViewHolder(blogViewBinding);
             case VIEW_TYPE_EMPTY:
             default:
-                ItemOpenSourceEmptyViewBinding emptyViewBinding = ItemOpenSourceEmptyViewBinding
-                        .inflate(LayoutInflater.from(parent.getContext()), parent, false);
+                ItemBlogEmptyViewBinding emptyViewBinding = ItemBlogEmptyViewBinding.inflate(LayoutInflater.from(parent.getContext()),
+                        parent, false);
                 return new EmptyViewHolder(emptyViewBinding);
         }
     }
 
-    public void addItems(List<OpenSourceItemViewModel> repoList) {
-        mOpenSourceResponseList.addAll(repoList);
-        notifyDataSetChanged();
+
+    public void addItems(List<TaskDao.TaskGoal> newData) {
+        if ( newData !=null) {
+            taskList.addAll(newData);
+            notifyDataSetChanged();
+        }
     }
+
+
 
     public void clearItems() {
-        mOpenSourceResponseList.clear();
+        taskList.clear();
     }
 
-    public void setListener(OpenSourceAdapterListener listener) {
+    public void setListener(BlogAdapterListener listener) {
         this.mListener = listener;
     }
 
-    public interface OpenSourceAdapterListener {
+    public interface BlogAdapterListener {
 
         void onRetryClick();
     }
 
-    public class EmptyViewHolder extends BaseViewHolder implements OpenSourceEmptyItemViewModel.OpenSourceEmptyItemViewModelListener {
+    public class BlogViewHolder extends BaseViewHolder implements DayItemViewModel.BlogItemViewModelListener {
 
-        private final ItemOpenSourceEmptyViewBinding mBinding;
+        private ItemBlogViewBinding mBinding;
 
-        public EmptyViewHolder(ItemOpenSourceEmptyViewBinding binding) {
+        private DayItemViewModel mDayItemViewModel;
+
+        public BlogViewHolder(ItemBlogViewBinding binding) {
             super(binding.getRoot());
             this.mBinding = binding;
         }
 
         @Override
         public void onBind(int position) {
-            OpenSourceEmptyItemViewModel emptyItemViewModel = new OpenSourceEmptyItemViewModel(this);
-            mBinding.setViewModel(emptyItemViewModel);
-        }
-
-        @Override
-        public void onRetryClick() {
-            mListener.onRetryClick();
-        }
-    }
-
-    public class OpenSourceViewHolder extends BaseViewHolder implements View.OnClickListener {
-
-        private final ItemOpenSourceViewBinding mBinding;
-
-        public OpenSourceViewHolder(ItemOpenSourceViewBinding binding) {
-            super(binding.getRoot());
-            this.mBinding = binding;
-        }
-
-        @Override
-        public void onBind(int position) {
-            final OpenSourceItemViewModel mOpenSourceItemViewModel = mOpenSourceResponseList.get(position);
-            mBinding.setViewModel(mOpenSourceItemViewModel);
+            TaskDao.TaskGoal taskGoal = taskList.get(position);
+            mDayItemViewModel = new DayItemViewModel(taskGoal, this);
+            mBinding.setViewModel(mDayItemViewModel);
 
             // Immediate Binding
             // When a variable or observable changes, the binding will be scheduled to change before
@@ -146,18 +134,39 @@ public class OpenSourceAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
 
         @Override
-        public void onClick(View view) {
-            if (mOpenSourceResponseList.get(0).projectUrl.get() != null) {
+        public void onItemClick(String blogUrl) {
+            if (blogUrl != null) {
                 try {
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_VIEW);
                     intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                    intent.setData(Uri.parse(mOpenSourceResponseList.get(0).projectUrl.get()));
+                    intent.setData(Uri.parse(blogUrl));
                     itemView.getContext().startActivity(intent);
                 } catch (Exception e) {
                     AppLogger.d("url error");
                 }
             }
+        }
+    }
+
+    public class EmptyViewHolder extends BaseViewHolder implements DayEmptyItemViewModel.BlogEmptyItemViewModelListener {
+
+        private ItemBlogEmptyViewBinding mBinding;
+
+        public EmptyViewHolder(ItemBlogEmptyViewBinding binding) {
+            super(binding.getRoot());
+            this.mBinding = binding;
+        }
+
+        @Override
+        public void onBind(int position) {
+            DayEmptyItemViewModel emptyItemViewModel = new DayEmptyItemViewModel(this);
+            mBinding.setViewModel(emptyItemViewModel);
+        }
+
+        @Override
+        public void onRetryClick() {
+            mListener.onRetryClick();
         }
     }
 }

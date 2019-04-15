@@ -14,26 +14,19 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.data.model.db;
+package com.eccard.conquer.ui.timesheet.day;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import com.eccard.conquer.data.local.db.dao.TaskDao;
+
+import java.util.List;
 
 /**
- * Created by amitshekhar on 07/07/17.
+ * Created by amitshekhar on 10/07/17.
  */
-@Entity(tableName = "users")
-public class User {
 
-    @ColumnInfo(name = "created_at")
-    public String createdAt;
+public interface DayNavigator {
 
-    @PrimaryKey
-    public Long id;
+    void handleError(Throwable throwable);
 
-    public String name;
-
-    @ColumnInfo(name = "updated_at")
-    public String updatedAt;
+    void updateBlog(List<TaskDao.TaskGoal> taskList);
 }

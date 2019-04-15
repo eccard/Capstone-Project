@@ -17,19 +17,15 @@
 package com.eccard.conquer.di.builder;
 
 import com.eccard.conquer.ui.about.AboutFragmentProvider;
-import com.eccard.conquer.ui.feed.FeedActivity;
-import com.eccard.conquer.ui.feed.FeedActivityModule;
-import com.eccard.conquer.ui.feed.blogs.BlogFragmentProvider;
-import com.eccard.conquer.ui.feed.opensource.OpenSourceFragmentProvider;
 import com.eccard.conquer.ui.goals.GoalsFragmentProvider;
 import com.eccard.conquer.ui.goals.insert.AddGoalDialogProvider;
-import com.eccard.conquer.ui.tasks.TasksFragmentProvider;
-import com.eccard.conquer.ui.login.LoginActivity;
 import com.eccard.conquer.ui.main.MainActivity;
-import com.eccard.conquer.ui.main.rating.RateUsDialogProvider;
-import com.eccard.conquer.ui.splash.SplashActivity;
+import com.eccard.conquer.ui.tasks.TasksFragmentProvider;
 import com.eccard.conquer.ui.tasks.alarm.AlarmActivity;
 import com.eccard.conquer.ui.tasks.insert.NewTaskFragmentProvider;
+import com.eccard.conquer.ui.timesheet.TimeSheetActivity;
+import com.eccard.conquer.ui.timesheet.TimeSheetActivityModule;
+import com.eccard.conquer.ui.timesheet.day.DayFragmentProvider;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -41,25 +37,17 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = {
-            FeedActivityModule.class,
-            BlogFragmentProvider.class,
-            OpenSourceFragmentProvider.class})
-    abstract FeedActivity bindFeedActivity();
-
-    @ContributesAndroidInjector
-    abstract LoginActivity bindLoginActivity();
+            TimeSheetActivityModule.class,
+            DayFragmentProvider.class})
+    abstract TimeSheetActivity bindFeedActivity();
 
     @ContributesAndroidInjector(modules = {
             AboutFragmentProvider.class,
-            RateUsDialogProvider.class,
             GoalsFragmentProvider.class,
             TasksFragmentProvider.class,
             AddGoalDialogProvider.class,
             NewTaskFragmentProvider.class})
     abstract MainActivity bindMainActivity();
-
-    @ContributesAndroidInjector
-    abstract SplashActivity bindSplashActivity();
 
     @ContributesAndroidInjector
     abstract AlarmActivity bindTimeSheetActivity();

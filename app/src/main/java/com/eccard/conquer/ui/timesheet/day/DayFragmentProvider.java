@@ -14,7 +14,7 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.ui.feed.opensource;
+package com.eccard.conquer.ui.timesheet.day;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -23,8 +23,8 @@ import dagger.android.ContributesAndroidInjector;
  * Created by amitshekhar on 14/09/17.
  */
 @Module
-public abstract class OpenSourceFragmentProvider {
+public abstract class DayFragmentProvider {
 
-    @ContributesAndroidInjector(modules = OpenSourceFragmentModule.class)
-    abstract OpenSourceFragment provideOpenSourceFragmentFactory();
+    @ContributesAndroidInjector(modules = DayFragmentModule.class)
+    abstract DayFragment provideBlogFragmentFactory();
 }

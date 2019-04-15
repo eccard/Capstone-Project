@@ -16,19 +16,13 @@
 
 package com.eccard.conquer.ui.main;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.databinding.ObservableArrayList;
-import androidx.databinding.ObservableField;
-import androidx.databinding.ObservableList;
 import android.text.TextUtils;
 
 import com.eccard.conquer.data.DataManager;
-import com.eccard.conquer.data.model.others.QuestionCardData;
-import com.eccard.conquer.utils.rx.SchedulerProvider;
 import com.eccard.conquer.ui.base.BaseViewModel;
+import com.eccard.conquer.utils.rx.SchedulerProvider;
 
-import java.util.List;
+import androidx.databinding.ObservableField;
 
 /**
  * Created by amitshekhar on 07/07/17.
@@ -36,13 +30,7 @@ import java.util.List;
 
 public class MainViewModel extends BaseViewModel<MainNavigator> {
 
-    public static final int NO_ACTION = -1, ACTION_ADD_ALL = 0, ACTION_DELETE_SINGLE = 1;
-
     private final ObservableField<String> appVersion = new ObservableField<>();
-
-    private final MutableLiveData<List<QuestionCardData>> questionCardData;
-
-    private final ObservableList<QuestionCardData> questionDataList = new ObservableArrayList<>();
 
     private final ObservableField<String> userEmail = new ObservableField<>();
 
@@ -50,34 +38,12 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
 
     private final ObservableField<String> userProfilePicUrl = new ObservableField<>();
 
-    private int action = NO_ACTION;
-
     public MainViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
-        questionCardData = new MutableLiveData<>();
-        loadQuestionCards();
-    }
-
-    public int getAction() {
-        return action;
     }
 
     public ObservableField<String> getAppVersion() {
         return appVersion;
-    }
-
-    public LiveData<List<QuestionCardData>> getQuestionCardData() {
-        return questionCardData;
-    }
-
-    public ObservableList<QuestionCardData> getQuestionDataList() {
-        return questionDataList;
-    }
-
-    public void setQuestionDataList(List<QuestionCardData> questionCardDatas) {
-        action = ACTION_ADD_ALL;
-        questionDataList.clear();
-        questionDataList.addAll(questionCardDatas);
     }
 
     public ObservableField<String> getUserEmail() {
@@ -92,35 +58,6 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
         return userProfilePicUrl;
     }
 
-    public void loadQuestionCards() {
-        getCompositeDisposable().add(getDataManager()
-                .getQuestionCardData()
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(questionList -> {
-                    if (questionList != null) {
-                        action = ACTION_ADD_ALL;
-                        questionCardData.setValue(questionList);
-                    }
-                }, throwable -> {
-
-                }));
-    }
-
-    public void logout() {
-        setIsLoading(true);
-        getCompositeDisposable().add(getDataManager().doLogoutApiCall()
-                .doOnSuccess(response -> getDataManager().setUserAsLoggedOut())
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(response -> {
-                    setIsLoading(false);
-                    getNavigator().openLoginActivity();
-                }, throwable -> {
-                    setIsLoading(false);
-                    getNavigator().handleError(throwable);
-                }));
-    }
 
     public void onNavMenuCreated() {
         final String currentUserName = getDataManager().getCurrentUserName();
@@ -137,11 +74,6 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
         if (!TextUtils.isEmpty(profilePicUrl)) {
             userProfilePicUrl.set(profilePicUrl);
         }
-    }
-
-    public void removeQuestionCard() {
-        action = ACTION_DELETE_SINGLE;
-        questionCardData.getValue().remove(0);
     }
 
     public void updateAppVersion(String version) {

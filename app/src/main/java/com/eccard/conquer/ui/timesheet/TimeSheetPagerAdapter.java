@@ -14,23 +14,22 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.ui.feed;
+package com.eccard.conquer.ui.timesheet;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import com.eccard.conquer.ui.feed.blogs.BlogFragment;
-import com.eccard.conquer.ui.feed.opensource.OpenSourceFragment;
+import com.eccard.conquer.ui.timesheet.day.DayFragment;
 
 /**
  * Created by amitshekhar on 10/07/17.
  */
 
-public class FeedPagerAdapter extends FragmentStatePagerAdapter {
+public class TimeSheetPagerAdapter extends FragmentStatePagerAdapter {
 
     private int mTabCount;
 
-    public FeedPagerAdapter(FragmentManager fragmentManager) {
+    public TimeSheetPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
         this.mTabCount = 0;
     }
@@ -48,11 +47,11 @@ public class FeedPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
 
         // plus one because days init with 1
-        return BlogFragment.newInstance(position+1);
+        return DayFragment.newInstance(position+1);
 
 //        switch (position) {
 //            case 0:
-//                return BlogFragment.newInstance();
+//                return DayFragment.newInstance();
 //            case 1:
 //                return OpenSourceFragment.newInstance();
 //            default:

@@ -14,27 +14,20 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.data.model.others;
+package com.eccard.conquer.ui.timesheet;
 
-import com.eccard.conquer.data.model.db.Option;
-import com.eccard.conquer.data.model.db.Question;
-
-import java.util.List;
+import dagger.Module;
+import dagger.Provides;
 
 /**
- * Created by amitshekhar on 09/07/17.
+ * Created by amitshekhar on 14/09/17.
  */
+@Module
+public class TimeSheetActivityModule {
 
-public class QuestionCardData {
-
-    public boolean mShowCorrectOptions;
-
-    public List<Option> options;
-
-    public Question question;
-
-    public QuestionCardData(Question question, List<Option> options) {
-        this.question = question;
-        this.options = options;
+    @Provides
+    TimeSheetPagerAdapter provideFeedPagerAdapter(TimeSheetActivity activity) {
+        return new TimeSheetPagerAdapter(activity.getSupportFragmentManager());
     }
+
 }

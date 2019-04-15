@@ -14,7 +14,7 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.ui.feed;
+package com.eccard.conquer.ui.timesheet;
 
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -41,7 +41,7 @@ import javax.inject.Inject;
  * Created by amitshekhar on 10/07/17.
  */
 
-public class FeedActivity extends BaseActivity<ActivityFeedBinding, FeedViewModel> implements HasSupportFragmentInjector {
+public class TimeSheetActivity extends BaseActivity<ActivityFeedBinding, TimeSheetViewModel> implements HasSupportFragmentInjector {
 
     public static final String ARG_DAY = "dayForSelectedTab";
 
@@ -49,18 +49,18 @@ public class FeedActivity extends BaseActivity<ActivityFeedBinding, FeedViewMode
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
     @Inject
-    FeedPagerAdapter mPagerAdapter;
+    TimeSheetPagerAdapter mPagerAdapter;
     @Inject
     ViewModelProviderFactory factory;
     private ActivityFeedBinding mActivityFeedBinding;
-    private FeedViewModel mFeedViewModel;
+    private TimeSheetViewModel mTimeSheetViewModel;
 
     public static Intent newIntent(Context context) {
-        return new Intent(context, FeedActivity.class);
+        return new Intent(context, TimeSheetActivity.class);
     }
 
     public static Intent newIntent(Context context, int day) {
-        Intent intent = new Intent(context, FeedActivity.class);
+        Intent intent = new Intent(context, TimeSheetActivity.class);
         intent.putExtra(ARG_DAY,day);
         return intent;
     }
@@ -77,9 +77,9 @@ public class FeedActivity extends BaseActivity<ActivityFeedBinding, FeedViewMode
     }
 
     @Override
-    public FeedViewModel getViewModel() {
-        mFeedViewModel = ViewModelProviders.of(this,factory).get(FeedViewModel.class);
-        return mFeedViewModel;
+    public TimeSheetViewModel getViewModel() {
+        mTimeSheetViewModel = ViewModelProviders.of(this,factory).get(TimeSheetViewModel.class);
+        return mTimeSheetViewModel;
     }
 
     @Override

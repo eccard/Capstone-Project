@@ -23,7 +23,7 @@
 
         <variable
             name="viewModel"
-            type="com.eccard.conquer.ui.feed.blogs.BlogViewModel" />
+            type="com.eccard.conquer.ui.timesheet.day.DayViewModel" />
 
     </data>
 
