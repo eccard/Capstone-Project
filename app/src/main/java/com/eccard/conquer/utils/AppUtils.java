@@ -21,10 +21,6 @@ import android.content.Intent;
 import android.net.Uri;
 import com.eccard.conquer.R;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
-
 public final class AppUtils {
 
     private AppUtils() {

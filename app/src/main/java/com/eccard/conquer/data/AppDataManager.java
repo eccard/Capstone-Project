@@ -40,9 +40,6 @@ import androidx.lifecycle.LiveData;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
 @Singleton
 public class AppDataManager implements DataManager {
 

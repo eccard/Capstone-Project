@@ -25,9 +25,6 @@ import dagger.Module;
 import dagger.Provides;
 import java.util.ArrayList;
 
-/**
- * Created by amitshekhar on 14/09/17.
- */
 @Module
 public class DayFragmentModule {
 

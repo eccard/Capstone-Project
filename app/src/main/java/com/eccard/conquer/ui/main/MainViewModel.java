@@ -24,10 +24,6 @@ import com.eccard.conquer.utils.rx.SchedulerProvider;
 
 import androidx.databinding.ObservableField;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
-
 public class MainViewModel extends BaseViewModel<MainNavigator> {
 
     private final ObservableField<String> appVersion = new ObservableField<>();

@@ -30,10 +30,6 @@ import com.eccard.conquer.databinding.ItemBlogViewBinding;
 
 import java.util.List;
 
-/**
- * Created by amitshekhar on 10/07/17.
- */
-
 public class DayAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public static final int VIEW_TYPE_EMPTY = 0;

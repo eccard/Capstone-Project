@@ -26,10 +26,6 @@ import java.util.List;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-/**
- * Created by amitshekhar on 10/07/17.
- */
-
 public class DayViewModel extends BaseViewModel<DayNavigator> {
 
     private final MutableLiveData<List<TaskDao.TaskGoal>> taskListLiveData;

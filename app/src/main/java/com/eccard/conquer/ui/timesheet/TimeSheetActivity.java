@@ -37,10 +37,6 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 import javax.inject.Inject;
 
-/**
- * Created by amitshekhar on 10/07/17.
- */
-
 public class TimeSheetActivity extends BaseActivity<ActivityFeedBinding, TimeSheetViewModel> implements HasSupportFragmentInjector {
 
     public static final String ARG_DAY = "dayForSelectedTab";

@@ -46,9 +46,6 @@ import dagger.Provides;
 import javax.inject.Singleton;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
 @Module
 public class AppModule {
 

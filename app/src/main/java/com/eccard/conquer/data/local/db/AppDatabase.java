@@ -24,9 +24,6 @@ import com.eccard.conquer.data.model.db.Task;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
 
 @Database(entities = {Task.class, Goal.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {

@@ -25,10 +25,6 @@ import java.util.List;
 import androidx.lifecycle.LiveData;
 import io.reactivex.Observable;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
-
 public interface DbHelper {
 
     Observable<Boolean> saveTask(final Task task);

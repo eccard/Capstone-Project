@@ -16,10 +16,6 @@
 
 package com.eccard.conquer.utils;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
-
 public final class AppConstants {
 
     public static final int API_STATUS_CODE_LOCAL_ERROR = 0;

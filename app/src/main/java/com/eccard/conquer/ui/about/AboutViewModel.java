@@ -20,10 +20,6 @@ import com.eccard.conquer.data.DataManager;
 import com.eccard.conquer.ui.base.BaseViewModel;
 import com.eccard.conquer.utils.rx.SchedulerProvider;
 
-/**
- * Created by amitshekhar on 09/07/17.
- */
-
 public class AboutViewModel extends BaseViewModel<AboutNavigator> {
 
     public AboutViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {

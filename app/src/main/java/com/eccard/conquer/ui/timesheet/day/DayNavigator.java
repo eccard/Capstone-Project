@@ -20,10 +20,6 @@ import com.eccard.conquer.data.local.db.dao.TaskDao;
 
 import java.util.List;
 
-/**
- * Created by amitshekhar on 10/07/17.
- */
-
 public interface DayNavigator {
 
     void handleError(Throwable throwable);

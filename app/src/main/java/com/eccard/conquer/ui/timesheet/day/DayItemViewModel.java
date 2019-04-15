@@ -21,10 +21,6 @@ import androidx.databinding.ObservableField;
 import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.utils.CommonUtils;
 
-/**
- * Created by amitshekhar on 10/07/17.
- */
-
 public class DayItemViewModel {
 
     public final ObservableField<String> goalName;

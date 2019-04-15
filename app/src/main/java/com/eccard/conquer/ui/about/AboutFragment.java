@@ -26,10 +26,6 @@ import com.eccard.conquer.databinding.FragmentAboutBinding;
 import com.eccard.conquer.ui.base.BaseFragment;
 import javax.inject.Inject;
 
-/**
- * Created by amitshekhar on 09/07/17.
- */
-
 public class AboutFragment extends BaseFragment<FragmentAboutBinding, AboutViewModel> implements AboutNavigator {
 
     public static final String TAG = AboutFragment.class.getSimpleName();

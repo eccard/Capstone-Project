@@ -24,10 +24,6 @@ import com.eccard.conquer.di.PreferenceInfo;
 import com.eccard.conquer.utils.AppConstants;
 import javax.inject.Inject;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
-
 public class AppPreferencesHelper implements PreferencesHelper {
 
     private static final String PREF_KEY_ACCESS_TOKEN = "PREF_KEY_ACCESS_TOKEN";

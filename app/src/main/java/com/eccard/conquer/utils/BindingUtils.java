@@ -28,10 +28,6 @@ import java.util.List;
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-/**
- * Created by amitshekhar on 11/07/17.
- */
-
 public final class BindingUtils {
 
     private BindingUtils() {

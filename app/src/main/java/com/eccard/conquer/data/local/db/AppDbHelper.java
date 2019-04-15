@@ -29,10 +29,6 @@ import androidx.lifecycle.LiveData;
 import io.reactivex.Observable;
 import timber.log.Timber;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
-
 @Singleton
 public class AppDbHelper implements DbHelper {
 

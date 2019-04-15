@@ -21,10 +21,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.eccard.conquer.ui.timesheet.day.DayFragment;
 
-/**
- * Created by amitshekhar on 10/07/17.
- */
-
 public class TimeSheetPagerAdapter extends FragmentStatePagerAdapter {
 
     private int mTabCount;

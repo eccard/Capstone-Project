@@ -16,10 +16,6 @@
 
 package com.eccard.conquer.ui.timesheet.day;
 
-/**
- * Created by amitshekhar on 10/07/17.
- */
-
 public class DayEmptyItemViewModel {
 
     private BlogEmptyItemViewModelListener mListener;

@@ -37,10 +37,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-/**
- * Created by amitshekhar on 10/07/17.
- */
-
 public class DayFragment extends BaseFragment<FragmentDayBinding, DayViewModel>
         implements DayNavigator, DayAdapter.BlogAdapterListener {
 

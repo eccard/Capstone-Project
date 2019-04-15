@@ -31,10 +31,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-/**
- * Created by amitshekhar on 11/07/17.
- */
-
 @RunWith(JUnit4.class)
 public class LoginActivityTest {
 

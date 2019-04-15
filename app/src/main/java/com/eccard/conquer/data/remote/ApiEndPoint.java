@@ -18,10 +18,6 @@ package com.eccard.conquer.data.remote;
 
 import com.eccard.conquer.BuildConfig;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
-
 public final class ApiEndPoint {
 
     public static final String ENDPOINT_BLOG = BuildConfig.BASE_URL + "/5926ce9d11000096006ccb30";
