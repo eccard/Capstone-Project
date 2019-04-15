@@ -15,7 +15,7 @@
   -->
 
 <resources>
-    <string name="app_name">MvvmApp</string>
+    <string name="app_name">Conquer</string>
 
     <!--Toolbar menus-->
     <string name="clear">Clear</string>
@@ -114,5 +114,8 @@
         <item>Friday</item>
         <item>Saturday</item>
     </string-array>
+
+    <!--Add goal-->
+    <string name="goal_name">Goal name</string>
 
 </resources>

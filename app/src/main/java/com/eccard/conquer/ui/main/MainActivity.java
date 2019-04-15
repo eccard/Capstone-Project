@@ -26,7 +26,7 @@ import android.view.View;
 
 import com.eccard.conquer.BR;
 import com.eccard.conquer.BuildConfig;
-import com.eccard.conquer.MvvmApp;
+import com.eccard.conquer.ConquerApp;
 import com.eccard.conquer.R;
 import com.eccard.conquer.ViewModelProviderFactory;
 import com.eccard.conquer.data.model.db.Task;
@@ -163,7 +163,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         mMainViewModel.setNavigator(this);
         setUp();
 
-        MvvmApp application = (MvvmApp) getApplication();
+        ConquerApp application = (ConquerApp) getApplication();
         tracker = application.getDefaultTracker();
 
     }
@@ -211,7 +211,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         setupNavMenu();
         String version = getString(R.string.version) + " " + BuildConfig.VERSION_NAME;
         mMainViewModel.updateAppVersion(version);
-        mMainViewModel.onNavMenuCreated();
 //        setupCardContainerView();
 
         showGoalsFragment();

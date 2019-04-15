@@ -16,8 +16,6 @@
 
 package com.eccard.conquer.ui.main;
 
-import android.text.TextUtils;
-
 import com.eccard.conquer.data.DataManager;
 import com.eccard.conquer.ui.base.BaseViewModel;
 import com.eccard.conquer.utils.rx.SchedulerProvider;
@@ -28,48 +26,12 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
 
     private final ObservableField<String> appVersion = new ObservableField<>();
 
-    private final ObservableField<String> userEmail = new ObservableField<>();
-
-    private final ObservableField<String> userName = new ObservableField<>();
-
-    private final ObservableField<String> userProfilePicUrl = new ObservableField<>();
-
     public MainViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
     }
 
     public ObservableField<String> getAppVersion() {
         return appVersion;
-    }
-
-    public ObservableField<String> getUserEmail() {
-        return userEmail;
-    }
-
-    public ObservableField<String> getUserName() {
-        return userName;
-    }
-
-    public ObservableField<String> getUserProfilePicUrl() {
-        return userProfilePicUrl;
-    }
-
-
-    public void onNavMenuCreated() {
-        final String currentUserName = getDataManager().getCurrentUserName();
-        if (!TextUtils.isEmpty(currentUserName)) {
-            userName.set(currentUserName);
-        }
-
-        final String currentUserEmail = getDataManager().getCurrentUserEmail();
-        if (!TextUtils.isEmpty(currentUserEmail)) {
-            userEmail.set(currentUserEmail);
-        }
-
-        final String profilePicUrl = getDataManager().getCurrentUserProfilePicUrl();
-        if (!TextUtils.isEmpty(profilePicUrl)) {
-            userProfilePicUrl.set(profilePicUrl);
-        }
     }
 
     public void updateAppVersion(String version) {

@@ -38,11 +38,7 @@ import dagger.android.HasBroadcastReceiverInjector;
 import dagger.android.HasServiceInjector;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
-
-public class MvvmApp extends Application implements HasActivityInjector, HasBroadcastReceiverInjector, HasServiceInjector {
+public class ConquerApp extends Application implements HasActivityInjector, HasBroadcastReceiverInjector, HasServiceInjector {
 
     @Inject
     DispatchingAndroidInjector<Service> serviceInjector;
