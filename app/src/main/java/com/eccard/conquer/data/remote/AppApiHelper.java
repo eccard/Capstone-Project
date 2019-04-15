@@ -16,13 +16,6 @@
 
 package com.eccard.conquer.data.remote;
 
-import com.eccard.conquer.data.model.api.BlogResponse;
-import com.eccard.conquer.data.model.api.LoginRequest;
-import com.eccard.conquer.data.model.api.LoginResponse;
-import com.eccard.conquer.data.model.api.LogoutResponse;
-import com.eccard.conquer.data.model.api.OpenSourceResponse;
-import com.rx2androidnetworking.Rx2AndroidNetworking;
-import io.reactivex.Single;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -37,23 +30,11 @@ public class AppApiHelper implements ApiHelper {
     }
 
     @Override
-    public Single<LoginResponse> doFacebookLoginApiCall(LoginRequest.FacebookLoginRequest request) {
-        return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_FACEBOOK_LOGIN)
-                .addHeaders(mApiHeader.getPublicApiHeader())
-                .addBodyParameter(request)
-                .build()
-                .getObjectSingle(LoginResponse.class);
+    public ApiHeader getApiHeader() {
+        return mApiHeader;
     }
 
-    @Override
-    public Single<LoginResponse> doGoogleLoginApiCall(LoginRequest.GoogleLoginRequest request) {
-        return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_GOOGLE_LOGIN)
-                .addHeaders(mApiHeader.getPublicApiHeader())
-                .addBodyParameter(request)
-                .build()
-                .getObjectSingle(LoginResponse.class);
-    }
-
+    /*
     @Override
     public Single<LoginResponse> doServerLoginApiCall(LoginRequest.ServerLoginRequest request) {
         return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_SERVER_LOGIN)
@@ -63,10 +44,7 @@ public class AppApiHelper implements ApiHelper {
                 .getObjectSingle(LoginResponse.class);
     }
 
-    @Override
-    public ApiHeader getApiHeader() {
-        return mApiHeader;
-    }
+
 
     @Override
     public Single<BlogResponse> getBlogApiCall() {
@@ -76,11 +54,5 @@ public class AppApiHelper implements ApiHelper {
                 .getObjectSingle(BlogResponse.class);
     }
 
-    @Override
-    public Single<OpenSourceResponse> getOpenSourceApiCall() {
-        return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_OPEN_SOURCE)
-                .addHeaders(mApiHeader.getProtectedApiHeader())
-                .build()
-                .getObjectSingle(OpenSourceResponse.class);
-    }
+    */
 }

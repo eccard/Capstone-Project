@@ -21,10 +21,6 @@ import android.content.Context;
 import com.eccard.conquer.data.local.db.DbHelper;
 import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.data.local.prefs.PreferencesHelper;
-import com.eccard.conquer.data.model.api.BlogResponse;
-import com.eccard.conquer.data.model.api.LoginRequest;
-import com.eccard.conquer.data.model.api.LoginResponse;
-import com.eccard.conquer.data.model.api.OpenSourceResponse;
 import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.data.remote.ApiHeader;
@@ -38,7 +34,6 @@ import javax.inject.Singleton;
 
 import androidx.lifecycle.LiveData;
 import io.reactivex.Observable;
-import io.reactivex.Single;
 
 @Singleton
 public class AppDataManager implements DataManager {
@@ -63,21 +58,6 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<LoginResponse> doFacebookLoginApiCall(LoginRequest.FacebookLoginRequest request) {
-        return mApiHelper.doFacebookLoginApiCall(request);
-    }
-
-    @Override
-    public Single<LoginResponse> doGoogleLoginApiCall(LoginRequest.GoogleLoginRequest request) {
-        return mApiHelper.doGoogleLoginApiCall(request);
-    }
-
-    @Override
-    public Single<LoginResponse> doServerLoginApiCall(LoginRequest.ServerLoginRequest request) {
-        return mApiHelper.doServerLoginApiCall(request);
-    }
-
-    @Override
     public String getAccessToken() {
         return mPreferencesHelper.getAccessToken();
     }
@@ -91,11 +71,6 @@ public class AppDataManager implements DataManager {
     @Override
     public ApiHeader getApiHeader() {
         return mApiHelper.getApiHeader();
-    }
-
-    @Override
-    public Single<BlogResponse> getBlogApiCall() {
-        return mApiHelper.getBlogApiCall();
     }
 
     @Override
@@ -146,11 +121,6 @@ public class AppDataManager implements DataManager {
     @Override
     public void setCurrentUserProfilePicUrl(String profilePicUrl) {
         mPreferencesHelper.setCurrentUserProfilePicUrl(profilePicUrl);
-    }
-
-    @Override
-    public Single<OpenSourceResponse> getOpenSourceApiCall() {
-        return mApiHelper.getOpenSourceApiCall();
     }
 
     @Override
