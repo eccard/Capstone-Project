@@ -1,0 +1,121 @@
+<!--
+  ~  Copyright (C) 2017 MINDORKS NEXTGEN PRIVATE LIMITED
+  ~
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~      https://mindorks.com/license/apache-v2
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License
+  -->
+
+<resources>
+    <string name="app_name">Conquer</string>
+
+    <!--Toolbar menus-->
+    <string name="clear">Clear</string>
+    <string name="paste">Paste</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+
+    <!--Drawer-->
+    <string name="open_drawer">Drawer Open</string>
+    <string name="close_drawer">Drawer Close</string>
+
+    <!--Drawer Menus-->
+    <string name="about">About</string>
+    <string name="feed">My Feed</string>
+    <string name="timeSheet">TimeSheet</string>
+
+    <!--App Message-->
+    <string name="api_retry_error">Please retry!</string>
+    <string name="api_default_error">Something wrong happened!</string>
+    <string name="some_error">Some Error Occurred!</string>
+    <string name="connection_error">Internet connection lost!</string>
+
+    <!--Login-->
+    <string name="login_dummy">Login Dummy</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <!--Login Validation-->
+    <string name="invalid_email_password">Please provide a valid email and password.</string>
+
+    <!--about fragment-->
+    <string name="project_info">This sample app implements MVVM architecture using Dagger2, GreenDao, RxJava, FastAndroidNetworking and PlaceholderView</string>
+    <string name="link_mvvm_blog">1. https://blog.mindorks.com</string>
+    <string name="link_mvvm_repo">2. https://github.com/MindorksOpenSource/android-mvvm-architecture</string>
+    <string name="link_mindorks_blog">3. https://blog.mindorks.com</string>
+    <string name="link_mindorks_repo">4. https://github.com/MindorksOpenSource</string>
+    <string name="version">"version"</string>
+
+    <!--rating dialog-->
+    <string name="rate_us">Rate Us</string>
+    <string name="rating_message">Please let us know, how can we improve ourselves?</string>
+    <string name="rating_play_store_redirect_message_line_1">Awesome! Thank you for the 5 stars.</string>
+    <string name="rating_play_store_redirect_message_line_2">Please help others, in knowing some good things about this app.</string>
+    <string name="rating_play_store_text">Rate us on Play Store</string>
+    <string name="rating_not_provided_error">Please provide us stars.</string>
+    <string name="rating_thanks">Thank you!</string>
+
+    <!--play store-->
+    <string name="app_google_play_store_link">"https://play.google.com/store/apps/details?id="</string>
+    <string name="app_market_link">"market://details?id="</string>
+
+    <!--button-->
+    <string name="later">Later</string>
+    <string name="submit">Submit</string>
+
+    <!--feed-->
+    <string name="title">Timesheet</string>
+    <string name="open_source">Open Source</string>
+    <string name="blog">Blog</string>
+
+    <!--empty state-->
+    <string name="empty_screen">We do not have data.</string>
+    <string name="please_retry">Please Retry</string>
+    <string name="retry">Retry</string>
+
+
+
+    <string name="hint_task">Task name</string>
+    <string name="hint_task_description">Task description</string>
+    <string name="task_time">Task time</string>
+    <string name="alarm_clock">Alarm clock</string>
+    <string name="select_day_spinner_hint">Select day</string>
+    <string name="delete_task_confirm">Are you sure you want to delete this task?</string>
+    <string name="tasks">Tasks</string>
+    <string name="goals">Goals</string>
+    <string name="for_s">For</string>
+    <string name="it_s_time_to">It\'s time to</string>
+    <string name="stop_alarm">Stop Alarm</string>
+    <string name="widget_tasks_for_day_title">Tasks for today</string>
+    <!--<string name="widget_empty">No tasks</string>-->
+    <string name="tasks_for_today">Tasks for today</string>
+    <string name="do_no_have_tasks_for_today">You do not have tasks for today</string>
+
+
+    <string-array name="daysOfWeekend">
+        <item>Select a day </item>
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
+    <!--Add goal-->
+    <string name="goal_name">Goal name</string>
+    <string name="an_image_of_a_cute_rabbit_in_place_of_your_data">An image of a cute rabbit in place of your data</string>
+    <string name="time_hint">08:00</string>
+    <string name="task_day">Task Day</string>
+
+</resources>

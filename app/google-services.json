@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1013272570413",
+    "firebase_url": "https://conquer-64edc.firebaseio.com",
+    "project_id": "conquer-64edc",
+    "storage_bucket": "conquer-64edc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013272570413:android:091f318f77bce3e1",
+        "android_client_info": {
+          "package_name": "com.eccard.conquer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013272570413-ibsahdj10e4bbrhiopf4r1tfblk5556e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eccard.conquer",
+            "certificate_hash": "0afafdd278ad2c9671852b90f0d98f9c8b1263cc"
+          }
+        },
+        {
+          "client_id": "1013272570413-a9m1u82ahqjggqk6e9cpppuu6khtb65r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrxJKqpizATPzYQiwp8jQsGMFmQu0EE-U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013272570413-a9m1u82ahqjggqk6e9cpppuu6khtb65r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
