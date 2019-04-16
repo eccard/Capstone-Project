@@ -23,10 +23,6 @@ import android.graphics.drawable.Drawable;
 import androidx.core.content.ContextCompat;
 import com.eccard.conquer.R;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
-
 public final class ViewUtils {
 
     private ViewUtils() {

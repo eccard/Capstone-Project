@@ -14,14 +14,15 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.di;
+package com.eccard.conquer.ui.timesheet.day;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import javax.inject.Qualifier;
+import com.eccard.conquer.data.local.db.dao.TaskDao;
 
-@Qualifier
-@Retention(RetentionPolicy.RUNTIME)
-public @interface ApiInfo {
+import java.util.List;
 
+public interface DayNavigator {
+
+    void handleError(Throwable throwable);
+
+    void updateBlog(List<TaskDao.TaskGoal> taskList);
 }

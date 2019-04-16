@@ -47,10 +47,6 @@ import timber.log.Timber;
 
 import static com.eccard.conquer.ui.tasks.insert.NewTaskFragment.TAG;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
-
 public final class CommonUtils {
 
     private CommonUtils() {

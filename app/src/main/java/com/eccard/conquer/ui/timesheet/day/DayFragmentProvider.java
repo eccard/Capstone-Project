@@ -14,14 +14,14 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.di;
+package com.eccard.conquer.ui.timesheet.day;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import javax.inject.Qualifier;
+import dagger.Module;
+import dagger.android.ContributesAndroidInjector;
 
-@Qualifier
-@Retention(RetentionPolicy.RUNTIME)
-public @interface ApiInfo {
+@Module
+public abstract class DayFragmentProvider {
 
+    @ContributesAndroidInjector(modules = DayFragmentModule.class)
+    abstract DayFragment provideBlogFragmentFactory();
 }

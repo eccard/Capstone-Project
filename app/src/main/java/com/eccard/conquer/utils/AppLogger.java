@@ -19,10 +19,6 @@ package com.eccard.conquer.utils;
 import com.eccard.conquer.BuildConfig;
 import timber.log.Timber;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
-
 public final class AppLogger {
 
     private AppLogger() {

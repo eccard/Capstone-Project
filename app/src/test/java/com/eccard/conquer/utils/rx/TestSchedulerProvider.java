@@ -19,10 +19,6 @@ package com.eccard.conquer.utils.rx;
 import io.reactivex.Scheduler;
 import io.reactivex.schedulers.TestScheduler;
 
-/**
- * Created by amitshekhar on 11/07/17.
- */
-
 public class TestSchedulerProvider implements SchedulerProvider {
 
     private final TestScheduler mTestScheduler;

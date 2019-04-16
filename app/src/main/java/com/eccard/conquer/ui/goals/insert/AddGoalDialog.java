@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.eccard.conquer.MvvmApp;
+import com.eccard.conquer.ConquerApp;
 import com.eccard.conquer.R;
 import com.eccard.conquer.ViewModelProviderFactory;
 import com.eccard.conquer.databinding.DialogAddGoalBinding;
@@ -42,7 +42,7 @@ public class AddGoalDialog extends BaseDialog implements AddGoalCallback {
     public void dismissDialog() {
         dismissDialog(TAG);
 
-        MvvmApp application = (MvvmApp) getActivity().getApplication();
+        ConquerApp application = (ConquerApp) getActivity().getApplication();
         Tracker tracker = application.getDefaultTracker();
 
 

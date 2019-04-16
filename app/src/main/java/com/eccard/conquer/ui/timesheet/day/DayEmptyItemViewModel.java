@@ -14,14 +14,18 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.di;
+package com.eccard.conquer.ui.timesheet.day;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import javax.inject.Qualifier;
+public class DayEmptyItemViewModel {
 
-@Qualifier
-@Retention(RetentionPolicy.RUNTIME)
-public @interface ApiInfo {
+    private BlogEmptyItemViewModelListener mListener;
 
+    public DayEmptyItemViewModel(BlogEmptyItemViewModelListener listener) {
+        this.mListener = listener;
+    }
+
+    public interface BlogEmptyItemViewModelListener {
+
+        void onRetryClick();
+    }
 }

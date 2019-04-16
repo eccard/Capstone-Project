@@ -20,10 +20,6 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
-
 public final class ScreenUtils {
 
     private ScreenUtils() {

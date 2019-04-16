@@ -6,10 +6,9 @@ import android.widget.AdapterView;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
-import com.eccard.conquer.R;
 import com.eccard.conquer.data.DataManager;
 import com.eccard.conquer.data.local.db.dao.TaskDao;
-import com.eccard.conquer.ui.feed.FeedActivity;
+import com.eccard.conquer.ui.timesheet.TimeSheetActivity;
 import com.eccard.conquer.utils.CommonUtils;
 
 import java.util.Calendar;
@@ -62,7 +61,7 @@ public class TasksRemoteViewServiceFactory implements RemoteViewsService.RemoteV
 
 
         Intent fillIntent = new Intent();
-        fillIntent.putExtra(FeedActivity.ARG_DAY,Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
+        fillIntent.putExtra(TimeSheetActivity.ARG_DAY,Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
         view.setOnClickFillInIntent(android.R.id.text1,fillIntent);
 
         return view;

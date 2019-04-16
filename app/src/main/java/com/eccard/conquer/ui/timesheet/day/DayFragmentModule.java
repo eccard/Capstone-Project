@@ -14,27 +14,33 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.ui.main;
+package com.eccard.conquer.ui.timesheet.day;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.eccard.conquer.data.DataManager;
-import com.eccard.conquer.ui.base.BaseViewModel;
 import com.eccard.conquer.utils.rx.SchedulerProvider;
 
-import androidx.databinding.ObservableField;
+import dagger.Module;
+import dagger.Provides;
+import java.util.ArrayList;
 
-public class MainViewModel extends BaseViewModel<MainNavigator> {
+@Module
+public class DayFragmentModule {
 
-    private final ObservableField<String> appVersion = new ObservableField<>();
-
-    public MainViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
-        super(dataManager, schedulerProvider);
+    @Provides
+    DayViewModel blogViewModel(DataManager dataManager,
+                               SchedulerProvider schedulerProvider) {
+        return new DayViewModel(dataManager, schedulerProvider);
     }
 
-    public ObservableField<String> getAppVersion() {
-        return appVersion;
+    @Provides
+    DayAdapter provideBlogAdapter() {
+        return new DayAdapter(new ArrayList<>());
     }
 
-    public void updateAppVersion(String version) {
-        appVersion.set(version);
+    @Provides
+    LinearLayoutManager provideLinearLayoutManager(DayFragment fragment) {
+        return new LinearLayoutManager(fragment.getActivity());
     }
 }

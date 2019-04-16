@@ -25,10 +25,6 @@ import com.eccard.conquer.utils.rx.SchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
 import java.lang.ref.WeakReference;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
-
 public abstract class BaseViewModel<N> extends ViewModel {
 
     private final DataManager mDataManager;

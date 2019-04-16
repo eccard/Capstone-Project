@@ -14,14 +14,17 @@
  *  limitations under the License
  */
 
-package com.eccard.conquer.di;
+package com.eccard.conquer.ui.timesheet;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import javax.inject.Qualifier;
+import dagger.Module;
+import dagger.Provides;
 
-@Qualifier
-@Retention(RetentionPolicy.RUNTIME)
-public @interface ApiInfo {
+@Module
+public class TimeSheetActivityModule {
+
+    @Provides
+    TimeSheetPagerAdapter provideFeedPagerAdapter(TimeSheetActivity activity) {
+        return new TimeSheetPagerAdapter(activity.getSupportFragmentManager());
+    }
 
 }

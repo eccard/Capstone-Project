@@ -12,7 +12,7 @@ import android.widget.RemoteViews;
 import com.eccard.conquer.R;
 import com.eccard.conquer.data.DataManager;
 import com.eccard.conquer.data.local.db.dao.TaskDao;
-import com.eccard.conquer.ui.feed.FeedActivity;
+import com.eccard.conquer.ui.timesheet.TimeSheetActivity;
 
 import java.util.Calendar;
 import java.util.List;
@@ -115,7 +115,7 @@ public class TasksAppWidget extends AppWidgetProvider {
         views.setRemoteAdapter(R.id.appwidget_listView_ingredients, intent);
         views.setEmptyView(R.id.appwidget_listView_ingredients, R.id.appwidget_empty_view);
 
-        Intent intentPending = new Intent(context,FeedActivity.class);
+        Intent intentPending = new Intent(context, TimeSheetActivity.class);
         PendingIntent pendingIntent =
                 PendingIntent.getActivity(context, 0, intentPending, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setPendingIntentTemplate(R.id.appwidget_listView_ingredients,pendingIntent);

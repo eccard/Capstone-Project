@@ -18,9 +18,6 @@ package com.eccard.conquer.data.local.prefs;
 
 import com.eccard.conquer.data.DataManager;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
 
 public interface PreferencesHelper {
 

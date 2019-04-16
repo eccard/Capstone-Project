@@ -18,23 +18,16 @@ package com.eccard.conquer.data.local.db;
 
 import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.data.model.db.Goal;
-import com.eccard.conquer.data.model.db.Option;
-import com.eccard.conquer.data.model.db.Question;
 import com.eccard.conquer.data.model.db.Task;
-import com.eccard.conquer.data.model.db.User;
-
-import androidx.lifecycle.LiveData;
-import io.reactivex.Observable;
-import timber.log.Timber;
 
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
+import androidx.lifecycle.LiveData;
+import io.reactivex.Observable;
+import timber.log.Timber;
 
 @Singleton
 public class AppDbHelper implements DbHelper {
@@ -46,70 +39,6 @@ public class AppDbHelper implements DbHelper {
         this.mAppDatabase = appDatabase;
     }
 
-    @Override
-    public Observable<List<Question>> getAllQuestions() {
-        return Observable.fromCallable(() -> mAppDatabase.questionDao().loadAll());
-    }
-
-    @Override
-    public Observable<List<User>> getAllUsers() {
-        return Observable.fromCallable(() -> mAppDatabase.userDao().loadAll());
-    }
-
-    @Override
-    public Observable<List<Option>> getOptionsForQuestionId(final Long questionId) {
-        return Observable.fromCallable(() -> mAppDatabase.optionDao().loadAllByQuestionId(questionId));
-    }
-
-    @Override
-    public Observable<Boolean> insertUser(final User user) {
-        return Observable.fromCallable(() -> {
-            mAppDatabase.userDao().insert(user);
-            return true;
-        });
-    }
-
-    @Override
-    public Observable<Boolean> isOptionEmpty() {
-        return Observable.fromCallable(() -> mAppDatabase.optionDao().loadAll().isEmpty());
-    }
-
-    @Override
-    public Observable<Boolean> isQuestionEmpty() {
-        return Observable.fromCallable(() -> mAppDatabase.questionDao().loadAll().isEmpty());
-    }
-
-    @Override
-    public Observable<Boolean> saveOption(final Option option) {
-        return Observable.fromCallable(() -> {
-            mAppDatabase.optionDao().insert(option);
-            return true;
-        });
-    }
-
-    @Override
-    public Observable<Boolean> saveOptionList(final List<Option> optionList) {
-        return Observable.fromCallable(() -> {
-            mAppDatabase.optionDao().insertAll(optionList);
-            return true;
-        });
-    }
-
-    @Override
-    public Observable<Boolean> saveQuestion(final Question question) {
-        return Observable.fromCallable(() -> {
-            mAppDatabase.questionDao().insert(question);
-            return true;
-        });
-    }
-
-    @Override
-    public Observable<Boolean> saveQuestionList(final List<Question> questionList) {
-        return Observable.fromCallable(() -> {
-            mAppDatabase.questionDao().insertAll(questionList);
-            return true;
-        });
-    }
 
     @Override
     public Observable<Boolean> saveTask(Task task) {
@@ -201,4 +130,5 @@ public class AppDbHelper implements DbHelper {
     public Observable<TaskDao.TaskGoal> loadTaskGoalFromTaskId(Long taskId) {
         return Observable.fromCallable(() -> mAppDatabase.taskDao().loadTaskGoalFromTaskId(taskId));
     }
+
 }

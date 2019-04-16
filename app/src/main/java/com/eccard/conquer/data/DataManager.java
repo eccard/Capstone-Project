@@ -19,24 +19,12 @@ package com.eccard.conquer.data;
 import com.eccard.conquer.data.local.db.DbHelper;
 import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.data.local.prefs.PreferencesHelper;
-import com.eccard.conquer.data.model.others.QuestionCardData;
 import com.eccard.conquer.data.remote.ApiHelper;
-import io.reactivex.Observable;
+
 import java.util.List;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
 
 public interface DataManager extends DbHelper, PreferencesHelper, ApiHelper {
-
-    Observable<List<QuestionCardData>> getQuestionCardData();
-
-    Observable<Boolean> seedDatabaseOptions();
-
-    Observable<Boolean> seedDatabaseQuestions();
-
-    void setUserAsLoggedOut();
 
     void updateApiHeader(Long userId, String accessToken);
 

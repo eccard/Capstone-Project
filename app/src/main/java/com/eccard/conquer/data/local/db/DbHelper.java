@@ -18,41 +18,14 @@ package com.eccard.conquer.data.local.db;
 
 import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.data.model.db.Goal;
-import com.eccard.conquer.data.model.db.Option;
-import com.eccard.conquer.data.model.db.Question;
 import com.eccard.conquer.data.model.db.Task;
-import com.eccard.conquer.data.model.db.User;
+
+import java.util.List;
 
 import androidx.lifecycle.LiveData;
 import io.reactivex.Observable;
-import java.util.List;
-
-/**
- * Created by amitshekhar on 07/07/17.
- */
 
 public interface DbHelper {
-
-    Observable<List<Question>> getAllQuestions();
-
-    Observable<List<User>> getAllUsers();
-
-    Observable<List<Option>> getOptionsForQuestionId(Long questionId);
-
-    Observable<Boolean> insertUser(final User user);
-
-    Observable<Boolean> isOptionEmpty();
-
-    Observable<Boolean> isQuestionEmpty();
-
-    Observable<Boolean> saveOption(Option option);
-
-    Observable<Boolean> saveOptionList(List<Option> optionList);
-
-    Observable<Boolean> saveQuestion(Question question);
-
-    Observable<Boolean> saveQuestionList(List<Question> questionList);
-
 
     Observable<Boolean> saveTask(final Task task);
     Observable<Boolean> deleteTask(final Task task);
