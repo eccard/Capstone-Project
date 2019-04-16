@@ -141,6 +141,9 @@ public class TimeSheetActivity extends BaseActivity<ActivityFeedBinding, TimeShe
             mActivityFeedBinding.tabLayout.addTab(mActivityFeedBinding.tabLayout.newTab().setText(day));
         }
 
+        mActivityFeedBinding.tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
+        mActivityFeedBinding.tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
         mActivityFeedBinding.feedViewPager.setOffscreenPageLimit(mActivityFeedBinding.tabLayout.getTabCount());
 
         mActivityFeedBinding.feedViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mActivityFeedBinding.tabLayout));

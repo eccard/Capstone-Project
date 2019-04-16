@@ -73,7 +73,6 @@ dependencies {
     implementation "androidx.cardview:cardview:$rootProject.cardViewVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
     implementation "androidx.vectordrawable:vectordrawable:$rootProject.vectorDrawableVersion"
-    implementation "androidx.vectordrawable:vectordrawable-animated:$rootProject.animatedVectorDrawableVersion"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
 
     // network
@@ -85,13 +84,6 @@ dependencies {
 
     // font
     implementation "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"
-
-    // image
-    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
-
-    // parser
-    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
-
     // debug database
     debugImplementation "com.amitshekhar.android:debug-db:$rootProject.debugDBVersion"
 
@@ -104,9 +96,6 @@ dependencies {
     // reactive
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
-
-    // swipe view
-    implementation "com.mindorks:placeholderview:$rootProject.placeholderviewVersion"
 
     // logger
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"

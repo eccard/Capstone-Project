@@ -16,10 +16,6 @@
 
 package com.eccard.conquer.utils;
 
-import android.content.Context;
-import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
 import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.ui.timesheet.day.DayAdapter;
 
