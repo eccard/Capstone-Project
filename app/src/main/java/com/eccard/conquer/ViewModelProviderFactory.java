@@ -1,7 +1,6 @@
 package com.eccard.conquer;
 
 import com.eccard.conquer.data.DataManager;
-import com.eccard.conquer.ui.about.AboutViewModel;
 import com.eccard.conquer.ui.goals.GoalsViewModel;
 import com.eccard.conquer.ui.goals.insert.AddGoalViewModel;
 import com.eccard.conquer.ui.main.MainViewModel;
@@ -16,10 +15,6 @@ import javax.inject.Inject;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-
-/**
- * Created by jyotidubey on 22/02/19.
- */
 
 public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFactory {
 
@@ -36,10 +31,7 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
 
   @Override
   public <T extends ViewModel> T create(Class<T> modelClass) {
-      if (modelClass.isAssignableFrom(AboutViewModel.class)) {
-          //noinspection unchecked
-          return (T) new AboutViewModel(dataManager,schedulerProvider);
-      } else if (modelClass.isAssignableFrom(TimeSheetViewModel.class)) {
+      if (modelClass.isAssignableFrom(TimeSheetViewModel.class)) {
           //noinspection unchecked
           return (T) new TimeSheetViewModel(dataManager,schedulerProvider);
       } else if (modelClass.isAssignableFrom(MainViewModel.class)) {

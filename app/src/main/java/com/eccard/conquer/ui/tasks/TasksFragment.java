@@ -6,7 +6,6 @@ import android.view.View;
 import com.eccard.conquer.BR;
 import com.eccard.conquer.R;
 import com.eccard.conquer.ViewModelProviderFactory;
-import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.databinding.FragmentTasksBinding;
 import com.eccard.conquer.ui.base.BaseFragment;

@@ -12,7 +12,8 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/ic_rabbit" />
+        app:srcCompat="@drawable/ic_rabbit"
+        android:contentDescription="@string/an_image_of_a_cute_rabbit_in_place_of_your_data"/>
 
     <TextView
         android:id="@+id/tv_message"

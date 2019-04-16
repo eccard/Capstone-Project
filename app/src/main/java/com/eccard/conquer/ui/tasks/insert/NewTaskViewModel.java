@@ -68,9 +68,7 @@ public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
                     } else {
                         Timber.d("deleção da task deu errado");
                     }
-                }, throwable -> {
-                    Timber.e(throwable.getMessage());
-                }));
+                }, throwable -> Timber.e(throwable.getMessage())));
     }
 
     public void addNewTask(){
@@ -99,9 +97,7 @@ public class NewTaskViewModel extends BaseViewModel<NewTaskNavigator> {
                     } else {
                         Timber.d("inserção da tarefa deu errado");
                     }
-                }, throwable -> {
-                    Timber.e(throwable.getMessage());
-                }));
+                }, throwable -> Timber.e(throwable.getMessage())));
     }
 
     void getGoalFromId(int hourOfDay, int minute){

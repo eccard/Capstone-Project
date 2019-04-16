@@ -42,10 +42,4 @@ public final class BindingUtils {
             adapter.addItems(taskGoal);
         }
     }
-
-    @BindingAdapter("imageUrl")
-    public static void setImageUrl(ImageView imageView, String url) {
-        Context context = imageView.getContext();
-        Glide.with(context).load(url).into(imageView);
-    }
 }

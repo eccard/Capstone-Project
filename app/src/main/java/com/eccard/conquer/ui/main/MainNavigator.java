@@ -18,6 +18,4 @@ package com.eccard.conquer.ui.main;
 
 public interface MainNavigator {
 
-    void handleError(Throwable throwable);
-
 }

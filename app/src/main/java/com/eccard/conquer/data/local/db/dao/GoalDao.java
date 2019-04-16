@@ -1,7 +1,6 @@
 package com.eccard.conquer.data.local.db.dao;
 
 import com.eccard.conquer.data.model.db.Goal;
-import com.eccard.conquer.data.model.db.Task;
 
 import java.util.List;
 

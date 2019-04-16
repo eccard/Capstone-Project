@@ -18,42 +18,11 @@ package com.eccard.conquer.data;
 
 import com.eccard.conquer.data.local.db.DbHelper;
 import com.eccard.conquer.data.local.db.dao.TaskDao;
-import com.eccard.conquer.data.local.prefs.PreferencesHelper;
-import com.eccard.conquer.data.remote.ApiHelper;
 
 import java.util.List;
 
 
-public interface DataManager extends DbHelper, PreferencesHelper, ApiHelper {
-
-    void updateApiHeader(Long userId, String accessToken);
-
-    void updateUserInfo(
-            String accessToken,
-            Long userId,
-            LoggedInMode loggedInMode,
-            String userName,
-            String email,
-            String profilePicPath);
-
-    enum LoggedInMode {
-
-        LOGGED_IN_MODE_LOGGED_OUT(0),
-        LOGGED_IN_MODE_GOOGLE(1),
-        LOGGED_IN_MODE_FB(2),
-        LOGGED_IN_MODE_SERVER(3);
-
-        private final int mType;
-
-        LoggedInMode(int type) {
-            mType = type;
-        }
-
-        public int getType() {
-            return mType;
-        }
-    }
-
+public interface DataManager extends DbHelper  {
 
     void cacheWidgetList(List<TaskDao.TaskGoal> taskGoals);
     List<TaskDao.TaskGoal> getWidgetList();

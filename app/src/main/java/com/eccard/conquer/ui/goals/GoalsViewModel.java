@@ -8,7 +8,6 @@ import com.eccard.conquer.utils.rx.SchedulerProvider;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import timber.log.Timber;
 
 public class GoalsViewModel extends BaseViewModel<GoalsNavigator> {

@@ -29,7 +29,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import dagger.android.support.AndroidSupportInjection;
 
@@ -114,9 +113,6 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
         }
     }
 
-    public boolean isNetworkConnected() {
-        return mActivity != null && mActivity.isNetworkConnected();
-    }
 
 
     private void performDependencyInjection() {

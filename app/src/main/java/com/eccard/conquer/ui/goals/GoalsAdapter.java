@@ -1,19 +1,15 @@
 package com.eccard.conquer.ui.goals;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.eccard.conquer.R;
 import com.eccard.conquer.data.model.db.Goal;
-import com.eccard.conquer.ui.main.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,13 +91,10 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalViewHold
             menu.setHeaderTitle("Select the Action");
             MenuInflater getla = new MenuInflater(v.getContext());
             getla.inflate(R.menu.menu_goals_ctx,menu);
-            menu.getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    Timber.d("dentro do onMenuItemClick");
-                    onSelectedGoalListener.onDeleteGoal(goal);
-                    return true;
-                }
+            menu.getItem(0).setOnMenuItemClickListener(item -> {
+                Timber.d("dentro do onMenuItemClick");
+                onSelectedGoalListener.onDeleteGoal(goal);
+                return true;
             });
 
         }
