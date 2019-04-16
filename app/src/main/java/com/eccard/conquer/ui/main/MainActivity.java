@@ -18,10 +18,7 @@ package com.eccard.conquer.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.eccard.conquer.BR;
@@ -32,13 +29,12 @@ import com.eccard.conquer.ViewModelProviderFactory;
 import com.eccard.conquer.data.model.db.Task;
 import com.eccard.conquer.databinding.ActivityMainBinding;
 import com.eccard.conquer.databinding.NavHeaderMainBinding;
-import com.eccard.conquer.ui.about.AboutFragment;
 import com.eccard.conquer.ui.base.BaseActivity;
-import com.eccard.conquer.ui.timesheet.TimeSheetActivity;
 import com.eccard.conquer.ui.goals.GoalsFragment;
 import com.eccard.conquer.ui.goals.insert.AddGoalDialog;
 import com.eccard.conquer.ui.tasks.TasksFragment;
 import com.eccard.conquer.ui.tasks.insert.NewTaskFragment;
+import com.eccard.conquer.ui.timesheet.TimeSheetActivity;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.material.navigation.NavigationView;
@@ -57,9 +53,6 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
-//import com.mindorks.placeholderview.SwipeDecor;
-//import com.mindorks.placeholderview.SwipePlaceHolderView;
-
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements MainNavigator, HasSupportFragmentInjector {
 
     @Inject
@@ -67,7 +60,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Inject
     ViewModelProviderFactory factory;
     private ActivityMainBinding mActivityMainBinding;
-//    private SwipePlaceHolderView mCardsContainerView;
     private DrawerLayout mDrawer;
     private MainViewModel mMainViewModel;
     private NavigationView mNavigationView;
@@ -94,29 +86,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         return mMainViewModel;
     }
 
-    @Override
-    public void handleError(Throwable throwable) {
-        // handle error
-    }
-
-    @Override
-    public void onBackPressed() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment = fragmentManager.findFragmentByTag(AboutFragment.TAG);
-        if (fragment == null) {
-            super.onBackPressed();
-        } else {
-            onFragmentDetached(AboutFragment.TAG);
-        }
-    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        super.onCreateOptionsMenu(menu);
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
-
     public void onFragmentDetached(String tag) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = fragmentManager.findFragmentByTag(tag);
@@ -124,30 +93,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             fragmentManager
                     .beginTransaction()
                     .disallowAddToBackStack()
-                    .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
                     .remove(fragment)
                     .commitNow();
             unlockDrawer();
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Drawable drawable = item.getIcon();
-        if (drawable instanceof Animatable) {
-            ((Animatable) drawable).start();
-        }
-        switch (item.getItemId()) {
-            case R.id.action_cut:
-                return true;
-            case R.id.action_copy:
-                return true;
-            case R.id.action_share:
-                return true;
-            case R.id.action_delete:
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -186,7 +134,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         mDrawer = mActivityMainBinding.drawerView;
         mToolbar = mActivityMainBinding.toolbar;
         mNavigationView = mActivityMainBinding.navigationView;
-//        mCardsContainerView = mActivityMainBinding.cardsContainer;
 
         setSupportActionBar(mToolbar);
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(
@@ -211,38 +158,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         setupNavMenu();
         String version = getString(R.string.version) + " " + BuildConfig.VERSION_NAME;
         mMainViewModel.updateAppVersion(version);
-//        setupCardContainerView();
 
         showGoalsFragment();
     }
 
-/*    private void setupCardContainerView() {
-        int screenWidth = ScreenUtils.getScreenWidth(this);
-        int screenHeight = ScreenUtils.getScreenHeight(this);
-
-        mCardsContainerView.getBuilder()
-                .setDisplayViewCount(3)
-                .setHeightSwipeDistFactor(10)
-                .setWidthSwipeDistFactor(5)
-                .setSwipeDecor(new SwipeDecor()
-                        .setViewWidth((int) (0.90 * screenWidth))
-                        .setViewHeight((int) (0.75 * screenHeight))
-                        .setPaddingTop(20)
-                        .setSwipeRotationAngle(10)
-                        .setRelativeScale(0.01f));
-
-        mCardsContainerView.addItemRemoveListener(count -> {
-            if (count == 0) {
-                // reload the contents again after 1 sec delay
-                new Handler(getMainLooper()).postDelayed(() -> {
-                    //Reload once all the cards are removed
-                    mMainViewModel.loadQuestionCards();
-                }, 800);
-            } else {
-                mMainViewModel.removeQuestionCard();
-            }
-        });
-    }*/
 
     private void setupNavMenu() {
         NavHeaderMainBinding navHeaderMainBinding = DataBindingUtil.inflate(getLayoutInflater(),
@@ -272,22 +191,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 });
     }
 
-    private void showAboutFragment() {
-        lockDrawer();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .disallowAddToBackStack()
-                .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
-                .add(R.id.clRootView, AboutFragment.newInstance(), AboutFragment.TAG)
-                .commit();
-    }
-
     private void showGoalsFragment(){
         getSupportFragmentManager()
                 .beginTransaction()
                 .disallowAddToBackStack()
 //                .addToBackStack(GoalsFragment.TAG)
-//                .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
                 .replace(R.id.container_layout, GoalsFragment.newInstance(), GoalsFragment.TAG)
                 .commit();
     }
@@ -311,7 +219,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         getSupportFragmentManager()
                 .beginTransaction()
                 .addToBackStack(TasksFragment.TAG)
-//                .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
                 .replace(R.id.container_layout, TasksFragment.newInstance(goalId), TasksFragment.TAG)
                 .commit();
 
@@ -326,7 +233,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         getSupportFragmentManager()
                 .beginTransaction()
                 .addToBackStack(NewTaskFragment.TAG)
-//                .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
                 .replace(R.id.container_layout, NewTaskFragment.newInstance(goalId), NewTaskFragment.TAG)
                 .commit();
 

@@ -16,7 +16,6 @@
 
 package com.eccard.conquer.di.builder;
 
-import com.eccard.conquer.ui.about.AboutFragmentProvider;
 import com.eccard.conquer.ui.goals.GoalsFragmentProvider;
 import com.eccard.conquer.ui.goals.insert.AddGoalDialogProvider;
 import com.eccard.conquer.ui.main.MainActivity;
@@ -39,7 +38,6 @@ public abstract class ActivityBuilder {
     abstract TimeSheetActivity bindFeedActivity();
 
     @ContributesAndroidInjector(modules = {
-            AboutFragmentProvider.class,
             GoalsFragmentProvider.class,
             TasksFragmentProvider.class,
             AddGoalDialogProvider.class,

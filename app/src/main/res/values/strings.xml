@@ -19,11 +19,8 @@
 
     <!--Toolbar menus-->
     <string name="clear">Clear</string>
-    <string name="cut">Cut</string>
-    <string name="copy">Copy</string>
     <string name="paste">Paste</string>
     <string name="delete">Delete</string>
-    <string name="share">Share</string>
     <string name="edit">Edit</string>
 
     <!--Drawer-->
@@ -117,5 +114,8 @@
 
     <!--Add goal-->
     <string name="goal_name">Goal name</string>
+    <string name="an_image_of_a_cute_rabbit_in_place_of_your_data">An image of a cute rabbit in place of your data</string>
+    <string name="time_hint">08:00</string>
+    <string name="task_day">Task Day</string>
 
 </resources>

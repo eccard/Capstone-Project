@@ -4,11 +4,9 @@ import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.eccard.conquer.BR;
 import com.eccard.conquer.R;
@@ -33,18 +30,10 @@ import com.eccard.conquer.ui.tasks.alarm.AlarmReceiver;
 import com.eccard.conquer.utils.CommonUtils;
 
 import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.ConcurrentModificationException;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -269,12 +258,7 @@ public class NewTaskFragment extends BaseFragment<FragmentNewTaskBinding,NewTask
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setMessage(R.string.delete_task_confirm);
-            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    newTaskViewModel.deleteTask(task);
-                }
-            });
+            builder.setPositiveButton(android.R.string.ok, (dialog, which) -> newTaskViewModel.deleteTask(task));
             builder.setNegativeButton(android.R.string.cancel,null);
             builder.show();
 

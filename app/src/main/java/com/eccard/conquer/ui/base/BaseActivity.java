@@ -26,7 +26,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.eccard.conquer.utils.CommonUtils;
-import com.eccard.conquer.utils.NetworkUtils;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
@@ -114,10 +113,6 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.cancel();
         }
-    }
-
-    public boolean isNetworkConnected() {
-        return NetworkUtils.isNetworkConnected(getApplicationContext());
     }
 
     public void performDependencyInjection() {

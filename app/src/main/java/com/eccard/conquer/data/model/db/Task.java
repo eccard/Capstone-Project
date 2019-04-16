@@ -55,7 +55,7 @@ public class Task {
 
     @Expose
     @SerializedName("goal_id")
-    @ColumnInfo(name = "goal_id")
+    @ColumnInfo(name = "goal_id", index = true)
     public Long goalId;
 
     @Expose

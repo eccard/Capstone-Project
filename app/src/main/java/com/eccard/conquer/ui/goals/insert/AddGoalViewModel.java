@@ -52,9 +52,7 @@ public class AddGoalViewModel extends BaseViewModel<AddGoalCallback> {
                     } else {
                         Timber.d("inserção deu errado");
                     }
-                }, throwable -> {
-                         Timber.e(throwable.getMessage());
-                }));
+                }, (Throwable throwable) -> Timber.e(throwable.getMessage())));
 
     }
 

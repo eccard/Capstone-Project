@@ -16,10 +16,6 @@
 
 package com.eccard.conquer.utils;
 
-import android.content.Context;
-import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
 import com.eccard.conquer.data.local.db.dao.TaskDao;
 import com.eccard.conquer.ui.timesheet.day.DayAdapter;
 
@@ -41,11 +37,5 @@ public final class BindingUtils {
             adapter.clearItems();
             adapter.addItems(taskGoal);
         }
-    }
-
-    @BindingAdapter("imageUrl")
-    public static void setImageUrl(ImageView imageView, String url) {
-        Context context = imageView.getContext();
-        Glide.with(context).load(url).into(imageView);
     }
 }

@@ -20,11 +20,8 @@ import android.content.Context;
 
 import com.eccard.conquer.data.local.db.DbHelper;
 import com.eccard.conquer.data.local.db.dao.TaskDao;
-import com.eccard.conquer.data.local.prefs.PreferencesHelper;
 import com.eccard.conquer.data.model.db.Goal;
 import com.eccard.conquer.data.model.db.Task;
-import com.eccard.conquer.data.remote.ApiHeader;
-import com.eccard.conquer.data.remote.ApiHelper;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -38,114 +35,17 @@ import io.reactivex.Observable;
 @Singleton
 public class AppDataManager implements DataManager {
 
-    private final ApiHelper mApiHelper;
-
     private final Context mContext;
 
     private final DbHelper mDbHelper;
 
     private final Gson mGson;
 
-    private final PreferencesHelper mPreferencesHelper;
-
     @Inject
-    public AppDataManager(Context context, DbHelper dbHelper, PreferencesHelper preferencesHelper, ApiHelper apiHelper, Gson gson) {
+    public AppDataManager(Context context, DbHelper dbHelper, Gson gson) {
         mContext = context;
         mDbHelper = dbHelper;
-        mPreferencesHelper = preferencesHelper;
-        mApiHelper = apiHelper;
         mGson = gson;
-    }
-
-    @Override
-    public String getAccessToken() {
-        return mPreferencesHelper.getAccessToken();
-    }
-
-    @Override
-    public void setAccessToken(String accessToken) {
-        mPreferencesHelper.setAccessToken(accessToken);
-        mApiHelper.getApiHeader().getProtectedApiHeader().setAccessToken(accessToken);
-    }
-
-    @Override
-    public ApiHeader getApiHeader() {
-        return mApiHelper.getApiHeader();
-    }
-
-    @Override
-    public String getCurrentUserEmail() {
-        return mPreferencesHelper.getCurrentUserEmail();
-    }
-
-    @Override
-    public void setCurrentUserEmail(String email) {
-        mPreferencesHelper.setCurrentUserEmail(email);
-    }
-
-    @Override
-    public Long getCurrentUserId() {
-        return mPreferencesHelper.getCurrentUserId();
-    }
-
-    @Override
-    public void setCurrentUserId(Long userId) {
-        mPreferencesHelper.setCurrentUserId(userId);
-    }
-
-    @Override
-    public int getCurrentUserLoggedInMode() {
-        return mPreferencesHelper.getCurrentUserLoggedInMode();
-    }
-
-    @Override
-    public void setCurrentUserLoggedInMode(LoggedInMode mode) {
-        mPreferencesHelper.setCurrentUserLoggedInMode(mode);
-    }
-
-    @Override
-    public String getCurrentUserName() {
-        return mPreferencesHelper.getCurrentUserName();
-    }
-
-    @Override
-    public void setCurrentUserName(String userName) {
-        mPreferencesHelper.setCurrentUserName(userName);
-    }
-
-    @Override
-    public String getCurrentUserProfilePicUrl() {
-        return mPreferencesHelper.getCurrentUserProfilePicUrl();
-    }
-
-    @Override
-    public void setCurrentUserProfilePicUrl(String profilePicUrl) {
-        mPreferencesHelper.setCurrentUserProfilePicUrl(profilePicUrl);
-    }
-
-    @Override
-    public void updateApiHeader(Long userId, String accessToken) {
-        mApiHelper.getApiHeader().getProtectedApiHeader().setUserId(userId);
-        mApiHelper.getApiHeader().getProtectedApiHeader().setAccessToken(accessToken);
-    }
-
-    @Override
-    public void updateUserInfo(
-            String accessToken,
-            Long userId,
-            LoggedInMode loggedInMode,
-            String userName,
-            String email,
-            String profilePicPath) {
-
-        setAccessToken(accessToken);
-        setCurrentUserId(userId);
-        setCurrentUserLoggedInMode(loggedInMode);
-        setCurrentUserName(userName);
-        setCurrentUserEmail(email);
-        setCurrentUserProfilePicUrl(profilePicPath);
-
-        updateApiHeader(userId, accessToken);
     }
 
     @Override
